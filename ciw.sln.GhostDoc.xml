@@ -1,0 +1,43 @@
+<GhostDoc>
+<IgnoreFilePatterns>
+  <IgnoreFilePattern>*.min.js</IgnoreFilePattern>
+  <IgnoreFilePattern>jquery*.js</IgnoreFilePattern>
+</IgnoreFilePatterns>
+  <SpellChecker>
+    <IncludeExtensions>
+    </IncludeExtensions>
+    <IgnoreExtensions>
+    </IgnoreExtensions>
+    <IgnoreFiles>
+    </IgnoreFiles>
+  </SpellChecker>
+<HelpConfigurations selected="HelpFile">
+  <HelpConfiguration name="HelpFile">
+    <OutputPath>..\Help</OutputPath>
+    <HelpFileName>ciw</HelpFileName>
+    <ImageFolderPath />
+    <HtmlFormats>
+      <HtmlHelp>false</HtmlHelp>
+      <MSHelpViewer>false</MSHelpViewer>
+      <MSHelp2>false</MSHelp2>
+      <Website>true</Website>
+    </HtmlFormats>
+    <IncludeScopes>
+      <Public>true</Public>
+      <Internal>true</Internal>
+      <Protected>true</Protected>
+      <Private>true</Private>
+      <Inherited>true</Inherited>
+      <InheritedFromReferences>false</InheritedFromReferences>
+      <EnableTags>false</EnableTags>
+      <TagList />
+    </IncludeScopes>
+    <ResolveCrefLinks>true</ResolveCrefLinks>
+    <HeaderText>Cabinink Writer</HeaderText>
+    <FooterText>Copyright (c) 2011-2016,Cabinink</FooterText>
+    <SelectedProjects>
+      <SelectedProject>ciw</SelectedProject>
+    </SelectedProjects>
+  </HelpConfiguration>
+</HelpConfigurations>
+</GhostDoc>

@@ -1,0 +1,5 @@
+CREATE TABLE usersetting (
+    _intellisence INTEGER NOT NULL,
+    _chapternomod INTEGER NOT NULL,
+    _sectionnomod INTEGER NOT NULL
+);

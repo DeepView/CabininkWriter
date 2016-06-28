@@ -1,0 +1,20 @@
+异常引发时间：2016年06月21日 星期二 20:35:48
+
+操作系统名称：Microsoft Windows 10 专业版
+操作系统版本号：6.2.9200.0
+操作系统平台：Win32NT
+用户界面区域性描述：中文(中华人民共和国)
+中央处理器序列：BFEBFBFF000306C3
+计算机类型：x64-based PC
+
+只有当 TreeNode 已添加到 TreeView 时，才能检索完整路径。此 TreeNode 尚未添加到 TreeView。
+
+   在 System.Windows.Forms.TreeNode.get_FullPath()
+   在 Cabinink.Writer.UI.frmMainInterface.GetRootNode(TreeNode _selected) 位置 D:\Visual Studio Solution\Visual C#\ciw\ciw\Writer.UI\frmMainInterface.cs:行号 93
+   在 Cabinink.Writer.UI.frmMainInterface.trvNovelTree_Click(Object sender, EventArgs e) 位置 D:\Visual Studio Solution\Visual C#\ciw\ciw\Writer.UI\frmMainInterface.cs:行号 153
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.TreeView.WmNotify(Message& m)
+   在 System.Windows.Forms.TreeView.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)

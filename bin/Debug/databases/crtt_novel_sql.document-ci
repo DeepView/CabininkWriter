@@ -1,0 +1,7 @@
+CREATE TABLE novel (
+    _section       INTEGER            NOT NULL,
+    _section_title STRING (0, 64),
+    _chapter       INTEGER            NOT NULL,
+    _chapter_title STRING (0, 64),
+    _body          STRING (16, 65536) NOT NULL
+);
