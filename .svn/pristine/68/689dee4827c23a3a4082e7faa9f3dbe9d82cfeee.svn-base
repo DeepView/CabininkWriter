@@ -1,0 +1,35 @@
+操作系统平台：Win32NT
+操作系统版本号：Microsoft Windows NT 6.2.9200.0
+
+System.AggregateException: 发生一个或多个错误。 ---> System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 System.Collections.Generic.List`1.Add(T item)
+   在 Cabinink.Program.<>c__DisplayClass8_0.<AddProjects>b__0(Int32 index) 位置 D:\Visual Studio Solution\Visual C#\ciw\ciw\Program.cs:行号 183
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.For(Int32 fromInclusive, Int32 toExclusive, Action`1 body)
+   在 Cabinink.Program.AddProjects() 位置 D:\Visual Studio Solution\Visual C#\ciw\ciw\Program.cs:行号 178
+   在 Cabinink.Program.Main() 位置 D:\Visual Studio Solution\Visual C#\ciw\ciw\Program.cs:行号 43
+   在 System.AppDomain._nExecuteAssembly(RuntimeAssembly assembly, String[] args)
+   在 System.AppDomain.ExecuteAssembly(String assemblyFile, Evidence assemblySecurity, String[] args)
+   在 Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()
+   在 System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+---> (内部异常 #0) System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 System.Collections.Generic.List`1.Add(T item)
+   在 Cabinink.Program.<>c__DisplayClass8_0.<AddProjects>b__0(Int32 index) 位置 D:\Visual Studio Solution\Visual C#\ciw\ciw\Program.cs:行号 183
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+IsTerminating = True

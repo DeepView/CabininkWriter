@@ -1,0 +1,135 @@
+﻿namespace Cabinink.Writer.UI
+{
+   partial class frmWelcome
+   {
+      /// <summary>
+      /// Required designer variable.
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
+
+      /// <summary>
+      /// Clean up any resources being used.
+      /// </summary>
+      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose(bool disposing)
+      {
+         if (disposing && (components != null))
+         {
+            components.Dispose();
+         }
+         base.Dispose(disposing);
+      }
+
+      #region Windows Form Designer generated code
+
+      /// <summary>
+      /// Required method for Designer support - do not modify
+      /// the contents of this method with the code editor.
+      /// </summary>
+      private void InitializeComponent()
+      {
+         this.metroPanel1 = new DMSkin.Metro.Controls.MetroPanel();
+         this.label1 = new System.Windows.Forms.Label();
+         this.label2 = new System.Windows.Forms.Label();
+         this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
+         this.ldcLoading = new LoadingCircle();
+         this.metroPanel1.SuspendLayout();
+         this.SuspendLayout();
+         // 
+         // metroPanel1
+         // 
+         this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(89)))));
+         this.metroPanel1.Controls.Add(this.ldcLoading);
+         this.metroPanel1.Controls.Add(this.label1);
+         this.metroPanel1.Controls.Add(this.label2);
+         this.metroPanel1.DM_HorizontalScrollbarBarColor = true;
+         this.metroPanel1.DM_HorizontalScrollbarDM_HighlightOnWheel = false;
+         this.metroPanel1.DM_HorizontalScrollbarSize = 14;
+         this.metroPanel1.DM_ThumbColor = System.Drawing.Color.Gray;
+         this.metroPanel1.DM_ThumbNormalColor = System.Drawing.Color.Gray;
+         this.metroPanel1.DM_UseBarColor = true;
+         this.metroPanel1.DM_UseCustomBackColor = true;
+         this.metroPanel1.DM_VerticalScrollbarBarColor = true;
+         this.metroPanel1.DM_VerticalScrollbarDM_HighlightOnWheel = false;
+         this.metroPanel1.DM_VerticalScrollbarSize = 12;
+         this.metroPanel1.Location = new System.Drawing.Point(0, 0);
+         this.metroPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+         this.metroPanel1.Name = "metroPanel1";
+         this.metroPanel1.Size = new System.Drawing.Size(453, 279);
+         this.metroPanel1.TabIndex = 3;
+         // 
+         // label1
+         // 
+         this.label1.AutoSize = true;
+         this.label1.BackColor = System.Drawing.Color.Transparent;
+         this.label1.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+         this.label1.ForeColor = System.Drawing.Color.White;
+         this.label1.Location = new System.Drawing.Point(15, 14);
+         this.label1.Name = "label1";
+         this.label1.Size = new System.Drawing.Size(100, 28);
+         this.label1.TabIndex = 5;
+         this.label1.Text = "Cabinink";
+         // 
+         // label2
+         // 
+         this.label2.AutoSize = true;
+         this.label2.BackColor = System.Drawing.Color.Transparent;
+         this.label2.Font = new System.Drawing.Font("微软雅黑 Light", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+         this.label2.ForeColor = System.Drawing.Color.White;
+         this.label2.Location = new System.Drawing.Point(114, 75);
+         this.label2.Name = "label2";
+         this.label2.Size = new System.Drawing.Size(224, 88);
+         this.label2.TabIndex = 5;
+         this.label2.Text = "Writer";
+         // 
+         // metroProgressBar1
+         // 
+         this.metroProgressBar1.Location = new System.Drawing.Point(27, 13);
+         this.metroProgressBar1.Name = "metroProgressBar1";
+         this.metroProgressBar1.TabIndex = 0;
+         // 
+         // ldcLoading
+         // 
+         this.ldcLoading.Color = System.Drawing.Color.White;
+         this.ldcLoading.Location = new System.Drawing.Point(201, 175);
+         this.ldcLoading.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+         this.ldcLoading.Name = "ldcLoading";
+         this.ldcLoading.Size = new System.Drawing.Size(50, 50);
+         this.ldcLoading.TabIndex = 6;
+         this.ldcLoading.Load += new System.EventHandler(this.ldcLoading_Load);
+         // 
+         // frmWelcome
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+         this.BackImage = global::Cabinink.Properties.Resources.tree_Selected;
+         this.ClientSize = new System.Drawing.Size(453, 279);
+         this.Controls.Add(this.metroPanel1);
+         this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+         this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+         this.MaximizeBox = false;
+         this.MinimizeBox = false;
+         this.Name = "frmWelcome";
+         this.Resizable = false;
+         this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
+         this.ShowIcon = false;
+         this.ShowInTaskbar = false;
+         this.Style = MetroFramework.MetroColorStyle.Green;
+         this.Text = "Cabinink";
+         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWelcome_FormClosing);
+         Load += new System.EventHandler(this.frmWelcome_Load);
+         this.metroPanel1.ResumeLayout(false);
+         this.metroPanel1.PerformLayout();
+         this.ResumeLayout(false);
+
+      }
+
+      #endregion
+
+      private DMSkin.Metro.Controls.MetroPanel metroPanel1;
+      private System.Windows.Forms.Label label2;
+      private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
+      private System.Windows.Forms.Label label1;
+      private LoadingCircle ldcLoading=new LoadingCircle();
+   }
+}

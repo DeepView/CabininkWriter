@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace Cabinink.Writer.Cores
+{
+   /// <summary>
+   /// 角色管理类
+   /// </summary>
+   public class RoleManagement
+   {
+      /// <summary>
+      /// 当前作品已经拥有的角色
+      /// </summary>
+      private List<Role> roles;
+      /// <summary>
+      /// 当前作品暂时被移出，却未被删除的角色
+      /// </summary>
+      private List<Role> removed;
+      /// <summary>
+      /// 构造函数，创建一个没有角色的空集管理实例
+      /// </summary>
+      public RoleManagement()
+      {
+         roles = new List<Role>();
+         removed = new List<Role>();
+      }
+      /// <summary>
+      /// 构造函数，创建一个指定角色集合的管理实例
+      /// </summary>
+      /// <param name="_roles">需要被管理的角色集合。</param>
+      public RoleManagement(List<Role> _roles)
+      {
+         roles = _roles;
+         removed = new List<Role>();
+      }
+      /// <summary>
+      /// 构造函数，创建一个指定角色集合以及被移除角色集合的管理实例
+      /// </summary>
+      /// <param name="_roles">需要被管理的角色集合。</param>
+      /// <param name="_removed">被移除的角色的集合。</param>
+      public RoleManagement(List<Role> _roles,List<Role> _removed)
+      {
+         roles = _roles;
+         removed = _removed;
+      }
+      /// <summary>
+      /// 获取或设置当前实例的角色集合
+      /// </summary>
+      public List<Role> Roles
+      {
+         get { return roles; }
+         set
+         {
+            if (value == null) throw new ObjectDisposedException("不允许空引用的列表！");
+            roles = value;
+         }
+      }
+      /// <summary>
+      /// 获取当前实例的被移除角色的集合
+      /// </summary>
+      public List<Role> Removed
+      {
+         get { return removed; }
+      }
+      /// <summary>
+      /// 获取需要被管理的角色集合的实际角色数量
+      /// </summary>
+      public int Count
+      {
+         get { return Roles.Count; }
+      }
+      /// <summary>
+      /// 获取或设置指定索引所对应的角色
+      /// </summary>
+      /// <param name="_index">指定的索引。</param>
+      /// <returns>如果该索引器未抛出异常，则get代码部分会返回指定索引所对应的元素。</returns>
+      public Role this[int _index]
+      {
+         get
+         {
+            if (_index > Count || _index < 0) throw new ArgumentOutOfRangeException("索引超出范围！");
+            return Roles[_index];
+         }
+         set
+         {
+            if (_index > Count || _index < 0) throw new ArgumentOutOfRangeException("索引超出范围！");
+            Roles[_index] = value;
+         }
+      }
+      public int AddRole(Role _item)
+      {
+         Roles.Add(_item);
+         return Count;
+      }
+      public int RemoveRole(int _index)
+      {
+         Roles.RemoveAt(_index);
+         return Count;
+      }
+      public int RemoveRole(Role _item)
+      {
+
+         return Count;
+      }
+      public List<Role> Find
+   }
+}

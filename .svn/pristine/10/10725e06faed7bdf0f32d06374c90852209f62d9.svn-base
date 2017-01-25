@@ -1,0 +1,99 @@
+﻿namespace Cabinink.Writer.UI
+{
+   partial class frmNovelProperty
+   {
+      /// <summary>
+      /// 必需的设计器变量。
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
+
+      /// <summary>
+      /// 清理所有正在使用的资源。
+      /// </summary>
+      /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+      protected override void Dispose(bool disposing)
+      {
+         if (disposing && (components != null))
+         {
+            components.Dispose();
+         }
+         base.Dispose(disposing);
+      }
+
+      #region Windows 窗体设计器生成的代码
+
+      /// <summary>
+      /// 设计器支持所需的方法 - 不要修改
+      /// 使用代码编辑器修改此方法的内容。
+      /// </summary>
+      private void InitializeComponent()
+      {
+         this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
+         this.tpGeneral = new System.Windows.Forms.TabPage();
+         this.tpRoles = new System.Windows.Forms.TabPage();
+         this.tpCompendium = new System.Windows.Forms.TabPage();
+         this.metroTabControl1.SuspendLayout();
+         this.SuspendLayout();
+         // 
+         // metroTabControl1
+         // 
+         this.metroTabControl1.Controls.Add(this.tpGeneral);
+         this.metroTabControl1.Controls.Add(this.tpRoles);
+         this.metroTabControl1.Controls.Add(this.tpCompendium);
+         this.metroTabControl1.Location = new System.Drawing.Point(1, 39);
+         this.metroTabControl1.Name = "metroTabControl1";
+         this.metroTabControl1.SelectedIndex = 2;
+         this.metroTabControl1.Size = new System.Drawing.Size(702, 406);
+         this.metroTabControl1.TabIndex = 0;
+         this.metroTabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
+         this.metroTabControl1.UseSelectable = true;
+         // 
+         // tpGeneral
+         // 
+         this.tpGeneral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.tpGeneral.Location = new System.Drawing.Point(4, 39);
+         this.tpGeneral.Name = "tpGeneral";
+         this.tpGeneral.Size = new System.Drawing.Size(694, 363);
+         this.tpGeneral.TabIndex = 0;
+         this.tpGeneral.Text = "常规信息";
+         // 
+         // tpRoles
+         // 
+         this.tpRoles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.tpRoles.Location = new System.Drawing.Point(4, 39);
+         this.tpRoles.Name = "tpRoles";
+         this.tpRoles.Size = new System.Drawing.Size(694, 363);
+         this.tpRoles.TabIndex = 1;
+         this.tpRoles.Text = "角色管理";
+         // 
+         // tpCompendium
+         // 
+         this.tpCompendium.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.tpCompendium.Location = new System.Drawing.Point(4, 39);
+         this.tpCompendium.Name = "tpCompendium";
+         this.tpCompendium.Size = new System.Drawing.Size(694, 363);
+         this.tpCompendium.TabIndex = 2;
+         this.tpCompendium.Text = "故事大纲";
+         // 
+         // frmNovelProperty
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+         this.ClientSize = new System.Drawing.Size(704, 446);
+         this.Controls.Add(this.metroTabControl1);
+         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+         this.MaximizeBox = false;
+         this.Name = "frmNovelProperty";
+         this.Text = "属性";
+         this.metroTabControl1.ResumeLayout(false);
+         this.ResumeLayout(false);
+
+      }
+
+      #endregion
+
+      private MetroFramework.Controls.MetroTabControl metroTabControl1;
+      private System.Windows.Forms.TabPage tpGeneral;
+      private System.Windows.Forms.TabPage tpRoles;
+      private System.Windows.Forms.TabPage tpCompendium;
+   }
+}

@@ -1,0 +1,372 @@
+﻿using System;
+using System.IO;
+using System.Text;
+using System.Resources;
+using Cabinink.Properties;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using iniopter = Cabinink.Writer.Cores.InitializationFileOperation;
+namespace Cabinink.Writer.Cores
+{
+   /// <summary>
+   /// 需要被保存的章节的结构体
+   /// </summary>
+   /// <typeparam name="string">章节编号的编号数据类型。</typeparam>
+   public struct SShouldSavedChapter
+   {
+      /// <summary>
+      /// 需要被保存的章节
+      /// </summary>
+      public Chapter ShouldSavedChapter;
+      /// <summary>
+      /// 需要被保存的章节是否发生过更改，如果这个值为false，则ShouldSavedChapter成员的值无效
+      /// </summary>
+      public bool IsChanged;
+      /// <summary>
+      /// 构造函数，创建一个指定需要被保存章节的SShouldSavedChapte<string>结构体实例
+      /// </summary>
+      /// <param name="_ssc">需要被保存的章节。</param>
+      /// <param name="_ischanged">指示当前章节是否发生了更改，如果没有发生更改，则ShouldSavedChapter为null。</param>
+      public SShouldSavedChapter(Chapter _ssc, bool _ischanged)
+      {
+         ShouldSavedChapter = _ssc;
+         IsChanged = _ischanged;
+         if (_ischanged == false) ShouldSavedChapter = null;
+      }
+   }
+   /// <summary>
+   /// Cabinink Writer 项目类
+   /// </summary>
+   public class Project
+   {
+      /// <summary>
+      /// 项目名称
+      /// </summary>
+      private string projname;
+      /// <summary>
+      /// 项目保存的路径
+      /// </summary>
+      private string projurl;
+      /// <summary>
+      /// 分卷信息文件扩展名
+      /// </summary>
+      private string embrifextname;
+      /// <summary>
+      /// 章节文件扩展名
+      /// </summary>
+      private string chapterfextname;
+      /// <summary>
+      /// 配置文件扩展名
+      /// </summary>
+      private string ciwcfgfextname;
+      /// <summary>
+      /// 当前项目的作品实例
+      /// </summary>
+      private Novel novel;
+      /// <summary>
+      /// 用于资源访问的ResourceManager
+      /// </summary>
+      private ResourceManager resm;
+      /// <summary>
+      /// 当前项目所包含作品的分卷编号模式
+      /// </summary>
+      private ESubsectionNumberMode snmode;
+      /// <summary>
+      /// 当前项目所包含作品的章节编号模式
+      /// </summary>
+      private EChapterNumberMode cnmode;
+      /// <summary>
+      /// 构造函数，创建一个空的Project实例
+      /// </summary>
+      public Project()
+      {
+         resm = new ResourceManager("Cabinink.Properties.Resources", typeof(Resources).Assembly);
+         SNovelInformation info = new SNovelInformation("x", "x", "x", ENovelCategory.Other, DateTime.Today, new DateTime(2100, 12, 31), new List<string>(), new List<string>());
+         novel = new Novel(info);
+         InitializeExtNameString();
+      }
+      /// <summary>
+      /// 构造函数，创建一个指定项目名称和项目保存路径的Project实例
+      /// </summary>
+      /// <param name="_projname">指定的项目名称。</param>
+      /// <param name="_projurl">指定的项目保存路径。</param>
+      /// <param name="_novelinfo">需要被创建的作品的信息。</param>
+      public Project(string _projname, string _projurl, SNovelInformation _novelinfo)
+      {
+         if (IsInconformitySpecification(_projname) == false) throw new InconformitySpecificationException("命名不符合规则");
+         resm = new ResourceManager("Cabinink.Properties.Resources", typeof(Resources).Assembly);
+         InitializeExtNameString();
+         projname = _projname;
+         projurl = _projurl;
+         novel = new Novel(_novelinfo);
+      }
+      /// <summary>
+      /// 初始化当前项目可用的全部扩展名
+      /// </summary>
+      private void InitializeExtNameString()
+      {
+         embrifextname = resm.GetString("SUBSECTION_INFO_FILE_TYPE_NAME");
+         chapterfextname = resm.GetString("CHAPTOR_FILE_TYPE_NAME");
+         ciwcfgfextname = resm.GetString("CIWRITER_CONFIG_FILE_TYPE_NAME");
+      }
+      /// <summary>
+      /// 检查指定的项目名称是否符合规范，项目名称文本的组成元素只允许是字母，下划线和数字，且数字不能存在于首字符位置
+      /// </summary>
+      /// <param name="_projname">需要被检查的项目名称。</param>
+      /// <returns>如果被检查的项目名称符合规范，则返回true，否则会返回false。</returns>
+      public bool IsInconformitySpecification(string _projname)
+      {
+         bool specification = false;
+         char[] projname_chars = _projname.ToCharArray();
+         int[] ascii_fragment = { 48, 57, 65, 90, 95, 97, 122 };//48~57 is number,65~90 is lowercase,97 is underline,97~122 is uppercase.
+         Parallel.For(0, _projname.Length, (index, interrupt) =>
+         {
+            if (projname_chars[index] >= ascii_fragment[0] && projname_chars[index] <= ascii_fragment[1] && index != 0)
+            {
+               specification = true;
+            }
+            else if (projname_chars[index] >= ascii_fragment[2] && projname_chars[index] <= ascii_fragment[3])
+            {
+               specification = true;
+            }
+            else if (projname_chars[index] >= ascii_fragment[5] && projname_chars[index] <= ascii_fragment[6])
+            {
+               specification = true;
+            }
+            else if (projname_chars[index] == ascii_fragment[4])
+            {
+               specification = true;
+            }
+            else
+            {
+               specification = false;
+               interrupt.Stop();
+            }
+         });
+         return specification;
+      }
+      /// <summary>
+      /// 获取或设置当前实例的项目名称
+      /// </summary>
+      public string ProjectName
+      {
+         get { return projname; }
+         set
+         {
+            if (IsInconformitySpecification(value) == false) throw new InconformitySpecificationException("命名不符合规则");
+            projname = value;
+         }
+      }
+      /// <summary>
+      /// 获取或设置当前实例的项目保存路径
+      /// </summary>
+      public string ProjectUrl
+      {
+         get { return projurl; }
+         set
+         {
+            if (FileOperation.FileExists(value)) throw new FileIsExistedException("该文件已存在！");
+            projurl = value;
+         }
+      }
+      /// <summary>
+      /// 获取或设置当前实例所包含的作品
+      /// </summary>
+      public Novel CurrentNovel
+      {
+         get { return novel; }
+         set { novel = value; }
+      }
+      /// <summary>
+      /// 获取或设置当前实例所包含作品的分卷编号模式
+      /// </summary>
+      public ESubsectionNumberMode SubectionNumberMode
+      {
+         get { return snmode; }
+         set { snmode = value; }
+      }
+      /// <summary>
+      /// 获取或设置当前实例所包含作品的章节编号模式
+      /// </summary>
+      public EChapterNumberMode ChapterNumberMode
+      {
+         get { return cnmode; }
+         set { cnmode = value; }
+      }
+      /// <summary>
+      /// 获取项目URL的目录
+      /// </summary>
+      /// <returns>当前操作返回的是项目URL目录的字符串文本。</returns>
+      public string GetProjectDirectory()
+      {
+         return FileOperation.GetFatherDirectory(ProjectUrl);
+      }
+      /// <summary>
+      /// 创建项目，并生成三个和项目相关的文件夹，这三个文件夹分别是：\Body，\Config，\Resources，顺便还会生成相关的配置文件
+      /// </summary>
+      /// <param name="_sstmode">作品的分卷编号模式。</param>
+      /// <param name="_cptmode">作品的章节编号模式。</param>
+      public void Create(ESubsectionNumberMode _sstmode, EChapterNumberMode _cptmode)
+      {
+         ExitWindows.GetSystemAuthority("SeTcbPrivilege");
+         if (FileOperation.DirectoryExists(GetProjectDirectory()) == false)
+         {
+            FileOperation.CreateDirectory(GetProjectDirectory());
+         }
+         FileOperation.CreateFile(ProjectUrl, FileAccess.ReadWrite, FileShare.None);
+         if (FileOperation.DirectoryExists(GetProjectDirectory() + @"\Body") == false)
+         {
+            FileOperation.CreateDirectory(GetProjectDirectory() + @"\Body");
+         }
+         if (FileOperation.DirectoryExists(GetProjectDirectory() + @"\Config") == false)
+         {
+            FileOperation.CreateDirectory(GetProjectDirectory() + @"\Config");
+         }
+         if (FileOperation.DirectoryExists(GetProjectDirectory() + @"\Resources") == false)
+         {
+            FileOperation.CreateDirectory(GetProjectDirectory() + @"\Resources");
+         }
+         string projfile = GetProjectDirectory() + @"\" + ProjectName + ".ini";
+         string inifile = GetProjectDirectory() + @"\Config\" + "userconfig.ini";
+         string ssifile = GetProjectDirectory() + @"\Body\" + "subsections.ini";
+         string cpifile = GetProjectDirectory() + @"\Body\New Subsection\" + "chapters.ini";
+         string ncpfile = GetProjectDirectory() + @"\Body\New Subsection\" + "New Chapter." + chapterfextname;
+         FileOperation.CreateFile(inifile, FileAccess.ReadWrite, FileShare.ReadWrite);
+         FileOperation.CreateFile(ssifile, FileAccess.ReadWrite, FileShare.ReadWrite);
+         iniopter.WriteValue(projfile, "ProjectInformation", "ProjectName", ProjectName);
+         iniopter.WriteValue(projfile, "ProjectInformation", "NovelName", novel.Information.NovelName);
+         iniopter.WriteValue(projfile, "ProjectInformation", "WriterName", novel.Information.WriterName);
+         iniopter.WriteValue(projfile, "ProjectInformation", "Remarks", novel.Information.Remarks);
+         iniopter.WriteValue(projfile, "ProjectInformation", "Category", novel.Information.Category.ToString());
+         iniopter.WriteValue(projfile, "ProjectInformation", "CreationTime", Convert.ToString(novel.Information.CreationTime.Ticks, 10));
+         iniopter.WriteValue(projfile, "ProjectInformation", "BreakupTime", Convert.ToString(novel.Information.BreakupTime.Ticks, 10));
+         iniopter.WriteValue(projfile, "ProjectInformation", "Keywords", novel.Information.GetKeywordsCsvString());
+         iniopter.WriteValue(projfile, "ProjectFileStruction", "UserConfigFile", inifile);
+         iniopter.WriteValue(@"config\projects.ini", ProjectName, "ProjectUri", ProjectUrl);
+         iniopter.WriteValue(inifile, "NovelNumberMode", "Subsection", Convert.ToString((int)_sstmode, 10));
+         iniopter.WriteValue(inifile, "NovelNumberMode", "Chapter", Convert.ToString((int)_cptmode, 10));
+         iniopter.WriteValue(inifile, "EnvironmentSetting", "IntelligentizedSence", "0");
+         CurrentNovel.OperationFlag = true;
+         SSubsectionNumber ssn = new SSubsectionNumber(_sstmode, "一");
+         SChapterNumber scn = new SChapterNumber("1", _cptmode);
+         CreateSubsection(new Subsection(ssn, "新分卷"));
+         CreateChapter(new Chapter(scn, "新章节"), CurrentNovel[CurrentNovel.Count - 1]);
+         SubectionNumberMode = _sstmode;
+         ChapterNumberMode = _cptmode;
+      }
+      /// <summary>
+      /// 创建一个新的分卷文件夹
+      /// </summary>
+      /// <param name="_subsection">需要被创建的分卷文件夹。</param>
+      public void CreateSubsection(Subsection _subsection)
+      {
+         novel.AddSubsection(_subsection);
+         int nsid = CurrentNovel.Count;
+         string nspid = Convert.ToString(_subsection.SubsectionNumber.GetPublicNumber(), 10);
+         iniopter.WriteValue(GetProjectDirectory() + @"\Body\" + "subsections.ini", "S" + nsid.ToString(), "SubsectionNumber", nspid);
+         iniopter.WriteValue(GetProjectDirectory() + @"\Body\" + "subsections.ini", "S" + nsid.ToString(), "SubsectionTitle", _subsection.Title);
+         FileOperation.CreateDirectory(GetProjectDirectory() + @"\Body\" + _subsection.Title);
+      }
+      /// <summary>
+      /// 创建一个新的章节文件
+      /// </summary>
+      /// <param name="_chapter">需要被创建的章节。</param>
+      /// <param name="_subsection">需要添加到哪一个分卷之中。</param>
+      public void CreateChapter(Chapter _chapter, Subsection _subsection)
+      {
+         int index_s = novel.GetSubsectionIndex(_subsection);
+         novel[index_s].AddChapter(_chapter);
+         int index_c = novel[index_s].GetChapterIndex(_chapter.ChapterNumber);
+         string cpifile = GetProjectDirectory() + @"\Body\" + _subsection.Title + @"\" + "chapters.ini";
+         string chapterurl = GetProjectDirectory() + @"\Body\" + _subsection.Title + @"\" + _chapter.Title + "." + chapterfextname;
+         FileOperation.CreateFile(chapterurl, FileAccess.ReadWrite, FileShare.ReadWrite);
+         iniopter.WriteValue(cpifile, "C" + (index_c + 1).ToString(), "ChapterNumber", (index_c + 1).ToString());
+         iniopter.WriteValue(cpifile, "C" + (index_c + 1).ToString(), "ChapterTitle", _chapter.Title);
+      }
+      /// <summary>
+      /// 保存当前项目
+      /// </summary>
+      public void Save()
+      {
+         //TODO:这里需要好好写一下！
+      }
+      /// <summary>
+      /// 保存当前项目中已存在更改的章节
+      /// </summary>
+      /// <typeparam name="VTChapterNumber">需要被保存的章节的章节编号类型。</typeparam>
+      /// <param name="_ssc">需要被保存的章节。</param>
+      public void Save(SShouldSavedChapter _ssc)
+      {
+         string savedir = string.Empty;
+         string savefurl = string.Empty;
+         Chapter ssc = _ssc.ShouldSavedChapter;
+         Encoding encoding = Encoding.GetEncoding("GB2312");
+         if (_ssc.IsChanged)
+         {
+            savedir = GetChapterLocation(ssc);
+            savefurl = savedir + ssc.Title + "." + chapterfextname;
+            FileOperation.WriteFile(savefurl, ssc.Encryption(), false, false, encoding);
+         }
+      }
+      /// <summary>
+      /// 关闭并保存项目，但是不会退出应用程序
+      /// </summary>
+      public void Close()
+      {
+         Save();
+         novel.StopOperation();
+      }
+      /// <summary>
+      /// 寻找指定章节的位置
+      /// </summary>
+      /// <param name="_chapter">需要被寻找的章节。</param>
+      /// <returns>如果寻找到了这个章节，则返回这个章节所在的位置，这个位置是用分卷名称表示的。</returns>
+      public string GetChapterLocation(Chapter _chapter)
+      {
+         string subsection = string.Empty;
+         List<string> subsections = FileOperation.GetFolders(GetProjectDirectory() + @"\Body");
+         List<string> chapters = new List<string>();
+         ParallelLoopResult loopres = new ParallelLoopResult();
+         Parallel.For(0, subsections.Count, (index, interrupt) =>
+         {
+            chapters = FileOperation.GetFiles(subsections[index]);
+            loopres = Parallel.For(0, chapters.Count, (index_s, interrupt_s) =>
+            {
+               if (FileOperation.GetFileNameWithoutExtension(chapters[index_s]) == _chapter.Title)
+               {
+                  subsection = subsections[index_s];
+                  interrupt_s.Stop();
+               }
+            });
+            if (loopres.IsCompleted == false) interrupt.Stop();
+         });
+         return subsection;
+      }
+      /// <summary>
+      /// 获取指定的章节的正文到编辑区
+      /// </summary>
+      /// <param name="_chapter">需要被获取章节正文的章节实例。</param>
+      /// <returns>如果操作无异常，则该操作将会返回一个被解密的章节正文文本。</returns>
+      public string OpenChapter(Chapter _chapter)
+      {
+         string cbody = string.Empty;
+         string location = GetChapterLocation(_chapter);
+         Encoding encoding = Encoding.GetEncoding("GB2312");
+         Chapter chapter = new Chapter(new SChapterNumber("0", EChapterNumberMode.OnlyArabic));
+         cbody = FileOperation.ReadFile(location + @"\" + _chapter.Title + chapterfextname, true, encoding);
+         return chapter.Decryption(cbody);
+      }
+   }
+   /// <summary>
+   /// 名称或者文本不符合指定规范时产生的异常
+   /// </summary>
+   [Serializable]
+   public class InconformitySpecificationException : Exception
+   {
+      public InconformitySpecificationException() { }
+      public InconformitySpecificationException(string message) : base(message) { }
+      public InconformitySpecificationException(string message, Exception inner) : base(message, inner) { }
+      protected InconformitySpecificationException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+   }
+}

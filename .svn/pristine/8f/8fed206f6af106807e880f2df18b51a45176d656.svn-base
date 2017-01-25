@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using Cabinink.Writer.Cores;
+using Cabinink.Writer.Middle;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmCreateChapterOrSubsection : Cabinink.Writer.UI.VsSkinFormBase
+   {
+      private Project project;
+      private bool iscreatechapter;
+      private int selectedindex;
+      public frmCreateChapterOrSubsection()
+      {
+         InitializeComponent();
+      }
+      public frmCreateChapterOrSubsection(Project _project)
+      {
+         InitializeComponent();
+         project = _project;
+         iscreatechapter = true;
+         selectedindex = -1;
+      }
+      public frmCreateChapterOrSubsection(Project _project, bool _iscrtchapter, int _selectedindex)
+      {
+         InitializeComponent();
+         project = _project;
+         iscreatechapter = _iscrtchapter;
+         selectedindex = _selectedindex;
+      }
+   }
+}

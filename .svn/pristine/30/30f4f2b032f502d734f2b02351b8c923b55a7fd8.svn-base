@@ -1,0 +1,69 @@
+﻿using Cabinink.Writer.Cores;
+using Cabinink.Writer.Middle;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using app = Cabinink.Program;
+namespace Cabinink.Writer.UI
+{
+   public partial class frmNovelProperty : Cabinink.Writer.UI.VsSkinFormBase
+   {
+      private frmMainInterface owner;
+      private Project project;
+      public frmNovelProperty()
+      {
+         InitializeComponent();
+      }
+      public void Display(frmMainInterface _owner)
+      {
+         owner = _owner;
+         project = owner.GetProjectAccessSelectedNode();
+         Show();
+      }
+      private void frmNovelProperty_Load(object sender, EventArgs e)
+      {
+         LoadNovelInformation();
+         LoadRoleCollection();
+         //MessageBox.Show("SelectedNodeIndex=" + owner.trvNovelTree.SelectedNode.Index);
+      }
+      public void LoadNovelInformation()
+      {
+         txtProjectName.Text = project.Name;
+         txtNovelName.Text = project.CurrentNovel.Information.NovelName;
+         txtWriter.Text = project.CurrentNovel.Information.WriterName;
+         txtCategory.Text = app.GetEnumDescription(project.CurrentNovel.Information.Category);
+         txtCreateDate.Text = project.CurrentNovel.Information.CreationTime.ToLongDateString();
+         txtKeywords.Text = project.CurrentNovel.Information.GetKeywordsCsvString();
+         txtInfo.Text = project.CurrentNovel.Information.Remarks;
+         txtSavedPath.Text = project.Database.SourceUri;
+      }
+      public void LoadRoleCollection()
+      {
+         RoleManagement roles = project.Roles;
+         ListViewItem item;
+         string name, camp, occup, appear, character, pet, other, appell, sex, initage, category;
+         string[] itemstr;
+         for (int i = 0; i < roles.Count; i++)
+         {
+            name = roles[i].Name.ToString(true);
+            camp = roles[i].Camp;
+            occup = roles[i].Occupation;
+            appear = roles[i].Appearance;
+            character = roles[i].Character;
+            pet = roles[i].PetPhrase;
+            other = roles[i].OtherInformation;
+            appell = roles[i].GetCsvFormatString();
+            sex = app.GetEnumDescription(roles[i].Sex);
+            initage = roles[i].InitializeAge.ToString();
+            category = app.GetEnumDescription(roles[i].Category);
+            itemstr = new string[] { name, appell, sex, initage, category, camp, occup, appear, character, pet, other };
+            item = new ListViewItem(itemstr);
+            lsvRoles.Items.Add(item);
+         }
+      }
+   }
+}

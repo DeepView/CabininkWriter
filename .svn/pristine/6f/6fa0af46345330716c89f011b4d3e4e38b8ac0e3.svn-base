@@ -1,0 +1,71 @@
+﻿using System;
+using System.IO;
+using System.Threading;
+using System.Diagnostics;
+using System.Windows.Forms;
+namespace Cabinink.Writer.UI
+{
+   public partial class frmWelcome : MetroFramework.Forms.MetroForm
+   {
+      public frmWelcome()
+      {
+         InitializeComponent();
+      }
+      //关闭自身  
+      public void KillMe(object o, EventArgs e)
+      {
+         Close();
+      }
+      /// <summary>  
+      /// 加载并显示主窗体  
+      /// </summary>  
+      /// <param name="form">主窗体</param>  
+      public static void LoadAndRun(Form form)
+      {
+         try
+         {
+            //订阅主窗体的句柄创建事件  
+            form.HandleCreated += delegate
+            {
+               //启动新线程来显示Splash窗体  
+               new Thread(new ThreadStart(delegate
+               {
+                  frmWelcome splash = new frmWelcome();
+                  //订阅主窗体的Shown事件  
+                  form.Shown += delegate
+                  {
+                     //通知Splash窗体关闭自身  
+                     splash.Invoke(new EventHandler(splash.KillMe));
+                     splash.Dispose();
+                  };
+                  //显示Splash窗体  
+                  Application.Run(splash);
+
+               })).Start();
+            };
+
+            //显示主窗体  
+         }
+         catch
+         {
+            Thread.Sleep(1000);
+         }
+         Application.Run(form);
+      }
+
+      private void frmWelcome_Load(object sender, EventArgs e)
+      {
+         //ldcLoading.Switch();
+         ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
+      }
+      private void frmWelcome_FormClosing(object sender, FormClosingEventArgs e)
+      {
+         Application.ExitThread();
+      }
+
+      private void ldcLoading_Load(object sender, EventArgs e)
+      {
+         ldcLoading.Switch();
+      }
+   }
+}

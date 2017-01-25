@@ -1,0 +1,12 @@
+CREATE TABLE compendium (
+    _happend_y INTEGER (-6000, 2147483647) NOT NULL
+                                           DEFAULT (2010),
+    _happend_m INTEGER (1, 12)             DEFAULT (1),
+    _happend_d INTEGER (1, 31)             DEFAULT (1),
+    _category  INTEGER (0, 2)              NOT NULL
+                                           DEFAULT (0),
+    _roles     STRING,
+    _place     STRING,
+    _story     STRING                      NOT NULL
+                                           DEFAULT ('StoryCell') 
+);

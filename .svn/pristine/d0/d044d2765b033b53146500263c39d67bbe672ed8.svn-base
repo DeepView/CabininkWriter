@@ -1,0 +1,7 @@
+CREATE TABLE appinfo (
+    _appname  STRING NOT NULL,
+    _fullname STRING NOT NULL,
+    _compname STRING NOT NULL,
+    _sysusr   STRING NOT NULL,
+    _prdtver  STRING NOT NULL
+);

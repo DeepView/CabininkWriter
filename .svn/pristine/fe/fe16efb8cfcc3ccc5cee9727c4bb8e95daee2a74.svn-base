@@ -1,0 +1,222 @@
+﻿using System;
+using System.IO;
+using System.Text;
+using System.Linq;
+using System.Threading;
+using Cabinink.Writer.UI;
+using System.Windows.Forms;
+using Cabinink.Writer.Cores;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using iniopter = Cabinink.Writer.Cores.InitializationFileOperation;
+namespace Cabinink
+{
+   /// <summary>
+   /// 用于访问应用程序主入口点的静态类
+   /// </summary>
+   public static class Program
+   {
+      public static List<Project> Projects = new List<Project>();
+      public static List<string> IntelliSenceSources = new List<string>();
+      /// <summary>
+      /// 应用程序的主入口点
+      /// </summary>
+      [STAThread]
+      public static void Main()
+      {
+         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+         Application.ThreadException += new ThreadExceptionEventHandler(UIThreadUnhandledExceptionCatched);
+         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CoresThreadUnhandledExceptionCatched);
+         Application.EnableVisualStyles();
+         Application.SetCompatibleTextRenderingDefault(false);
+         frmMainInterface main = new frmMainInterface();
+         if (FileOperation.DirectoryExists(@"config") == false) FileOperation.CreateDirectory(@"config");
+         if (FileOperation.FileExists(@"config\projects.ini") == false)
+         {
+            FileOperation.CreateFile(@"config\projects.ini", FileAccess.ReadWrite, FileShare.ReadWrite);
+         }
+         if (FileOperation.FileExists(@"config\settings.ini") == false)
+         {
+            FileOperation.CreateFile(@"config\settings.ini", FileAccess.ReadWrite, FileShare.ReadWrite);
+         }
+         AddProjects();
+         Application.Run(main);
+      }
+      /// <summary>
+      /// 确认指定的项目是否存在
+      /// </summary>
+      /// <param name="_furl">需要被检测的项目。</param>
+      /// <returns>如果这个项目存在，则返回true，否则返回false。</returns>
+      public static bool ProjectExists(string _furl)
+      {
+         return FileOperation.FileExists(_furl);
+      }
+      /// <summary>
+      /// 获取项目路径列表
+      /// </summary>
+      /// <returns>如果项目列表文件不为空，则将返回一个包含了项目路径的列表实例，否则返回null。</returns>
+      public static List<string> GetProjectList()
+      {
+         List<string> projects = new List<string>();
+         List<string> projecturis = new List<string>();
+         Encoding encoding = Encoding.GetEncoding("GB2312");
+         string subsection_key = string.Empty, listuri = @"config\projects.ini";
+         if (FileOperation.ReadFile(listuri, true, encoding).Length == 0) return null;
+         else
+         {
+            projects = iniopter.GetAllSectionNames(listuri).ToList();
+            //if (projects.Count == 1)
+            //{
+            //   subsection_key = projects[0];
+            //   projecturis[0] = iniopter.GetStringValue(listuri, subsection_key, "ProjectUri", "");
+            //}
+            //else
+            //{
+            Parallel.For(0, projects.Count, (index) =>
+            {
+               subsection_key = projects[index];
+               projecturis.Add(iniopter.GetStringValue(listuri, subsection_key, "ProjectUri", ""));
+            });
+            //}
+         }
+         return projecturis;
+      }
+      /// <summary>
+      /// 读取项目配置文件
+      /// </summary>
+      /// <param name="_furl">指定的项目配置文件。</param>
+      /// <returns>如果这个项目文件存在，该操作会把项目文件里面所有的配置项存储到一个Project实例中并返回，否则将会返回null。</returns>
+      public static Project ReadProjectInformation(string _furl)
+      {
+         if (ProjectExists(_furl) == false) return null;
+         SNovelInformation info = new SNovelInformation();
+         string category = iniopter.GetStringValue(_furl, "ProjectInformation", "Category", "");
+         info.NovelName = iniopter.GetStringValue(_furl, "ProjectInformation", "NovelName", "");
+         info.WriterName = iniopter.GetStringValue(_furl, "ProjectInformation", "WriterName", "");
+         info.Remarks = iniopter.GetStringValue(_furl, "ProjectInformation", "Remarks", "");
+         switch (category)
+         {
+            case "Unreal":
+               info.Category = ENovelCategory.Unreal;
+               break;
+            case "Metropolis":
+               info.Category = ENovelCategory.Metropolis;
+               break;
+            case "Coatard":
+               info.Category = ENovelCategory.Coatard;
+               break;
+            case "Swordsmen":
+               info.Category = ENovelCategory.Swordsmen;
+               break;
+            case "Military":
+               info.Category = ENovelCategory.Military;
+               break;
+            case "History":
+               info.Category = ENovelCategory.History;
+               break;
+            case "OnlineGames":
+               info.Category = ENovelCategory.OnlineGames;
+               break;
+            case "ScienceFiction":
+               info.Category = ENovelCategory.ScienceFiction;
+               break;
+            case "Athletics":
+               info.Category = ENovelCategory.Athletics;
+               break;
+            case "PhysicalEducation":
+               info.Category = ENovelCategory.PhysicalEducation;
+               break;
+            case "Supernatural":
+               info.Category = ENovelCategory.Supernatural;
+               break;
+            case "Deduction":
+               info.Category = ENovelCategory.Deduction;
+               break;
+            case "SamePerson":
+               info.Category = ENovelCategory.SamePerson;
+               break;
+            case "Horror":
+               info.Category = ENovelCategory.Horror;
+               break;
+            case "TimeTravel":
+               info.Category = ENovelCategory.TimeTravel;
+               break;
+            case "Other":
+               info.Category = ENovelCategory.Other;
+               break;
+            default:
+               info.Category = ENovelCategory.Other;
+               break;
+         }
+         string c_tick = iniopter.GetStringValue(_furl, "ProjectInformation", "CreationTime", "");
+         string b_tick = iniopter.GetStringValue(_furl, "ProjectInformation", "BreakupTime", "");
+         string kwstr = iniopter.GetStringValue(_furl, "ProjectInformation", "Keywords", "");
+         string projname = iniopter.GetStringValue(_furl, "ProjectInformation", "ProjectName", "");
+         info.CreationTime = new DateTime(Convert.ToInt64(c_tick, 10));
+         info.BreakupTime = new DateTime(Convert.ToInt64(b_tick, 10));
+         info.Keywords = kwstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+         return new Project(projname, _furl, info);
+      }
+      /// <summary>
+      /// 获取项目列表中项目的数量
+      /// </summary>
+      /// <returns>该操作将会返回一个整型值，这个值表示了项目列表文件中所包含的项目数量。</returns>
+      public static int GetProjectCount()
+      {
+         string listuri = @"config\projects.ini";
+         return iniopter.GetAllSectionNames(listuri).ToList().Count();
+      }
+      /// <summary>
+      /// 将所有已经找到的项目添加到静态项目列表实例Projects之中
+      /// </summary>
+      public static void AddProjects()
+      {
+         Project proj_s;
+         List<string> projs = new List<string>();
+         projs = GetProjectList();
+         Parallel.For(0, GetProjectCount(), (index) =>
+         {
+            string projname = FileOperation.GetFileNameWithoutExtension(projs[index]);
+            proj_s = ReadProjectInformation(projs[index]);
+            if (proj_s == null) iniopter.DeleteSection(@"config\projects.ini", projname);
+            else Projects.Add(proj_s);
+         });
+      }
+      /// <summary>
+      /// 添加分卷
+      /// </summary>
+      /// <param name="_project">指定的项目。</param>
+      /// <param name="_subsection">指定的分卷。</param>
+      public static void AddSubsection(Project _project, Subsection _subsection)
+      {
+         _project.CurrentNovel.AddSubsection(_subsection);
+      }
+      /// <summary>
+      /// 添加章节
+      /// </summary>
+      /// <param name="_project">指定的项目。</param>
+      /// <param name="_subsection">指定的分卷。</param>
+      /// <param name="_chapter">指定的章节。</param>
+      public static void AddChapter(Project _project, Subsection _subsection, Chapter _chapter)
+      {
+         _project.CurrentNovel[_project.CurrentNovel.GetSubsectionIndex(_subsection)].AddChapter(_chapter);
+      }
+      //public static Subsection GetSubsectionFromConfigure(Project _project,string _furl)
+      //{
+      //   Subsection subsection;
+      //   string sst=iniopter.GetStringValue(_furl,"")
+      //   return subsection;
+      //}
+      public static void UIThreadUnhandledExceptionCatched(object sender, ThreadExceptionEventArgs e)
+      {
+         VsSkinMessageBoxOk msg = new VsSkinMessageBoxOk("应用程序异常", "非常抱歉，应用程序遇到了无法处理的异常，这个异常可能会导致应用程序处于不稳定工作状态下。如果这个异常频繁出现，请直接给我们的开发者留言！\n\n异常消息：" + e.Exception.Message, EMessageLevel.Error);
+         Console.WriteLine("\n\n\nUIThreadUnhandledException\n\n" + e.Exception.StackTrace + "\n\n\n");
+         msg.Display();
+      }
+      public static void CoresThreadUnhandledExceptionCatched(object sender, UnhandledExceptionEventArgs e)
+      {
+         VsSkinMessageBoxOk msg = new VsSkinMessageBoxOk("公共语言运行时异常", "非常抱歉，支持应用程序运行的运行时出现了无法处理的异常，这个异常可能会造成应用程序处于不稳定甚至不安全的运行环境下，如果情况严重，则会导致应用程序停止工作。如果这个异常频繁出现，请直接给我们的开发者留言！\n\n出现异常的实例：" + e.ExceptionObject.ToString() + "\n公共语言运行时是否即将停止工作：" + e.IsTerminating, EMessageLevel.Error);
+         msg.Display();
+      }
+   }
+}

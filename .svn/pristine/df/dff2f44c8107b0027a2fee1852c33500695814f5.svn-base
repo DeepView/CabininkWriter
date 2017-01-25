@@ -1,0 +1,191 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using Cabinink.Writer.Middle;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmMainInterface : Cabinink.Writer.UI.VsSkinFormBase
+   {
+      private static int oldValue = 0;//定义全局静态变量用来保存滚动条的初始值
+      public frmMainInterface()
+      {
+         InitializeComponent();
+      }
+
+      private void trvNovelTree_Click(object sender, EventArgs e)
+      {
+         trvNovelTree.Refresh();
+      }
+
+      private void frmMainInterface_SizeChanged(object sender, EventArgs e)
+      {
+         trvNovelTree.Height = Height - 41;
+         rtbBody.Size = new Size(Width - trvNovelTree.Width - trvNovelTree.Left - 2, Height - pnlStat.Height - 41);
+         pnlStat.Width = rtbBody.Width;
+         pnlStat.Top = rtbBody.Top + rtbBody.Height - 1;
+         btnSearch.Top = Height - btnSearch.Height - 1;
+         ResizeMenu();
+      }
+
+      private void frmMainInterface_Load(object sender, EventArgs e)
+      {
+         rtbBody.CanPaste(DataFormats.GetFormat(DataFormats.Text));
+         trvNovelTree.ExpandAll();
+         ResizeMenu();
+      }
+
+      private void btnNovel_Click(object sender, EventArgs e)
+      {
+         //btnNovel.BackColor = Color.FromArgb(45, 45, 48);
+         cmsNovel.Show(btnNovel, new Point(55, 0));
+         //cmsNovel.Left = 55 + Left;
+         //cmsNovel.Top = 40 + Top;
+      }
+
+      private void btnToolkit_Click(object sender, EventArgs e)
+      {
+         cmsToolkit.Show(btnNovel, new Point(55, 0));
+      }
+
+      //private void vsbScoll_Scroll(object sender, ScrollEventArgs e)
+      //{
+      //   float currentValue = Math.Abs(vsbScoll.Value - oldValue);//该变量表示当前滚动条中的值
+      //   float temp = ScrollBarPercentage(rtbBody.Height + 50); //为临时变量temp赋值
+      //   if (vsbScoll.Value > oldValue) //当向下滚动时
+      //   {
+      //      rtbBody.Top -= (int)(temp * currentValue);//定义RichTextBox控件的上边距与其工作区容器上边距间的距离
+      //   }
+      //   else if (vsbScoll.Value < oldValue)//当滚动条向上滚动时
+      //   {
+      //      rtbBody.Top += (int)(temp * currentValue);//定义RichTextBox控件的上边距与其工作区容器上边距间的距离
+      //   }
+      //   oldValue = vsbScoll.Value;//设置oldValue值为滚动条的当前值
+      //}
+      //private float ScrollBarPercentage(float height)
+      //{
+      //   float divisor = (float)(20);//将整型转化为浮点型
+      //   float wholeValue = height - vsbScoll.Height;//获取滚动条的全值
+      //   return (wholeValue / divisor);//获取滚动条移动时每移动一部分所占的百分比
+      //}
+      public void ResizeMenu()
+      {
+         cmsNovel.Size = new Size(265, Height - 42);
+         cmsToolkit.Size = new Size(265, Height - 42);
+         cmsSystem.Size = new Size(265, Height - 42);
+         cmsHelp.Size = new Size(265, Height - 42);
+      }
+
+      private void btnSystem_Click(object sender, EventArgs e)
+      {
+         cmsSystem.Show(btnNovel, new Point(55, 0));
+      }
+
+      private void btnHelp_Click(object sender, EventArgs e)
+      {
+         cmsHelp.Show(btnNovel, new Point(55, 0));
+      }
+
+      private void cmsNovel_Opened(object sender, EventArgs e)
+      {
+         btnNovel.BackColor = Color.FromArgb(45, 45, 48);
+         Text = "> 作品";
+      }
+
+      private void cmsNovel_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+      {
+         btnNovel.BackColor = Color.FromArgb(64, 64, 64);
+         Text = "Cabinink Writer";
+      }
+
+      private void cmsToolkit_Opened(object sender, EventArgs e)
+      {
+         btnToolkit.BackColor = Color.FromArgb(45, 45, 48);
+         Text = "> 工具";
+      }
+
+      private void cmsToolkit_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+      {
+         btnToolkit.BackColor = Color.FromArgb(64, 64, 64);
+         Text = "Cabinink Writer";
+      }
+
+      private void cmsSystem_Opened(object sender, EventArgs e)
+      {
+         btnSystem.BackColor = Color.FromArgb(45, 45, 48);
+         Text = "> 系统";
+      }
+
+      private void cmsSystem_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+      {
+         btnSystem.BackColor = Color.FromArgb(64, 64, 64);
+         Text = "Cabinink Writer";
+      }
+
+      private void cmsHelp_Opened(object sender, EventArgs e)
+      {
+         btnHelp.BackColor = Color.FromArgb(45, 45, 48);
+         Text = "> 帮助";
+      }
+
+      private void cmsHelp_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+      {
+         btnHelp.BackColor = Color.FromArgb(64, 64, 64);
+         Text = "Cabinink Writer";
+      }
+
+      private void 查看产品信息ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         ApplicationHelp.ShowProductionInformation(new frmAbout());
+      }
+
+      private void 创建新作品ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         frmCreateProject crtnovel = new frmCreateProject();
+         crtnovel.ShowDialog();
+      }
+
+      private void 联系我们ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         string tipstr = "如果您在使用我们的产品时有一些很奇特的想法，或者是在使用过程中你有一些很难费解的疑问，不妨通过下面的联系方式与我们交流交流：\n\n电子邮箱：lihuaxiang0321@msn.cn\nQQ号码：576882001\n微信：deepview_studio";
+         VsSkinMessageBoxOk contact = new VsSkinMessageBoxOk("联系我们", tipstr, EMessageLevel.Information);
+         contact.Display(this);
+      }
+
+      private void 退出应用程序ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Application.Exit();
+      }
+
+      private void 反馈中心ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         ApplicationHelp.OpenFeedback();
+      }
+
+      private void 查看最终用户许可协议ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         ApplicationHelp.OpenEndUserLicenseAgreement(new frmEula());
+      }
+
+      private void 网页浏览器ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Process.Start(@"browserhome\index.html");
+      }
+
+      private void 计算器ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Process.Start(@"calc");
+      }
+
+      private void 作品属性与信息查看ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         frmNovelProperty npi = new frmNovelProperty();
+         npi.Show();
+      }
+   }
+}

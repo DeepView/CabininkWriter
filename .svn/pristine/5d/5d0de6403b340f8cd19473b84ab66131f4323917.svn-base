@@ -1,0 +1,259 @@
+﻿using System;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+namespace Cabinink.Writer.Cores
+{
+   /// <summary>
+   /// 完整姓名的结构体
+   /// </summary>
+   public struct SCompleteName
+   {
+      /// <summary>
+      /// 姓氏
+      /// </summary>
+      public string FamilyName;
+      /// <summary>
+      /// 名称
+      /// </summary>
+      public string LastName;
+      /// <summary>
+      /// 构造函数，创建一个非空姓名的结构体实例
+      /// </summary>
+      /// <param name="_fname">指定的姓氏。</param>
+      /// <param name="_lname">指定的名称。</param>
+      public SCompleteName(string _fname, string _lname)
+      {
+         FamilyName = _fname;
+         LastName = _lname;
+      }
+      /// <summary>
+      /// 设置显示名称的方式，如果参数为true，则姓氏显示在名称前面，否则，姓氏则显示在名称后面
+      /// </summary>
+      /// <param name="_isfmlinfst">决定名称该怎么显示。</param>
+      /// <returns>该操作返回一个bool值，这个值决定了名称的显示方式。</returns>
+      public bool SetDisplayMode(bool _isfmlinfst)
+      {
+         return _isfmlinfst;
+      }
+      /// <summary>
+      /// 比较两个姓名结构体实例是否一样
+      /// </summary>
+      /// <param name="_cname">需要被比较的姓名结构体。</param>
+      /// <returns>如果其内容一样则返回true，否则返回false。</returns>
+      public bool Equals(SCompleteName _cname)
+      {
+         return (_cname.FamilyName == FamilyName) && (_cname.LastName == LastName);
+      }
+      /// <summary>
+      /// 返回该结构体的String表达形式
+      /// </summary>
+      /// <returns>该操作返回的是当前实例的字符串表达形式，即一个String实例。</returns>
+      public override string ToString()
+      {
+         if (SetDisplayMode(true)) return FamilyName + " " + LastName; else return LastName + " " + FamilyName;
+      }
+   }
+   /// <summary>
+   /// 命名系统类
+   /// </summary>
+   public class NamingSystem
+   {
+      /// <summary>
+      /// 名称国籍
+      /// </summary>
+      private ENameType nametype;
+      /// <summary>
+      /// 用于临时存储的姓氏列表
+      /// </summary>
+      private List<string> t_family_n;
+      /// <summary>
+      /// 用于临时存储的名称列表
+      /// </summary>
+      private List<string> t_last_n;
+      /// <summary>
+      /// 构造函数，初始化一个男性的中国人名称，且临时存储列表设置为空
+      /// </summary>
+      public NamingSystem()
+      {
+         //sex = EPeopleSex.Male;
+         nametype = ENameType.ChineseName;
+         t_family_n = new List<string>();
+         t_last_n = new List<string>();
+      }
+      /// <summary>
+      /// 构造函数，初始化一个指定性别和国籍的姓名，且临时存储列表设置为空
+      /// </summary>
+      /// <param name="_nmtp">指定的国籍。</param>
+      public NamingSystem(ENameType _nmtp)
+      {
+         nametype = _nmtp;
+         t_family_n = new List<string>();
+         t_last_n = new List<string>();
+      }
+      /// <summary>
+      /// 初始化命名系统的姓名生成器
+      /// </summary>
+      public void InitializeBuilder()
+      {
+         string t_family, t_last;
+         string[] tf_arr, tl_arr;
+         switch (NameType)
+         {
+            case ENameType.ChineseName:
+               t_family = FileOperation.ReadFile(@"namesystem\cn_family.csv", true, Encoding.GetEncoding("GB2312"));
+               t_last = FileOperation.ReadFile(@"namesystem\cn_name.csv", true, Encoding.GetEncoding("GB2312"));
+               break;
+            case ENameType.EuramericanName:
+               t_family = FileOperation.ReadFile(@"namesystem\en_family.csv", true, Encoding.GetEncoding("GB2312"));
+               t_last = FileOperation.ReadFile(@"namesystem\en_name.csv", true, Encoding.GetEncoding("GB2312"));
+               break;
+            case ENameType.JapaneseName:
+               t_family = FileOperation.ReadFile(@"namesystem\jp_family.csv", true, Encoding.GetEncoding("GB2312"));
+               t_last = FileOperation.ReadFile(@"namesystem\jp_name.csv", true, Encoding.GetEncoding("GB2312"));
+               break;
+            case ENameType.RussianName:
+               t_family = FileOperation.ReadFile(@"namesystem\ru_family.csv", true, Encoding.GetEncoding("GB2312"));
+               t_last = FileOperation.ReadFile(@"namesystem\ru_name.csv", true, Encoding.GetEncoding("GB2312"));
+               break;
+            case ENameType.SpaniardName:
+               t_family = FileOperation.ReadFile(@"namesystem\sp_family.csv", true, Encoding.GetEncoding("GB2312"));
+               t_last = FileOperation.ReadFile(@"namesystem\sp_name.csv", true, Encoding.GetEncoding("GB2312"));
+               break;
+            case ENameType.ArabName:
+               t_family = FileOperation.ReadFile(@"namesystem\ar_family.csv", true, Encoding.GetEncoding("GB2312"));
+               t_last = FileOperation.ReadFile(@"namesystem\ar_name.csv", true, Encoding.GetEncoding("GB2312"));
+               break;
+            case ENameType.KoreanName:
+               t_family = FileOperation.ReadFile(@"namesystem\kr_family.csv", true, Encoding.GetEncoding("GB2312"));
+               t_last = FileOperation.ReadFile(@"namesystem\kr_name.csv", true, Encoding.GetEncoding("GB2312"));
+               break;
+            default:
+               t_family = FileOperation.ReadFile(@"namesystem\cn_family.csv", true, Encoding.GetEncoding("GB2312"));
+               t_last = FileOperation.ReadFile(@"namesystem\cn_name.csv", true, Encoding.GetEncoding("GB2312"));
+               break;
+         }
+         tf_arr = t_family.Split(',');
+         tl_arr = t_last.Split(',');
+         Parallel.For(0, tf_arr.GetLength(0) - 1, (index, interrupt) =>
+         {
+            try
+            {
+               t_family_n.Add(tf_arr[index]);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+               if (ex != null) interrupt.Stop();
+            }
+            catch (ArgumentException ex1)
+            {
+               if (ex1 != null) interrupt.Stop();
+            }
+         });
+         Parallel.For(0, tl_arr.GetLength(0) - 1, (index, interrupt) =>
+         {
+            try
+            {
+               t_last_n.Add(tl_arr[index]);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+               if (ex != null) interrupt.Stop();
+            }
+            catch (ArgumentException ex1)
+            {
+               if (ex1 != null) interrupt.Stop();
+            }
+         });
+         t_family_n.Sort();
+         t_last_n.Sort();
+      }
+      /// <summary>
+      /// 根据指定的数量来随机生成姓名
+      /// </summary>
+      /// <param name="_maxbuild">最大的生成数量。</param>
+      /// <returns>该操作会返回一个随机生成的姓名列表，如果最大生成数量超过了备选名称的数量，则此操作会抛出异常。</returns>
+      public List<SCompleteName> RandomBuildNames(int _maxbuild)
+      {
+         List<SCompleteName> names = new List<SCompleteName>();
+         List<string> tf = new List<string>(), tl = new List<string>();
+         Random rnd = new Random();
+         if (_maxbuild > t_last_n.Count) throw new ArgumentOutOfRangeException("最大生成数量超过了备选名称数量！");
+         Parallel.For(0, _maxbuild, (index) =>
+         {
+            tf.Add(t_family_n[(int)(t_family_n.Count * rnd.NextDouble())]);
+            tl.Add(t_last_n[(int)(t_last_n.Count * rnd.NextDouble())]);
+         });
+         try
+         {
+            Parallel.For(0, _maxbuild, (index) => { names.Add(new SCompleteName(tf[index], tl[index])); });
+         }
+         catch (IndexOutOfRangeException ex)
+         {
+            Console.WriteLine(ex.Message + "\n\n" + ex.StackTrace);
+         }
+         return names;
+      }
+      /// <summary>
+      /// 获取或设置国籍
+      /// </summary>
+      public ENameType NameType
+      {
+         get { return nametype; }
+         set { nametype = value; }
+      }
+   }
+   /// <summary>
+   /// 性别枚举
+   /// </summary>
+   public enum EPeopleSex : int
+   {
+      /// <summary>
+      /// 男性或者男人
+      /// </summary>
+      Male = 0x0000,
+      /// <summary>
+      /// 女性或者女人
+      /// </summary>
+      Famale = 0x0001,
+      /// <summary>
+      /// 无性或者双性
+      /// </summary>
+      Asexual = 0x0002
+   }
+   /// <summary>
+   /// 名称所属国家
+   /// </summary>
+   public enum ENameType : ulong
+   {
+      /// <summary>
+      /// 中国人名称
+      /// </summary>
+      ChineseName = 0x00000000f,
+      /// <summary>
+      /// 欧美人名称
+      /// </summary>
+      EuramericanName = 0x0000000ff,
+      /// <summary>
+      /// 日本人名称
+      /// </summary>
+      JapaneseName = 0x000000fff,
+      /// <summary>
+      /// 俄罗斯人名称
+      /// </summary>
+      RussianName = 0x00000ffff,
+      /// <summary>
+      /// 西班牙人名称
+      /// </summary>
+      SpaniardName = 0x0000fffff,
+      /// <summary>
+      /// 阿拉伯人名称
+      /// </summary>
+      ArabName = 0x000ffffff,
+      /// <summary>
+      /// 朝鲜和韩国人名称
+      /// </summary>
+      KoreanName = 0x00fffffff
+   }
+}

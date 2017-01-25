@@ -1,0 +1,212 @@
+﻿using System;
+using System.Windows.Forms;
+using System.Runtime.InteropServices;
+namespace Cabinink.Writer.Cores
+{
+   /// <summary>
+   /// TokenPrivileges 结构包含了一个访问令牌的一组权限信息：即该访问令牌具备的权限
+   /// </summary>
+   [StructLayout(LayoutKind.Sequential, Pack = 1)]
+   public class TokenPrivileges
+   {
+      /// <summary>
+      /// 指定了权限数组的容量
+      /// </summary>
+      public int PrivilegeCount;
+      /// <summary>
+      /// 指定一组的LuidAttributes 结构，每个结构包含了LUID和权限的属性
+      /// </summary>
+      public LuidAttributes Privileges;
+   }
+   /// <summary>
+   /// LuidAttributes 结构呈现了本地唯一标志和它的属性
+   /// </summary>
+   [StructLayout(LayoutKind.Sequential, Pack = 1)]
+   public class LuidAttributes
+   {
+      /// <summary>
+      /// 特定的LUID
+      /// </summary>
+      public LocallyUniqueIdentifier PLuid;
+      /// <summary>
+      /// 指定了LUID的属性，其值可以是一个32位大小的bit 标志，具体含义根据LUID的定义和使用来看
+      /// </summary>
+      public int Attributes;
+   }
+   /// <summary>
+   /// 本地唯一标志是一个64位的数值，它被保证在产生它的系统上唯一！LUID的在机器被重启前都是唯一的
+   /// </summary>
+   [StructLayout(LayoutKind.Sequential, Pack = 1)]
+   public class LocallyUniqueIdentifier
+   {
+      /// <summary>
+      /// 本地唯一标志的低32位
+      /// </summary>
+      public int LowPart;
+      /// <summary>
+      /// 本地唯一标志的高32位
+      /// </summary>
+      public int HighPart;
+   }
+   /// <summary>
+   /// Windows电源相关操作类
+   /// </summary>
+   public class ExitWindows
+   {
+      /// <summary>
+      /// API常量，强迫终止没有响应的进程
+      /// </summary>
+      private const int EWX_FORCE = 4;
+      /// <summary>
+      /// API常量，终止进程，然后注销
+      /// </summary>
+      private const int EWX_LOGOFF = 0;
+      /// <summary>
+      /// API常量，重新引导系统
+      /// </summary>
+      private const int EWX_REBOOT = 2;
+      /// <summary>
+      /// API常量，关闭系统
+      /// </summary>
+      private const int EWX_SHUTDOWN = 1;
+      /// <summary>
+      /// API常量，执行ExitWindowsEx需要用到的权限字符串
+      /// </summary>
+      private const string SE_SHUTDOWN_NAME = "SeShutdownPrivilege";
+      /// <summary>
+      /// API常量，令牌查询
+      /// </summary>
+      private const int TOKEN_QUERY = 8;
+      /// <summary>
+      /// API常量，特权提升
+      /// </summary>
+      private const int TOKEN_ADJUST_PRIVILEGES = 32;
+      /// <summary>
+      /// API常量，启用新特权
+      /// </summary>
+      private const int SE_PRIVILEGE_ENABLED = 2;
+      /// <summary>
+      /// 退出、重启或注销系统
+      /// </summary>
+      /// <param name="_flags">指定关闭的类型。</param>
+      /// <param name="_reserved">系统保留，这参数被忽略。</param>
+      /// <returns>如果函数成功，返回值为非零。如果函数失败，返回值是零。</returns>
+      [DllImport("user32.dll", EntryPoint = "ExitWindowsEx", CharSet = CharSet.Ansi)]
+      private static extern int ExitWindowsEx(int _flags, int _reserved);
+      /// <summary>
+      /// 打开与进程相关联的访问令牌
+      /// </summary>
+      /// <param name="_process">要修改访问权限的进程句柄。</param>
+      /// <param name="_access">指定要进行的操作类型。</param>
+      /// <param name="_token">返回的访问令牌指针。</param>
+      /// <returns>如果操作成功，则返回true，否则返回false。</returns>
+      [DllImport("advapi32.dll", ExactSpelling = true, SetLastError = true)]
+      private static extern bool OpenProcessToken(IntPtr _process, int _access, ref IntPtr _token);
+      /// <summary>
+      /// 获取当前应用程序实例的进程
+      /// </summary>
+      /// <returns>操作成功后将返回这个进程的句柄。</returns>
+      [DllImport("kernel32.dll", ExactSpelling = true)]
+      private static extern IntPtr GetCurrentProcess();
+      /// <summary>
+      /// 获取本地唯一标志LUID
+      /// </summary>
+      /// <param name="_sysname">以null结束的字符串指针，标志了在其上查找权限名的系统名称。如果设置为null, 函数将试图查找指定系统的权限名。</param>
+      /// <param name="_name">以null结束的字符串指针，指定了在Winnt.h头文件中定义的权限名。例如, 该参数可以是一个常量 SE_SECURITY_NAME, 或者对应的字符串 "SeSecurityPrivilege"。</param>
+      /// <param name="_luid">接收本地唯一标志LUID的变量指针，通过它可以知道由lpSystemName 参数指定的系统上的权限。</param>
+      /// <returns>如果执行成功，返回非0，如果执行失败，返回0，如果要获取更多的错误信息，请调用Marshal.GetLastWin32Error。</returns>
+      [DllImport("advapi32.dll", EntryPoint = "LookupPrivilegeValueA", CharSet = CharSet.Ansi)]
+      private static extern int LookupPrivilegeValue(string _sysname, string _name, ref LocallyUniqueIdentifier _luid);
+      /// <summary>
+      /// 启用或禁用指定访问令牌的权限
+      /// </summary>
+      /// <param name="_tokenptr">需要改变权限的访问令牌句柄。 句柄必须含有对令牌的 TOKEN_ADJUST_PRIVILEGES 访问权限。 如果 PreviousState 参数非null, 句柄还需要有 TOKEN_QUERY 访问权限。</param>
+      /// <param name="_disallpriv">执行函数是否禁用访问令牌的所有权限。 如果参数值为 TRUE, 函数将禁用所有权限并忽略 NewState 参数。 如果其值为 FALSE, 函数将根据NewState参数指向的信息改变权限。</param>
+      /// <param name="_nstat">一个 TokenPrivileges 结构的指针，指定了一组权限以及它们的属性。 如果 DisableAllPrivileges 参数为 FALSE, AdjustTokenPrivileges 函数将启用或禁用访问令牌的这些权限。 如果你为一个权限设置了 SE_PRIVILEGE_ENABLED 属性, 本函数将启用该权限; 否则, 它将禁用该权限。 如果 DisableAllPrivileges 参数为 TRUE, 本函数忽略此参数。</param>
+      /// <param name="_bufflen">为PreviousState参数指向的缓冲区用字节设置大小。 如果PreviousState 参数为 NULL，此参数可以为0</param>
+      /// <param name="_prevstat">一个缓冲区指针，被函数用来填充 TOKENT_PRIVILEGES结构，它包含了被函数改变的所有权限的先前状态。 此参数可以为 NULL。</param>
+      /// <param name="_retlen">一个变量指针，指示了由PreviousState参数指向的缓冲区的大小。如果 PreviousState 参数为 NULL，此参数可以为NULL 。</param>
+      /// <returns>如果执行成功，返回非0。 如果要检测函数是否调整了指定的权限, 请调用 Marshal.GetLastWin32Error。</returns>
+      [DllImport("advapi32.dll", EntryPoint = "AdjustTokenPrivileges", CharSet = CharSet.Ansi)]
+      private static extern int AdjustTokenPrivileges(IntPtr _tokenptr, int _disallpriv, ref TokenPrivileges _nstat, int _bufflen, ref TokenPrivileges _prevstat, ref int _retlen);
+      /// <summary>
+      /// 注销当前用户，但是不退出Windows
+      /// </summary>
+      public static void LogOff()
+      {
+         GetSystemAuthority();
+         ExitWindowsEx(EWX_LOGOFF, 0);
+      }
+      /// <summary>
+      /// 重新启动Windows
+      /// </summary>
+      public static void ResetBoot()
+      {
+         GetSystemAuthority();
+         ExitWindowsEx(EWX_REBOOT, 0);
+      }
+      /// <summary>
+      /// 强制中断所有无响应的进程
+      /// </summary>
+      public static void InterruptNotResponseProcess()
+      {
+         GetSystemAuthority();
+         ExitWindowsEx(EWX_FORCE, 0);
+      }
+      /// <summary>
+      /// 关闭Windows
+      /// </summary>
+      public static void Shutdown()
+      {
+         GetSystemAuthority();
+         ExitWindowsEx(EWX_SHUTDOWN, 0);
+      }
+      /// <summary>
+      /// 使Windows强制进入休眠状态
+      /// </summary>
+      public static void Hibernate()
+      {
+         Application.SetSuspendState(PowerState.Hibernate, false, true);
+      }
+      /// <summary>
+      /// 使Windows进入休眠状态，并告知其他进程使其进入休眠状态
+      /// </summary>
+      /// <param name="_force">决定是否强制休眠。</param>
+      public static void Hibernate(bool _force)
+      {
+         Application.SetSuspendState(PowerState.Hibernate, _force, true);
+      }
+      /// <summary>
+      /// 强制挂起Windows，即睡眠模式
+      /// </summary>
+      public static void Suspend()
+      {
+         Application.SetSuspendState(PowerState.Suspend, false, false);
+      }
+      /// <summary>
+      /// 挂起Windows，并通知其他进程是否决定该操作
+      /// </summary>
+      /// <param name="_force">决定是否强制挂起。</param>
+      public static void Suspend(bool _force)
+      {
+         Application.SetSuspendState(PowerState.Suspend, _force, false);
+      }
+      /// <summary>
+      /// 获取更高级别的操作系统权限
+      /// </summary>
+      public static void GetSystemAuthority()
+      {
+         int retlen = 0;
+         TokenPrivileges tp = null, nstat = null;
+         IntPtr hproc = GetCurrentProcess();
+         IntPtr htok = IntPtr.Zero;
+         OpenProcessToken(hproc, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, ref htok);
+         tp.PrivilegeCount = 1;
+         tp.Privileges.PLuid.HighPart = 0;
+         tp.Privileges.PLuid.LowPart = 0;
+         tp.Privileges.Attributes = SE_PRIVILEGE_ENABLED;
+         LookupPrivilegeValue(null, SE_SHUTDOWN_NAME, ref tp.Privileges.PLuid);
+         AdjustTokenPrivileges(htok, 0, ref tp, 0, ref nstat, ref retlen);
+      }
+   }
+}

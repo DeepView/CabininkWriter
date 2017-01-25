@@ -1,0 +1,151 @@
+﻿namespace Cabinink.Writer.UI
+{
+   partial class frmAbout
+   {
+      /// <summary>
+      /// Required designer variable.
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
+
+      /// <summary>
+      /// Clean up any resources being used.
+      /// </summary>
+      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose(bool disposing)
+      {
+         if (disposing && (components != null))
+         {
+            components.Dispose();
+         }
+         base.Dispose(disposing);
+      }
+
+      #region Windows Form Designer generated code
+
+      /// <summary>
+      /// Required method for Designer support - do not modify
+      /// the contents of this method with the code editor.
+      /// </summary>
+      private void InitializeComponent()
+      {
+         this.lblAssemblyName = new MetroFramework.Controls.MetroLabel();
+         this.lblFileVersion = new MetroFramework.Controls.MetroLabel();
+         this.lblAssemblyVersion = new MetroFramework.Controls.MetroLabel();
+         this.lblCopyright = new MetroFramework.Controls.MetroLabel();
+         this.lblIdeName = new MetroFramework.Controls.MetroLabel();
+         this.lblClrVersion = new MetroFramework.Controls.MetroLabel();
+         this.btnClose = new MetroFramework.Controls.MetroButton();
+         this.SuspendLayout();
+         // 
+         // lblAssemblyName
+         // 
+         this.lblAssemblyName.AutoSize = true;
+         this.lblAssemblyName.FontSize = MetroFramework.MetroLabelSize.Small;
+         this.lblAssemblyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.lblAssemblyName.Location = new System.Drawing.Point(23, 80);
+         this.lblAssemblyName.Name = "lblAssemblyName";
+         this.lblAssemblyName.Size = new System.Drawing.Size(80, 17);
+         this.lblAssemblyName.TabIndex = 0;
+         this.lblAssemblyName.Text = "程序集名称：";
+         // 
+         // lblFileVersion
+         // 
+         this.lblFileVersion.AutoSize = true;
+         this.lblFileVersion.FontSize = MetroFramework.MetroLabelSize.Small;
+         this.lblFileVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.lblFileVersion.Location = new System.Drawing.Point(23, 120);
+         this.lblFileVersion.Name = "lblFileVersion";
+         this.lblFileVersion.Size = new System.Drawing.Size(68, 17);
+         this.lblFileVersion.TabIndex = 1;
+         this.lblFileVersion.Text = "文件版本：";
+         // 
+         // lblAssemblyVersion
+         // 
+         this.lblAssemblyVersion.AutoSize = true;
+         this.lblAssemblyVersion.FontSize = MetroFramework.MetroLabelSize.Small;
+         this.lblAssemblyVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.lblAssemblyVersion.Location = new System.Drawing.Point(23, 100);
+         this.lblAssemblyVersion.Name = "lblAssemblyVersion";
+         this.lblAssemblyVersion.Size = new System.Drawing.Size(80, 17);
+         this.lblAssemblyVersion.TabIndex = 2;
+         this.lblAssemblyVersion.Text = "程序集版本：";
+         // 
+         // lblCopyright
+         // 
+         this.lblCopyright.AutoSize = true;
+         this.lblCopyright.FontSize = MetroFramework.MetroLabelSize.Small;
+         this.lblCopyright.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.lblCopyright.Location = new System.Drawing.Point(23, 227);
+         this.lblCopyright.Name = "lblCopyright";
+         this.lblCopyright.Size = new System.Drawing.Size(65, 17);
+         this.lblCopyright.TabIndex = 3;
+         this.lblCopyright.Text = "Copyright";
+         // 
+         // lblIdeName
+         // 
+         this.lblIdeName.AutoSize = true;
+         this.lblIdeName.FontSize = MetroFramework.MetroLabelSize.Small;
+         this.lblIdeName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.lblIdeName.Location = new System.Drawing.Point(23, 152);
+         this.lblIdeName.Name = "lblIdeName";
+         this.lblIdeName.Size = new System.Drawing.Size(92, 17);
+         this.lblIdeName.TabIndex = 4;
+         this.lblIdeName.Text = "集成开发环境：";
+         // 
+         // lblClrVersion
+         // 
+         this.lblClrVersion.AutoSize = true;
+         this.lblClrVersion.FontSize = MetroFramework.MetroLabelSize.Small;
+         this.lblClrVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+         this.lblClrVersion.Location = new System.Drawing.Point(23, 172);
+         this.lblClrVersion.Name = "lblClrVersion";
+         this.lblClrVersion.Size = new System.Drawing.Size(128, 17);
+         this.lblClrVersion.TabIndex = 5;
+         this.lblClrVersion.Text = "公共语言运行时版本：";
+         // 
+         // btnClose
+         // 
+         this.btnClose.Location = new System.Drawing.Point(287, 220);
+         this.btnClose.Name = "btnClose";
+         this.btnClose.Size = new System.Drawing.Size(75, 24);
+         this.btnClose.TabIndex = 6;
+         this.btnClose.Text = "确定(&E)";
+         this.btnClose.UseSelectable = true;
+         this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+         // 
+         // frmAbout
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+         this.ClientSize = new System.Drawing.Size(385, 263);
+         this.Controls.Add(this.btnClose);
+         this.Controls.Add(this.lblClrVersion);
+         this.Controls.Add(this.lblIdeName);
+         this.Controls.Add(this.lblCopyright);
+         this.Controls.Add(this.lblAssemblyVersion);
+         this.Controls.Add(this.lblFileVersion);
+         this.Controls.Add(this.lblAssemblyName);
+         this.MaximizeBox = false;
+         this.MinimizeBox = false;
+         this.Name = "frmAbout";
+         this.Resizable = false;
+         this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
+         this.Style = MetroFramework.MetroColorStyle.Green;
+         this.Text = "Cabinink Writer";
+         this.Load += new System.EventHandler(this.frmAbout_Load);
+         this.ResumeLayout(false);
+         this.PerformLayout();
+
+      }
+
+      #endregion
+
+      private MetroFramework.Controls.MetroLabel lblAssemblyName;
+      private MetroFramework.Controls.MetroLabel lblFileVersion;
+      private MetroFramework.Controls.MetroLabel lblAssemblyVersion;
+      private MetroFramework.Controls.MetroLabel lblCopyright;
+      private MetroFramework.Controls.MetroLabel lblIdeName;
+      private MetroFramework.Controls.MetroLabel lblClrVersion;
+      private MetroFramework.Controls.MetroButton btnClose;
+   }
+}

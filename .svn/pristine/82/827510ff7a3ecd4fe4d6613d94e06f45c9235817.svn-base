@@ -1,0 +1,25 @@
+异常引发时间：2016年07月07日 星期四 10:11:16
+
+操作系统名称：Microsoft Windows 10 专业版
+操作系统版本号：6.2.9200.0
+操作系统平台：Win32NT
+用户界面区域性描述：中文(中华人民共和国)
+中央处理器序列：BFEBFBFF000306C3
+计算机类型：x64-based PC
+
+指定的转换无效。
+
+   在 System.Data.SQLite.SQLiteDataReader.VerifyType(Int32 i, DbType typ) 位置 c:\dev\sqlite\dotnet\System.Data.SQLite\SQLiteDataReader.cs:行号 429
+   在 System.Data.SQLite.SQLiteDataReader.GetString(Int32 i) 位置 c:\dev\sqlite\dotnet\System.Data.SQLite\SQLiteDataReader.cs:行号 1237
+   在 Cabinink.Writer.UI.frmUpgradeCredential.materialRaisedButton1_Click(Object sender, EventArgs e) 位置 D:\Visual Studio Solution\Visual C#\ciw\ciw\Writer.UI\frmUpgradeCredential.cs:行号 68
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 MaterialSkin.Controls.MaterialRaisedButton.OnMouseUp(MouseEventArgs mevent) 位置 D:\Visual Studio Solution\Visual C#\MaterialSkin-master\MaterialSkin\Controls\MaterialRaisedButton.cs:行号 36
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)

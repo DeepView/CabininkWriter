@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using MetroFramework.Forms;
+using System.Windows.Forms;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmCreateRole : VsSkinFormBase
+   {
+      public frmCreateRole()
+      {
+         InitializeComponent();
+      }
+   }
+}

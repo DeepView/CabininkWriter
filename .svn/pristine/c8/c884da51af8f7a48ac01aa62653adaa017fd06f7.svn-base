@@ -1,0 +1,99 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using MetroFramework;
+using System.Windows.Forms;
+using MetroFramework.Forms;
+using Cabinink.Writer.Cores;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmMain : MetroForm
+   {
+      public frmMain()
+      {
+         InitializeComponent();
+      }
+
+      private void frmMain_Resize(object sender, EventArgs e)
+      {
+         //if (WindowState == FormWindowState.Maximized) MinimumSize = Screen.PrimaryScreen.WorkingArea.Size;
+         //else if (WindowState == FormWindowState.Normal) MinimumSize = new Size(697, 393);
+         //else MinimumSize = new Size(697, 393);
+         pnlMenuArea.Left = Width - pnlMenuArea.Width - 3;
+         stsStatusBar.Top = Height - stsStatusBar.Height;
+         trvNodes.Height = Height - trvNodes.Top - tspToolBar.Height + 28;
+         txtBodies.Height = trvNodes.Height;
+         txtBodies.Width = Width - txtBodies.Left - 5;
+         tspToolBar.Width = Width - 15;
+      }
+
+      private void lnkFile_Click(object sender, EventArgs e)
+      {
+         cmsFile.Show();
+         cmsFile.Left = lnkFile.Left + Left + pnlMenuArea.Left;
+         cmsFile.Top = lnkFile.Top + lnkFile.Height + pnlMenuArea.Top + Top;
+      }
+
+      private void frmMain_Load(object sender, EventArgs e)
+      {
+         //SplashForm sfr;
+         frmMain_Resize(sender, e);
+         txtBodies.ImeMode = ImeMode.OnHalf;
+         FocusMe();
+      }
+
+      private void 新建NToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         frmCreateProject crtproj = new frmCreateProject();
+         crtproj.ShowDialog();
+      }
+
+      private void trvNodes_Click(object sender, EventArgs e)
+      {
+         PaintEventArgs pe = new PaintEventArgs(trvNodes.CreateGraphics(), new Rectangle(trvNodes.Location, trvNodes.Size));
+         trvNodes.ON_PAINT(pe);
+         trvNodes.Refresh();
+      }
+
+      private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Application.ExitThread();
+      }
+
+      private void frmMain_MouseDown(object sender, MouseEventArgs e)
+      {
+         Opacity = 0.8;
+      }
+
+      private void frmMain_MouseUp(object sender, MouseEventArgs e)
+      {
+         Opacity = 1;
+      }
+
+      private void tssHelp_ButtonClick(object sender, EventArgs e)
+      {
+         NamingSystem ns = new NamingSystem(ENameType.ChineseName);
+         ns.InitializeBuilder();
+         List<SCompleteName> names = ns.RandomBuildNames(5);
+         string msgtext = string.Empty;
+         for (int i = 0; i < 4; i++) msgtext = msgtext + names[i].ToString(true) + "\n";
+         MessageBox.Show(msgtext, "RandomBuildNames(int)", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+
+      private void tsbNaming_Click(object sender, EventArgs e)
+      {
+         frmCreateRole crtrolef = new frmCreateRole();
+         crtrolef.ShowDialog();
+      }
+
+      private void tsbTools_Click(object sender, EventArgs e)
+      {
+         
+      }
+   }
+}

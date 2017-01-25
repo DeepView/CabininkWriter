@@ -1,0 +1,222 @@
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Resources;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+namespace Cabinink.Writer.Cores
+{
+   /// <summary>
+   /// 需要被保存的章节的结构体
+   /// </summary>
+   /// <typeparam name="TChapterNumber">章节编号的编号数据类型。</typeparam>
+   public struct SShouldSavedChapter<TChapterNumber>
+   {
+      /// <summary>
+      /// 需要被保存的章节
+      /// </summary>
+      public Chapter<TChapterNumber> ShouldSavedChapter;
+      /// <summary>
+      /// 需要被保存的章节是否发生过更改，如果这个值为false，则ShouldSavedChapter成员的值无效
+      /// </summary>
+      public bool IsChanged;
+      /// <summary>
+      /// 构造函数，创建一个指定需要被保存章节的SShouldSavedChapte<TChapterNumber>结构体实例
+      /// </summary>
+      /// <param name="_ssc">需要被保存的章节。</param>
+      /// <param name="_ischanged">指示当前章节是否发生了更改，如果没有发生更改，则ShouldSavedChapter为null。</param>
+      public SShouldSavedChapter(Chapter<TChapterNumber> _ssc, bool _ischanged)
+      {
+         ShouldSavedChapter = _ssc;
+         IsChanged = _ischanged;
+         if (_ischanged == false) ShouldSavedChapter = null;
+      }
+   }
+   /// <summary>
+   /// Cabinink Writer 项目类
+   /// </summary>
+   public class Project
+   {
+      /// <summary>
+      /// 项目名称
+      /// </summary>
+      private string projname;
+      /// <summary>
+      /// 项目保存的路径
+      /// </summary>
+      private string projurl;
+      /// <summary>
+      /// 项目文件扩展名
+      /// </summary>
+      private string projfextname;
+      /// <summary>
+      /// 分卷信息文件扩展名
+      /// </summary>
+      private string embrifextname;
+      /// <summary>
+      /// 章节文件扩展名
+      /// </summary>
+      private string chapterfextname;
+      /// <summary>
+      /// 配置文件扩展名
+      /// </summary>
+      private string ciwcfgfextname;
+      /// <summary>
+      /// 用于资源访问的ResourceManager
+      /// </summary>
+      private ResourceManager resm;
+      /// <summary>
+      /// 构造函数，创建一个空的ProjectManagement实例
+      /// </summary>
+      public Project()
+      {
+         resm = new ResourceManager("Resources", Assembly.GetExecutingAssembly());
+         InitializeExtNameString();
+      }
+      /// <summary>
+      /// 构造函数，创建一个指定项目名称和项目保存路径的ProjectManagement实例
+      /// </summary>
+      /// <param name="_projname">指定的项目名称。</param>
+      /// <param name="_projurl">指定的项目保存路径。</param>
+      public Project(string _projname, string _projurl)
+      {
+         if (IsInconformitySpecification(_projname) == false) throw new InconformitySpecificationException("命名不符合规则");
+         resm = new ResourceManager("Resources", Assembly.GetExecutingAssembly());
+         InitializeExtNameString();
+         projname = _projname;
+         projurl = _projurl;
+      }
+      /// <summary>
+      /// 初始化当前项目可用的全部扩展名
+      /// </summary>
+      private void InitializeExtNameString()
+      {
+         projfextname = resm.GetString("PROJECT_FILE_TYPE_NAME");
+         embrifextname = resm.GetString("EMBROIL_INFO_FILE_TYPE_NAME");
+         chapterfextname = resm.GetString("CHAPTOR_FILE_TYPE_NAME");
+         ciwcfgfextname = resm.GetString("CIWRITER_CONFIG_FILE_TYPE_NAME");
+      }
+      /// <summary>
+      /// 检查指定的项目名称是否符合规范，项目名称文本的组成元素只允许是字母，下划线和数字，且数字不能存在于首字符位置
+      /// </summary>
+      /// <param name="_projname">需要被检查的项目名称。</param>
+      /// <returns>如果被检查的项目名称符合规范，则返回true，否则会返回false。</returns>
+      public bool IsInconformitySpecification(string _projname)
+      {
+         bool specification = false;
+         char[] projname_chars = _projname.ToCharArray();
+         int[] ascii_fragment = { 48, 57, 65, 90, 95, 97, 122 };//48~57 is number,65~90 is lowercase,97 is underline,97~122 is uppercase.
+         Parallel.For(0, _projname.Length, (index, interrupt) =>
+         {
+            if (projname_chars[index] >= ascii_fragment[0] && projname_chars[index] <= ascii_fragment[1] && index != 0)
+            {
+               specification = true;
+            }
+            else if (projname_chars[index] >= ascii_fragment[2] && projname_chars[index] <= ascii_fragment[3])
+            {
+               specification = true;
+            }
+            else if (projname_chars[index] >= ascii_fragment[5] && projname_chars[index] <= ascii_fragment[6])
+            {
+               specification = true;
+            }
+            else if (projname_chars[index] == ascii_fragment[4])
+            {
+               specification = true;
+            }
+            else
+            {
+               specification = false;
+               interrupt.Stop();
+            }
+         });
+         return specification;
+      }
+      /// <summary>
+      /// 获取或设置当前实例的项目名称
+      /// </summary>
+      public string ProjectName
+      {
+         get { return projname; }
+         set
+         {
+            if (IsInconformitySpecification(value) == false) throw new InconformitySpecificationException("命名不符合规则");
+            projname = value;
+         }
+      }
+      /// <summary>
+      /// 获取或设置当前实例的项目保存路径
+      /// </summary>
+      public string ProjectUrl
+      {
+         get { return projurl; }
+         set
+         {
+            if (FileOperation.FileExists(value)) throw new FileIsExistedException("该文件已存在！");
+            projurl = value;
+         }
+      }
+      /// <summary>
+      /// 创建项目，并生成三个和项目相关的文件夹，这三个文件夹分别是：\Body，\Config，\Resources。
+      /// </summary>
+      public void Create()
+      {
+         if (FileOperation.DirectoryExists(FileOperation.GetFatherDirectory(ProjectUrl)) == false)
+         {
+            FileOperation.CreateDirectory(FileOperation.GetFatherDirectory(ProjectUrl));
+         }
+         FileOperation.CreateFile(ProjectUrl, FileAccess.ReadWrite, FileShare.None);
+         if (FileOperation.DirectoryExists(FileOperation.GetFatherDirectory(ProjectUrl) + @"\Body") == false)
+         {
+            FileOperation.CreateDirectory(FileOperation.GetFatherDirectory(ProjectUrl) + @"\Body");
+         }
+         if (FileOperation.DirectoryExists(FileOperation.GetFatherDirectory(ProjectUrl) + @"\Config") == false)
+         {
+            FileOperation.CreateDirectory(FileOperation.GetFatherDirectory(ProjectUrl) + @"\Config");
+         }
+         if (FileOperation.DirectoryExists(FileOperation.GetFatherDirectory(ProjectUrl) + @"\Resources") == false)
+         {
+            FileOperation.CreateDirectory(FileOperation.GetFatherDirectory(ProjectUrl) + @"\Resources");
+         }
+      }
+      /// <summary>
+      /// 保存当前项目
+      /// </summary>
+      /// <typeparam name="VTChapterNumber">需要被保存的章节的章节编号类型。</typeparam>
+      /// <param name="_ssc">需要被保存的章节。</param>
+      public void Save<VTChapterNumber>(SShouldSavedChapter<VTChapterNumber> _ssc)
+      {
+
+      }
+      /// <summary>
+      /// 将项目另存为其他路径，并重新指定项目名称
+      /// </summary>
+      /// <param name="_projname">重新指定的项目名称。</param>
+      /// <param name="_projurl">重新指定的项目保存路径。</param>
+      public void SaveAs(string _projname, string _projurl)
+      {
+
+      }
+      /// <summary>
+      /// 关闭并保存项目，但是不会退出应用程序
+      /// </summary>
+      public void Close()
+      {
+
+      }
+   }
+   /// <summary>
+   /// 名称或者文本不符合指定规范时产生的异常
+   /// </summary>
+   [Serializable]
+   public class InconformitySpecificationException : Exception
+   {
+      public InconformitySpecificationException() { }
+      public InconformitySpecificationException(string message) : base(message) { }
+      public InconformitySpecificationException(string message, Exception inner) : base(message, inner) { }
+      protected InconformitySpecificationException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+   }
+}

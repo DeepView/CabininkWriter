@@ -1,0 +1,19 @@
+DatabaseName: intellisence
+DatabaseFileName: intellisence.db
+DatabaseType: SQLite 3
+TablesCount: 1
+
+  TableID: 0
+  TableName: wisdom
+  TableRemarks: 用于存放名言警句的数据表
+  TableFieldCollection: { _wisdom, _level }
+
+    TableFieldID: 0
+    TableFieldName: _wisdom
+    TableFieldRemarks: 名言警句字段
+
+    TableFieldID: 1
+    TableFieldName: _level
+    TableFieldRemarks: 记录定义级别，predefine表示预定义，user表示用户定义
+
+  TableID: 1

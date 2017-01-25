@@ -1,0 +1,92 @@
+﻿using System;
+using System.Threading;
+using System.Data.SQLite;
+using Cabinink.Writer.UI;
+using System.Windows.Forms;
+using Cabinink.Writer.Cores;
+using Cabinink.Writer.Middle;
+using System.Collections.Generic;
+namespace Cabinink
+{
+   /// <summary>
+   /// 用于访问应用程序主入口点的静态类
+   /// </summary>
+   public static class Program
+   {
+      private const string ABP_BASE = " Base";
+      private const string ABP_ALPHA = " Alpha";
+      private const string ABP_BETA = "Beta";
+      private const string ABP_RC = " RC";
+      private const string ABP_RELEASE = " Release";
+      public static string AppBuildingProcessFlag = ABP_BASE;
+      public static BaiduCloudBackup CloudBackup;
+      public static List<Project> Projects = new List<Project>();
+      public static List<string> IntelliSenceSources = new List<string>();
+      /// <summary>
+      /// 应用程序的主入口点
+      /// </summary>
+      [STAThread]
+      public static void Main()
+      {
+         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+         Application.ThreadException += new ThreadExceptionEventHandler(UIThreadUnhandledExceptionCatched);
+         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CoresThreadUnhandledExceptionCatched);
+         Application.EnableVisualStyles();
+         Application.SetCompatibleTextRenderingDefault(false);
+         frmMainInterface main = new frmMainInterface();
+         LoadProjects();
+         Console.WriteLine("\n\nProjectsCount=" + Projects.Count + "\n");
+         Application.Run(main);
+      }
+      /// <summary>
+      /// 加载项目
+      /// </summary>
+      public static void LoadProjects()
+      {
+         DatabaseOperation dbopt = new DatabaseOperation(@"Data Source=config\ciwconfig.db");
+         List<string> projurls = new List<string>();
+         SQLiteDataReader reader;
+         dbopt.InitializeConnection();
+         dbopt.Connect();
+         reader = dbopt.InvokeSqlToReader(@"select * from projects");
+         while (reader.Read())
+         {
+            projurls.Add(reader.GetString(reader.GetOrdinal("_url")));
+         }
+         reader.Close();
+         dbopt.Disconnect();
+         for (int i = 0; i < projurls.Count; i++) BuildProject(projurls[i]);
+      }
+      /// <summary>
+      /// 生成项目实例
+      /// </summary>
+      /// <param name="_projurl">项目保存的地址。</param>
+      public static void BuildProject(string _projurl)
+      {
+         Project project = new Project(_projurl, new SNovelInformation());
+         project.InitializeProject();
+         project.ReadNovelInformation();
+         project.ReadUserSetting();
+         for (int i = 1; i <= project.GetMaximumNumber("_section", ""); i++)
+         {
+            project.ReadSection(i);
+            for (int j = 1; j <= project.GetMaximumNumber("_chapter", "where _section=" + i); j++)
+            {
+               project.ReadChapter(i, j);
+            }
+         }
+         Projects.Add(project);
+      }
+      public static void UIThreadUnhandledExceptionCatched(object sender, ThreadExceptionEventArgs e)
+      {
+         Console.WriteLine("\n\n\nUIThreadUnhandledException\n\n" + e.Exception.StackTrace + "\n\n\n");
+         VsSkinExceptionForm exform = new VsSkinExceptionForm(e.Exception.Message + "\n\n" + e.Exception.StackTrace);
+         exform.ShowDialog();
+      }
+      public static void CoresThreadUnhandledExceptionCatched(object sender, UnhandledExceptionEventArgs e)
+      {
+         VsSkinExceptionForm exform = new VsSkinExceptionForm(e.ExceptionObject.ToString() + "\nIsTerminating = " + e.IsTerminating);
+         exform.ShowDialog();
+      }
+   }
+}

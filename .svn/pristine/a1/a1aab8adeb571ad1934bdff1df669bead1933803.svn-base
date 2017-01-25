@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmSendPasswordMail : Cabinink.Writer.UI.VsSkinFormBase
+   {
+      public frmSendPasswordMail()
+      {
+         InitializeComponent();
+      }
+
+      private void metroButton1_Click(object sender, EventArgs e)//Send Mail
+      {
+         Cores.UserCredential user = new Cores.UserCredential("deepview", "940321", "lihuaxiang0321@msn.cn");
+         user.FoundPassword();
+         //user.SendValidatedMail(30);
+         Close();
+      }
+   }
+}

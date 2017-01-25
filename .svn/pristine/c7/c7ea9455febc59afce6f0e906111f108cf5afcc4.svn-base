@@ -1,0 +1,436 @@
+﻿using System;
+using System.Text;
+using System.Linq;
+using System.Drawing;
+using System.Diagnostics;
+using Cabinink.Properties;
+using System.Windows.Forms;
+using Cabinink.Writer.Cores;
+using Cabinink.Writer.Middle;
+using app = Cabinink.Program;
+using System.Collections.Generic;
+using iniopter = Cabinink.Writer.Cores.InitializationFileOperation;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmMainInterface : Cabinink.Writer.UI.VsSkinFormBase
+   {
+      private int TextLength;
+      private string SelectedItemUri;
+      private frmIntelliSence IntelliSenceForm;
+      public frmMainInterface()
+      {
+         InitializeComponent();
+         Visible = false;
+         TextLength = 0;
+      }
+      //protected override void WndProc(ref Message m)
+      //{
+      //   const int WM_SYSCOMMAND = 0x112;
+      //   const int SC_CLOSE = 0xf060;
+      //   const int WM_CLOSE = 0x0010;
+      //   if ((m.Msg == WM_SYSCOMMAND && Convert.ToInt32(m.WParam) == SC_CLOSE) || (m.WParam.ToInt32() == WM_CLOSE))
+      //   {
+      //      Visible = false;
+      //      return;
+      //   }
+      //   base.WndProc(ref m);
+      //}
+
+
+      public void LoadProjects()
+      {
+         List<string> subsections_s = new List<string>(), chapters_s = new List<string>();
+         for (int index = 0; index < app.Projects.Count; index++)
+         {
+            app.Projects[index].CurrentNovel.OperationFlag = true;
+            string sstini = app.Projects[index].GetProjectDirectory() + @"\Body\subsections.ini";
+            string userconfig = app.Projects[index].GetProjectDirectory() + @"\Config\userconfig.ini";
+            int sstmodeint = Convert.ToInt32(iniopter.GetStringValue(userconfig, "NovelNumberMode", "Subsection", ""), 10);
+            int cptmodeint = Convert.ToInt32(iniopter.GetStringValue(userconfig, "NovelNumberMode", "Chapter", ""), 10);
+            app.Projects[index].SubectionNumberMode = (ESubsectionNumberMode)sstmodeint;
+            app.Projects[index].ChapterNumberMode = (EChapterNumberMode)cptmodeint;
+            trvNovelTree.Nodes.Add(app.Projects[index].CurrentNovel.Information.NovelName);
+            subsections_s = iniopter.GetAllSectionNames(sstini).ToList();
+            for (int i = 0; i < subsections_s.Count; i++)
+            {
+               string sst_title_no = iniopter.GetStringValue(sstini, subsections_s[i], "SubsectionNumber", "");
+               string sst_title_s = iniopter.GetStringValue(sstini, subsections_s[i], "SubsectionTitle", "");
+               if (app.Projects[index].SubectionNumberMode != ESubsectionNumberMode.ArabicNumberAfterEnglishSubsection)
+               {
+                  ChineseNumber.InitializeBuilder();
+                  sst_title_no = ChineseNumber.ConvertToChinese(Convert.ToInt32(sst_title_no));
+               }
+               SSubsectionNumber sn = new SSubsectionNumber(app.Projects[index].SubectionNumberMode, sst_title_no);
+               app.Projects[index].CurrentNovel.AddSubsection(new Subsection(sn, sst_title_s));
+               Subsection sst = app.Projects[index].CurrentNovel[i];
+               trvNovelTree.Nodes[index].Nodes.Add(sst.SubsectionNumber.ToString() + " " + sst.Title);
+               string cptini = app.Projects[index].GetProjectDirectory() + @"\Body\" + sst.Title + @"\chapters.ini";
+               chapters_s = iniopter.GetAllSectionNames(cptini).ToList();
+               for (int j = 0; j < chapters_s.Count; j++)
+               {
+                  string cpt_title_no = iniopter.GetStringValue(cptini, chapters_s[j], "ChapterNumber", "");
+                  string cpt_title_s = iniopter.GetStringValue(cptini, chapters_s[j], "ChapterTitle", "");
+                  switch (app.Projects[index].ChapterNumberMode)
+                  {
+                     case EChapterNumberMode.OnlyArabic:
+                     case EChapterNumberMode.ArabicInEnglishChapterMark:
+                     case EChapterNumberMode.ArabicInChineseChapterMark:
+                     case EChapterNumberMode.ArabicInChineseSectionMark:
+                     case EChapterNumberMode.ArabicBeforeChineseChapterMarkFirstWordAndLastWord:
+                     case EChapterNumberMode.ArabicBeforeChineseSectionMarkFirstWordAndLastWord:
+                        break;
+                     case EChapterNumberMode.OnlyChineseNum:
+                     case EChapterNumberMode.ChineseNumInChineseChapterMark:
+                     case EChapterNumberMode.ChineseNumInChineseSectionMark:
+                     case EChapterNumberMode.ChineseNumBeforeChineseChapterMarkFirstWordAndLastWord:
+                     case EChapterNumberMode.ChineseNumBeforeChineseSectionMarkFirstWordAndLastWord:
+                     default:
+                        cpt_title_no = ChineseNumber.ConvertToChinese(Convert.ToInt32(cpt_title_no));
+                        break;
+                  }
+                  SChapterNumber cn = new SChapterNumber(sst_title_no, app.Projects[index].ChapterNumberMode);
+                  app.Projects[index].CurrentNovel[i].AddChapter(new Chapter(cn, cpt_title_s));
+                  Chapter cpt = app.Projects[index].CurrentNovel[i].Chapters[j];
+                  cpt.ChapterNumber = cn;
+                  trvNovelTree.Nodes[index].Nodes[i].Nodes.Add(cpt.ChapterNumber.ToString() + " " + cpt.Title);
+                  Encoding encoding = Encoding.GetEncoding("GB2312");
+                  string cptconf = FileOperation.GetFatherDirectory(cptini);
+                  string ciwchapterext = Resources.CHAPTOR_FILE_TYPE_NAME;
+                  string body = FileOperation.ReadFile(cptconf + @"\" + cpt.Title + "." + ciwchapterext, true, encoding);
+                  SelectedItemUri = body;
+               }
+            }
+         }
+         trvNovelTree.ExpandAll();
+      }
+
+
+      //public void LoadContext()
+      //{
+      //   for (int index = 0; index < app.Projects.Count; index++)
+      //   {
+      //      for (int i = 0; i < app.Projects[index].CurrentNovel.Count; i++)
+      //      {
+      //         for (int j = 0; j < app.Projects[index].CurrentNovel[i].Count; j++)
+      //         {
+      //            string body = FileOperation.ReadFile("", true, Encoding.GetEncoding("GB2312"));
+      //            app.Projects[index].CurrentNovel[i].Chapters[j].Body = "";
+      //         }
+      //      }
+      //   }
+      //}
+
+
+      private void trvNovelTree_Click(object sender, EventArgs e)
+      {
+         trvNovelTree.Refresh();
+         //MessageBox.Show(trvNovelTree.SelectedNode.FullPath);
+      }
+
+      private void frmMainInterface_SizeChanged(object sender, EventArgs e)
+      {
+         trvNovelTree.Height = Height - 41;
+         rtbBody.Size = new Size(Width - trvNovelTree.Width - trvNovelTree.Left - 2, Height - pnlStat.Height - 41);
+         pnlStat.Width = rtbBody.Width;
+         pnlStat.Top = rtbBody.Top + rtbBody.Height - 1;
+         btnSearch.Top = Height - btnSearch.Height - 1;
+         ResizeMenu();
+      }
+
+      private void frmMainInterface_Load(object sender, EventArgs e)
+      {
+         frmLogin login = new frmLogin();
+         login.ShowDialog(this);
+         rtbBody.CanPaste(DataFormats.GetFormat(DataFormats.Text));
+         trvNovelTree.ExpandAll();
+         LoadProjects();
+         ResizeMenu();
+         Visible = true;
+      }
+
+      private void btnNovel_Click(object sender, EventArgs e)
+      {
+         //btnNovel.BackColor = Color.FromArgb(45, 45, 48);
+         cmsNovel.Show(btnNovel, new Point(55, 0));
+         //cmsNovel.Left = 55 + Left;
+         //cmsNovel.Top = 40 + Top;
+      }
+
+      private void btnToolkit_Click(object sender, EventArgs e)
+      {
+         cmsToolkit.Show(btnNovel, new Point(55, 0));
+      }
+
+      //private void vsbScoll_Scroll(object sender, ScrollEventArgs e)
+      //{
+      //   float currentValue = Math.Abs(vsbScoll.Value - oldValue);//该变量表示当前滚动条中的值
+      //   float temp = ScrollBarPercentage(rtbBody.Height + 50); //为临时变量temp赋值
+      //   if (vsbScoll.Value > oldValue) //当向下滚动时
+      //   {
+      //      rtbBody.Top -= (int)(temp * currentValue);//定义RichTextBox控件的上边距与其工作区容器上边距间的距离
+      //   }
+      //   else if (vsbScoll.Value < oldValue)//当滚动条向上滚动时
+      //   {
+      //      rtbBody.Top += (int)(temp * currentValue);//定义RichTextBox控件的上边距与其工作区容器上边距间的距离
+      //   }
+      //   oldValue = vsbScoll.Value;//设置oldValue值为滚动条的当前值
+      //}
+      //private float ScrollBarPercentage(float height)
+      //{
+      //   float divisor = (float)(20);//将整型转化为浮点型
+      //   float wholeValue = height - vsbScoll.Height;//获取滚动条的全值
+      //   return (wholeValue / divisor);//获取滚动条移动时每移动一部分所占的百分比
+      //}
+      public void ResizeMenu()
+      {
+         cmsNovel.Size = new Size(265, Height - 42);
+         cmsToolkit.Size = new Size(265, Height - 42);
+         cmsSystem.Size = new Size(265, Height - 42);
+         cmsHelp.Size = new Size(265, Height - 42);
+      }
+
+      private void btnSystem_Click(object sender, EventArgs e)
+      {
+         cmsSystem.Show(btnNovel, new Point(55, 0));
+      }
+
+      private void btnHelp_Click(object sender, EventArgs e)
+      {
+         cmsHelp.Show(btnNovel, new Point(55, 0));
+      }
+
+      private void cmsNovel_Opened(object sender, EventArgs e)
+      {
+         btnNovel.BackColor = Color.FromArgb(45, 45, 48);
+         Text = "> 作品";
+      }
+
+      private void cmsNovel_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+      {
+         btnNovel.BackColor = Color.FromArgb(64, 64, 64);
+         Text = "Cabinink Writer";
+      }
+
+      private void cmsToolkit_Opened(object sender, EventArgs e)
+      {
+         btnToolkit.BackColor = Color.FromArgb(45, 45, 48);
+         Text = "> 工具";
+      }
+
+      private void cmsToolkit_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+      {
+         btnToolkit.BackColor = Color.FromArgb(64, 64, 64);
+         Text = "Cabinink Writer";
+      }
+
+      private void cmsSystem_Opened(object sender, EventArgs e)
+      {
+         btnSystem.BackColor = Color.FromArgb(45, 45, 48);
+         Text = "> 系统";
+      }
+
+      private void cmsSystem_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+      {
+         btnSystem.BackColor = Color.FromArgb(64, 64, 64);
+         Text = "Cabinink Writer";
+      }
+
+      private void cmsHelp_Opened(object sender, EventArgs e)
+      {
+         btnHelp.BackColor = Color.FromArgb(45, 45, 48);
+         Text = "> 帮助";
+      }
+
+      private void cmsHelp_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+      {
+         btnHelp.BackColor = Color.FromArgb(64, 64, 64);
+         Text = "Cabinink Writer";
+      }
+
+      private void 查看产品信息ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         ApplicationHelp.ShowProductionInformation(new frmAbout());
+      }
+
+      private void 创建新作品ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         frmCreateProject crtnovel = new frmCreateProject(this);
+         crtnovel.ShowDialog();
+      }
+
+      private void 联系我们ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         string tipstr = "如果您在使用我们的产品时有一些很奇特的想法，或者是在使用过程中你有一些很难费解的疑问，不妨通过下面的联系方式与我们交流交流：\n\n电子邮箱：lihuaxiang0321@msn.cn\nQQ号码：576882001\n微信：deepview_studio";
+         VsSkinMessageBoxOk contact = new VsSkinMessageBoxOk("联系我们", tipstr, EMessageLevel.Information);
+         contact.Display(this);
+      }
+
+      private void 退出应用程序ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         ntiNotify.Visible = false;
+         Application.ExitThread();
+      }
+
+      private void 反馈中心ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         ApplicationHelp.OpenFeedback();
+      }
+
+      private void 查看最终用户许可协议ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         ApplicationHelp.OpenEndUserLicenseAgreement(new frmEula());
+      }
+
+      private void 网页浏览器ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Process.Start(@"browserhome\index.html");
+      }
+
+      private void 计算器ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Process.Start(@"calc");
+      }
+
+      private void 作品属性与信息查看ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         frmNovelProperty npi = new frmNovelProperty();
+         npi.Show();
+      }
+
+      private void 关闭WindowsToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Action sd = delegate { long code = ExitWindows.Shutdown(); };
+         VsSkinMessageBoxOkCancel shutdown = new VsSkinMessageBoxOkCancel("关机", "退出Windows可能会造成某些未保存的数据被丢失。这些数据包含但不限制于当前应用程序的未保存数据，并且也包含了运行于Windows中所有应用程序未保存的数据。\n\n所有您确定要这样做吗？", EMessageLevel.Question, sd, DoNothing);
+         shutdown.Display(this);
+      }
+
+      private void 重新启动WindowsToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Action rst = delegate { long code = ExitWindows.ResetBoot(); };
+         VsSkinMessageBoxOkCancel shutdown = new VsSkinMessageBoxOkCancel("重新启动", "重新启动Windows也会导致某些未保存的数据被丢失，相对于没有UPS的计算机系统，这个操作是不会中断AC电源而再次进入Windows。当然，这些未保存的数据包含但不限制于当前应用程序的未保存数据，并且也包含了运行于Windows中所有应用程序未保存的数据。\n\n您确定要这样做吗？", EMessageLevel.Question, rst, DoNothing);
+         shutdown.Display(this);
+      }
+
+      private void 电脑休眠ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Action hbrt = delegate { ExitWindows.Hibernate(); };
+         VsSkinMessageBoxOkCancel shutdown = new VsSkinMessageBoxOkCancel("休眠", "休眠是一种将内存中未保存的数据压缩到硬盘中，然后退出Windows。当您重新进入Windows之后，这些未保存的数据将会还原到内存之中，并且返回到上次退出Windows时的工作点。\n\n您确定要这样做吗？", EMessageLevel.Question, hbrt, DoNothing);
+         shutdown.Display(this);
+      }
+
+      private void 使系统进入挂起状态ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Action sleep = delegate { ExitWindows.Suspend(); };
+         VsSkinMessageBoxOkCancel shutdown = new VsSkinMessageBoxOkCancel("挂起", "挂起Windows是将数据保留在内存中，然后使其他设备停止工作。如果您要返回到上一个工作点，从挂起状态恢复到工作状态的过程只需要几秒钟不到。但是对于没有后备能源系统的计算机，意外断电将会导致这些数据被丢失。\n\n您确定要这样做吗？", EMessageLevel.Question, sleep, DoNothing);
+         shutdown.Display(this);
+      }
+
+      private void btnSearch_Click(object sender, EventArgs e)
+      {
+         frmSearchAndReplace srchrplc = new frmSearchAndReplace();
+         srchrplc.Location = new Point(btnSearch.Width + 2 + Left, Height - srchrplc.Height + Top);
+         if (!CheckFormIsOpen("frmSearchAndReplace")) srchrplc.Show(this);
+      }
+      /// <summary>
+      /// 检查指定的窗口是否被打开
+      /// </summary>
+      /// <param name="_formname">需要被检测的窗体名称。</param>
+      /// <returns>如果这个窗体被打开，则返回true，否则返回false。</returns>
+      public static bool CheckFormIsOpen(string _formname)
+      {
+         bool bResult = false;
+         foreach (Form frm in Application.OpenForms)
+         {
+            if (frm.Name == _formname)
+            {
+               bResult = true;
+               break;
+            }
+         }
+         return bResult;
+      }
+
+      private void 电脑休眠ToolStripMenuItem1_Click(object sender, EventArgs e)
+      {
+         电脑休眠ToolStripMenuItem_Click(sender, e);
+      }
+
+      private void 显示主界面MToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Visible = true;
+      }
+
+      private void 关闭WindowsSToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         关闭WindowsToolStripMenuItem_Click(sender, e);
+      }
+
+      private void 重新启动WindowsRToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         重新启动WindowsToolStripMenuItem_Click(sender, e);
+      }
+
+      private void 强制挂起WindowsUToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         使系统进入挂起状态ToolStripMenuItem_Click(sender, e);
+      }
+
+      private void 产品信息IToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         查看产品信息ToolStripMenuItem_Click(sender, e);
+      }
+
+      private void 退出应用程序EToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         退出应用程序ToolStripMenuItem_Click(sender, e);
+      }
+
+      private void frmMainInterface_FormClosing(object sender, FormClosingEventArgs e)
+      {
+         //if (Visible) ntiNotify.ShowBalloonTip(4000, "Cabinink Writer", "应用程序已转入后台运行，如果您要继续编辑作品，请右键单击该应用程序的后台图标，然后再弹出的上下文菜单中选择显示主界面！", ToolTipIcon.Info);
+         e.Cancel = true;
+         Visible = false;
+      }
+
+      private void frmMainInterface_VisibleChanged(object sender, EventArgs e)
+      {
+         if (!Visible) ntiNotify.ShowBalloonTip(4000, "Cabinink Writer", "应用程序已转入后台运行，如果您要继续编辑作品，请右键单击该应用程序的后台图标，然后再弹出的上下文菜单中选择显示主界面！", ToolTipIcon.Info);
+      }
+
+      private void 首选项ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         frmVerification veri = new frmVerification();
+         veri.ShowDialog(this);
+      }
+
+      private void rtbBody_TextChanged(object sender, EventArgs e)
+      {
+         if (rtbBody.TextLength > TextLength && rtbBody.TextLength >= 2)
+         {
+            IntelliSenceForm = new frmIntelliSence(5, rtbBody.Text.Substring(rtbBody.Text.Length - 2));
+            if (CheckFormIsOpen("frmIntelliSence") == false) IntelliSenceForm.Show(Handle);
+            IntelliSenceForm.DoQuery();
+            IntelliSenceForm.Location = IntelliSenceForm.CaretPosition();
+         }
+         else
+         {
+            if (CheckFormIsOpen("frmIntelliSence")) IntelliSenceForm.Close();
+         }
+         TextLength = rtbBody.TextLength;
+         //IntelliSenceForm.Location = PointToScreen(e.X, e.Y);
+      }
+
+      private void 查看帮助文档ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         VsSkinMessageBoxOk msg = new VsSkinMessageBoxOk("提示", "帮助文档正在建设之中...",EMessageLevel.Information);
+         msg.Display(this);
+      }
+
+      private void 字符统计ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         frmWordCount wordcount = new frmWordCount();
+         wordcount.ShowDialog(this);
+      }
+   }
+}

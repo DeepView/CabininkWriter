@@ -1,0 +1,1069 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cabinink.Program" Collapsed="true">
+    <Position X="62.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAAAAAAQEAAAAAIAAAAAAACAACEAAQAgADAkBIAAAQA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Properties.Resources" Collapsed="true">
+    <Position X="69.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CwABBADDIIAUkgSAAUoNEEAIIQBvAQEJADFQMAAAAoA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Properties.Settings" Collapsed="true">
+    <Position X="75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.BaiduCloudBackup" Collapsed="true">
+    <Position X="62.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAIgAAAAEAQAAAAmAAAAAAAACAAEQAgAAAAA=</HashCode>
+      <FileName>Writer.Cores\BaiduCloudBackup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NetworkNotConnectedOrExpediteException" Collapsed="true">
+    <Position X="68" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\BaiduCloudBackup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.BigDate" Collapsed="true">
+    <Position X="68" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAkAAAAJAAAAAAkQAAAICAAAAQBAAAEAACAAAAgAAA=</HashCode>
+      <FileName>Writer.Cores\BigDate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.DateOverflowException" Collapsed="true">
+    <Position X="69.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\BigDate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.DifferenceTooSmallException" Collapsed="true">
+    <Position X="71.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\BigDate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.Chapter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgJAgAIAQAAQAEgEAgABAAgAAQCAhIA0BAAAhAAiAgI=</HashCode>
+      <FileName>Writer.Cores\Chapter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.TypeIsErrorException" Collapsed="true">
+    <Position X="69.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Chapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NullChapterNumberException" Collapsed="true">
+    <Position X="69.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Chapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NotFoundBackupException" Collapsed="true">
+    <Position X="75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Chapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.ChineseNumber" Collapsed="true">
+    <Position X="75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAFAAAAAA=</HashCode>
+      <FileName>Writer.Cores\ChineseNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.Compendium" Collapsed="true">
+    <Position X="61" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIgAAACCAAAAEAIECAAAAAUAAAAAAAAQAEAAAAgCQAA=</HashCode>
+      <FileName>Writer.Cores\Compendium.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.CompendiumIsNothingException" Collapsed="true">
+    <Position X="62.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Compendium.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.CompressedOperation" Collapsed="true">
+    <Position X="64.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAEAAAAAAAAAAAAgAAAAAAASAAAAAA=</HashCode>
+      <FileName>Writer.Cores\CompressedOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.DatabaseOperation" Collapsed="true">
+    <Position X="68" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAQAAABAABAAEAgAACIBEACBQIABAACAECDAAEAA=</HashCode>
+      <FileName>Writer.Cores\DatabaseOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.EmptySqlCommandLineException" Collapsed="true">
+    <Position X="59.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\DatabaseOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.SqlGrammarErrorException" Collapsed="true">
+    <Position X="64.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\DatabaseOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.ConnectionNotExistsException" Collapsed="true">
+    <Position X="66.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\DatabaseOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.EnergyInformation" Collapsed="true">
+    <Position X="61" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAUAAAQAAAAAAgAAAAAAQAAQAAAANAAAAAQABAIAA=</HashCode>
+      <FileName>Writer.Cores\EnergyInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.UnknownBatteryUseTimeSpanException" Collapsed="true">
+    <Position X="71.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\EnergyInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.UnknownQuantityOfBatteryException" Collapsed="true">
+    <Position X="73.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\EnergyInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.ExitWindows" Collapsed="true">
+    <Position X="66.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAAgCAACBACAAAIQAqAEQAAAABggDAAAUACQAQAEIA=</HashCode>
+      <FileName>Writer.Cores\ExitWindows.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.Win32ApiErrorInformationException" Collapsed="true">
+    <Position X="62.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\ExitWindows.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.FileOperation" Collapsed="true">
+    <Position X="69.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAABAUAAAQAQAAAAAAIIAEACAgAAQE=</HashCode>
+      <FileName>Writer.Cores\FileOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.FileIsExistedException" Collapsed="true">
+    <Position X="68" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\FileOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NotFoundFileException" Collapsed="true">
+    <Position X="62.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\FileOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.DirectoryIsExistedException" Collapsed="true">
+    <Position X="73.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\FileOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NotFoundDirectoryException" Collapsed="true">
+    <Position X="61" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\FileOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.IsNotEmptyDirectoryException" Collapsed="true">
+    <Position X="73.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\FileOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.GlobalShortcutKey" Collapsed="true">
+    <Position X="62.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAgIAAACAAAAAEAAAAAAQAAQAAACAA=</HashCode>
+      <FileName>Writer.Cores\GlobalShortcutKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.RegistHotkeyFailException" Collapsed="true">
+    <Position X="66.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\GlobalShortcutKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.InitializationFileOperation" Collapsed="true">
+    <Position X="69.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgAAAAAAAAAgEEBQAAAAAAAAAkCgAAAAAAAAAQACAAA=</HashCode>
+      <FileName>Writer.Cores\InitializationFileOperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.IntelligentizedSence" Collapsed="true">
+    <Position X="71.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAEKAQIAEAAQAACAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Writer.Cores\IntelligentizedSence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NotFoundAnyDataSourceException" Collapsed="true">
+    <Position X="73.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\IntelligentizedSence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.LanguagesInternationalization" Collapsed="true">
+    <Position X="75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgFCBIAAAQAAAAAAAAIAAAACAAAAAA=</HashCode>
+      <FileName>Writer.Cores\LanguagesInternationalization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.MailSender" Collapsed="true">
+    <Position X="62.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAACAAAAEAAAAAAIQAAAAiAABABAAAAAAI=</HashCode>
+      <FileName>Writer.Cores\MailSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.CannotSendMailException" Collapsed="true">
+    <Position X="71.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\MailSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NamingSystem" Collapsed="true">
+    <Position X="66.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAEAAABAAAAAEAgAAAQQAAAAI=</HashCode>
+      <FileName>Writer.Cores\NamingSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.Note" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="69.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAQiAAAEAEAIABAACAAQAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Note.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NoteManagement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAiAAAAEBGAAQAAQAAAAAAAAAAAABAAAIIAA=</HashCode>
+      <FileName>Writer.Cores\NoteManagement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.Novel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAMABEABAIAAgECgCAAAYAgAAggAAGAAJgBgYAQAI=</HashCode>
+      <FileName>Writer.Cores\Novel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.EnumDescriptionAttribute" Collapsed="true">
+    <Position X="62.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Novel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.InformationNotEqualException" Collapsed="true">
+    <Position X="68" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Novel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.LengthOverflowException" Collapsed="true">
+    <Position X="59.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Novel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.IllegitimateCharsException" Collapsed="true">
+    <Position X="66.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Novel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.ExclusionOperationException" Collapsed="true">
+    <Position X="64.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Novel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.PhoneticTranscription" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAgBAACQIAACMEQAAAAAAAAAIFAAAAAIAAAQAAAA=</HashCode>
+      <FileName>Writer.Cores\PhoneticTranscription.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.PlayQueue" Collapsed="true">
+    <Position X="59.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgAgCAAAAAAAAgAACABAAAQYAAAAAAAAIABAAgAAIAA=</HashCode>
+      <FileName>Writer.Cores\PlayQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.PlayQueueManagement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAiAAAAABEAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\PlayQueueManagement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.Role" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAIAgQkAAIABAAEAIQGAAQAIAAEAABAQQAoAAUACAA=</HashCode>
+      <FileName>Writer.Cores\Role.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.RoleManagement" Collapsed="true">
+    <Position X="73.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEiEiAFCAAQAAgAAATAAAAAYAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\RoleManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.ReplicatedNameException" Collapsed="true">
+    <Position X="68" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\RoleManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NotFoundRoleException" Collapsed="true">
+    <Position X="64.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\RoleManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.SmtpConfigure" Collapsed="true">
+    <Position X="59.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAABAAAEAAAAAAAAAACAA=</HashCode>
+      <FileName>Writer.Cores\SmtpConfigure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.SmtpStructure" Collapsed="true">
+    <Position X="61" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBAAAAAAAAAAAAAAAAAAAAAAAAEAACABAAAgAIAQI=</HashCode>
+      <FileName>Writer.Cores\SmtpStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.Sound" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="62.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAEAIAEACAEQAUEAAAAAQAAAAQAUABEAYAIACCAAAA=</HashCode>
+      <FileName>Writer.Cores\Sound.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.FormatNotSupportedException" Collapsed="true">
+    <Position X="73.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Sound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.BassInitializeFialException" Collapsed="true">
+    <Position X="66.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Sound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.StoryCell" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQoAAAAAAAECBACAAQQAgAAQAAAAEAIAAAAABA=</HashCode>
+      <FileName>Writer.Cores\StoryCell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.HappendDateIsEqualException" Collapsed="true">
+    <Position X="64.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\StoryCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.Subsection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAQAAQAkBECAABAAQAAAIAgAAEBAAAlAAAYAI=</HashCode>
+      <FileName>Writer.Cores\Subsection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NullSubsectionNumberException" Collapsed="true">
+    <Position X="71.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Subsection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NotFoundSubsectionException" Collapsed="true">
+    <Position X="66.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Subsection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.NotFoundChapterException" Collapsed="true">
+    <Position X="59.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Subsection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.UserCredential" Collapsed="true">
+    <Position X="75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAICAAAAAAAAAAAIAAABAQAAACgQAgAgAAEQA=</HashCode>
+      <FileName>Writer.Cores\UserCredential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.UserOrPasswordNotEmptyException" Collapsed="true">
+    <Position X="59.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\UserCredential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.PasswordIsIneffectivedException" Collapsed="true">
+    <Position X="73.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\UserCredential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Cores.UserRegister" Collapsed="true">
+    <Position X="61" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAABAAAAAAAAAAAAAABAAAAAAAAAAMAAAA=</HashCode>
+      <FileName>Writer.Cores\UserRegister.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Middle.ApplicationHelp" Collapsed="true">
+    <Position X="59.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAQAAAAAAAAAAAACAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Writer.Middle\ApplicationHelp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Middle.AssemblyInformation" Collapsed="true">
+    <Position X="61" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAABIAAEAAAAAAAAAgAAQAAAAAAAAAAARAAAAAA=</HashCode>
+      <FileName>Writer.Middle\AssemblyInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Middle.Project" Collapsed="true">
+    <Position X="64.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBgJAEIIQEQQAgAlEAAKIAQQAiAAEiAAAEIRAAYAAIE=</HashCode>
+      <FileName>Writer.Middle\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.Middle.WindowsFontInstaller" Collapsed="true">
+    <Position X="64.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAACAAAAAAAAAAAAQAAAAAAAAAAEA=</HashCode>
+      <FileName>Writer.Middle\WindowsFontInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.BaseTreeView" Collapsed="true">
+    <Position X="64.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJAAAAAIACAAAAAAAACAAAACABBAAAAAQgQAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\BaseTreeView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.FolderNameEditor" Collapsed="true">
+    <Position X="71.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\BrowserPathDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.BrowserPathDialog" Collapsed="true">
+    <Position X="69.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAACAAAAgAAAAAAAAEAAAACAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\BrowserPathDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.Common" Collapsed="true">
+    <Position X="59.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Writer.UI\Common.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.Dot" Collapsed="true">
+    <Position X="75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACgEmAAAAAADAEAAAMEiIAAIQAAAEYABBEABAAAAAA=</HashCode>
+      <FileName>Writer.UI\Dot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmAbout" Collapsed="true">
+    <Position X="47.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQABEABJACMAAACAABCJQMgCAAhCQAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\frmAbout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmBackgroundMusicConsole" Collapsed="true">
+    <Position X="52.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIC4AAAhGGAgEAiIACIJBACAQIgEAIEBAIKIBQAAQA=</HashCode>
+      <FileName>Writer.UI\frmBackgroundMusicConsole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmBuildName" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAEAAAAACEAhAkAAADAAkACQAACAAAAAAIQgAAAAAA=</HashCode>
+      <FileName>Writer.UI\frmBuildName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmCreateProject" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAECCEKAAgAEFIBGJMGACAAAEBRJAAAAAAAAAhQI=</HashCode>
+      <FileName>Writer.UI\frmCreateProject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmCreateRole" Collapsed="true">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAJmCAAGCAgBkQIhGMAmAiAABkoIAAAACBAAAEBAY=</HashCode>
+      <FileName>Writer.UI\frmCreateRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmEditorSetting" Collapsed="true">
+    <Position X="16.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAgAAgAADAAAACAAAIAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Writer.UI\frmEditorSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmEula" Collapsed="true">
+    <Position X="25.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQACAAAAAAgACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\frmEula.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmIntelliSence" Collapsed="true">
+    <Position X="36.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iAEAgAAAiCAAKAQBAACAAAALAAAAQGAAAAAAAAAAgAI=</HashCode>
+      <FileName>Writer.UI\frmIntelliSence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmLogin" Collapsed="true">
+    <Position X="32" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAwAAAAAACAIgBAAIADAAEASMAAAAAgEAEAAgABAAAA=</HashCode>
+      <FileName>Writer.UI\frmLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmLoginBaiduCloud" Collapsed="true">
+    <Position X="34.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgEAAAQACEAABAAAACAAIACAAAACAAAAAAAAABABAA=</HashCode>
+      <FileName>Writer.UI\frmLoginBaiduCloud.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmLogon" Collapsed="true">
+    <Position X="38.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AggAAAACACAAgBAAAADIAAEWAAAAIAAAAQABAAAQBAA=</HashCode>
+      <FileName>Writer.UI\frmLogon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmMainInterface" Collapsed="true">
+    <Position X="43.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBAKJv9qES4G36HJ+yCMnBASFFQFeQB1LrakYulJ3C4=</HashCode>
+      <FileName>Writer.UI\frmMainInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmNotes" Collapsed="true">
+    <Position X="45.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAgABAAACAAAAAAAYCAABAGAAAAABAAAJQEAAMABoA=</HashCode>
+      <FileName>Writer.UI\frmNotes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmNotesOrResources" Collapsed="true">
+    <Position X="50" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACBJgBAAAACAAQACAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\frmNotesOrResources.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmNovelProperty" Collapsed="true">
+    <Position X="54.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAAAACQAGAIgAEEAJLIMQAiBIAVBBBEAAUCIIAABAI=</HashCode>
+      <FileName>Writer.UI\frmNovelProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmPictureTrim" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAECEAAAEgAACAAAACEAAABAgAAAAAAAAAgAA=</HashCode>
+      <FileName>Writer.UI\frmPictureTrim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmResources" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACABAhQAECQAgAEAACDgASCGgIAAAAAEIEQAkEAAAAA=</HashCode>
+      <FileName>Writer.UI\frmResources.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmSearchAndReplace" Collapsed="true">
+    <Position X="14" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAiAAACQQAAAIACCIABACAAAAABCAAAAAgAgCBAA=</HashCode>
+      <FileName>Writer.UI\frmSearchAndReplace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmSendIdentifyingCode" Collapsed="true">
+    <Position X="18.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAIAACgAgBAAEADAABCSAAAAEAAAAQAAAIAAAAA=</HashCode>
+      <FileName>Writer.UI\frmSendIdentifyingCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmSendPasswordMail" Collapsed="true">
+    <Position X="27.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKAAgBAAAADAAAACAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Writer.UI\frmSendPasswordMail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmUpgradeCredential" Collapsed="true">
+    <Position X="29.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAABgACAAAADAIACIAAADEAAAAAgAAACAAAEADkA=</HashCode>
+      <FileName>Writer.UI\frmUpgradeCredential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmVerification" Collapsed="true">
+    <Position X="75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAACAAAAAAAACAAAACAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\frmVerification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmWelcome" Collapsed="true">
+    <Position X="59.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQIBAACAAAAAAAACAAAACAAAAAAAAgBAAEAAAAAA=</HashCode>
+      <FileName>Writer.UI\frmWelcome.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.frmWordCount" Collapsed="true">
+    <Position X="41" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACAAABIACAAAACAAAAAAAAAAAAAAAgCAA=</HashCode>
+      <FileName>Writer.UI\frmWordCount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.FunctionIconButton" Collapsed="true">
+    <Position X="61" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\FunctionIconButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.LoadingCircle" Collapsed="true">
+    <Position X="61" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACEAAAQBCAAAIAAQACACAACAkAiIAAAIAAEgAABAAA=</HashCode>
+      <FileName>Writer.UI\LoadingCircle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.MetroTreeView" Collapsed="true">
+    <Position X="64.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\MetroTreeView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.VsSkinExceptionForm" Collapsed="true">
+    <Position X="56.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACQAICAAAAAAAACAAAACAAAAQAAAAIAAAAABAAA=</HashCode>
+      <FileName>Writer.UI\VsSkinExceptionForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.VsSkinFormBase" Collapsed="true">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACACAAAAAAAACAAAACAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\VsSkinFormBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.VsSkinInputBox" Collapsed="true">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAICAAAAkAAAKAAUACAAAAAAAAAQAAAAIAAAA=</HashCode>
+      <FileName>Writer.UI\VsSkinInputBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.VsSkinMessageBoxBase" Collapsed="true">
+    <Position X="21.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAAAAAACACAAQgCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\VsSkinMessageBoxBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.VsSkinMessageBoxOk" Collapsed="true">
+    <Position X="20.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKAAAAAAAACAAgACAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\VsSkinMessageBoxOk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.VsSkinMessageBoxOkCancel" Collapsed="true">
+    <Position X="23" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAACAAAAEAAACACkACBAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\VsSkinMessageBoxOkCancel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cabinink.Writer.UI.VsSkinNotOccupationFocusForm" Collapsed="true">
+    <Position X="36.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACAAAQAAAACAAAACAAAECAAAAAACAIAgAAI=</HashCode>
+      <FileName>Writer.UI\VsSkinNotOccupationFocusForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Cabinink.Writer.Cores.SChapterNumber" Collapsed="true">
+    <Position X="62.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAEEAAAAAAAAAAAAAAAQAAgAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Chapter.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.SChapterBodyBackup" Collapsed="true">
+    <Position X="61" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAQAAgAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Chapter.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.SPowerStatus" Collapsed="true">
+    <Position X="71.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEgAAAAAAAABAABAAAAAACAAAAIAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\EnergyInformation.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.STokenPrivileges" Collapsed="true">
+    <Position X="75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\ExitWindows.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.SLuidAttributes" Collapsed="true">
+    <Position X="68" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Writer.Cores\ExitWindows.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.SLocallyUniqueIdentifier" Collapsed="true">
+    <Position X="66.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\ExitWindows.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.SCompleteName" Collapsed="true">
+    <Position X="64.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAEgAAEAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Writer.Cores\NamingSystem.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.SNovelInformation" Collapsed="true">
+    <Position X="69.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAIAQCAAAAAAAAAAQAAAAAAAAAAAIgAAAiAA=</HashCode>
+      <FileName>Writer.Cores\Novel.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.SChannelLevel" Collapsed="true">
+    <Position X="59.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAEAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Writer.Cores\Sound.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Cabinink.Writer.Cores.SSubsectionNumber" Collapsed="true">
+    <Position X="73.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAABAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Subsection.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Cabinink.Writer.Cores.IBuilder" Collapsed="true">
+    <Position X="59.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\IBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cabinink.Writer.Cores.ICharacterWhatpulse" Collapsed="true">
+    <Position X="61" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAI=</HashCode>
+      <FileName>Writer.Cores\ICharacterWhatpulse.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cabinink.Writer.Cores.ICsvFormater" Collapsed="true">
+    <Position X="62.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\ICsvFormater.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cabinink.Writer.Cores.ILevelCreationTime" Collapsed="true">
+    <Position X="64.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Writer.Cores\ILevelCreationTime.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cabinink.Writer.Cores.INovelContextSecurity" Collapsed="true">
+    <Position X="66.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Writer.Cores\INovelContextSecurity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cabinink.Writer.Cores.INovelManagementSecurity" Collapsed="true">
+    <Position X="68" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAAAAAAIAAAA=</HashCode>
+      <FileName>Writer.Cores\INovelManagementSecurity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cabinink.Writer.Cores.ISentences" Collapsed="true">
+    <Position X="69.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAgAAAAAAAAAAAAAAAAgAAAAAAAgAAA=</HashCode>
+      <FileName>Writer.Cores\ISentences.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Cabinink.Writer.Cores.ETransmissiveStatus" Collapsed="true">
+    <Position X="75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Writer.Cores\BaiduCloudBackup.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.ERelationalOperator" Collapsed="true">
+    <Position X="66.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAABAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAQACCA=</HashCode>
+      <FileName>Writer.Cores\BigDate.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EDateDisplayCategory" Collapsed="true">
+    <Position X="66.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAIAAEAEAAAAAAAAAAAAAAAAAAAAggAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\BigDate.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EChapterNumberMode" Collapsed="true">
+    <Position X="62.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAgQAIACEgAAAACBAAAAAAAAAAAAAIAAAAACAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Chapter.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EConnectionStatus" Collapsed="true">
+    <Position X="64.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Writer.Cores\DatabaseOperation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EExecutionFlag" Collapsed="true">
+    <Position X="68" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAIAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\EnergyInformation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EAcPowerStatus" Collapsed="true">
+    <Position X="59.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAABA=</HashCode>
+      <FileName>Writer.Cores\EnergyInformation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EBatteryStatus" Collapsed="true">
+    <Position X="61" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAIAAAAAAAAAAAAAgAAAAAAAAgAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\EnergyInformation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EHotkeyModifiers" Collapsed="true">
+    <Position X="69.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAANAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\GlobalShortcutKey.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.ELanguagesCategory" Collapsed="true">
+    <Position X="71.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAACQAAAAAAAAAEAAAAAAAAAAAAAwAAAIAAgAAAA=</HashCode>
+      <FileName>Writer.Cores\LanguagesInternationalization.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EPeopleSex" Collapsed="true">
+    <Position X="62.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAIEAAA=</HashCode>
+      <FileName>Writer.Cores\NamingSystem.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.ENameType" Collapsed="true">
+    <Position X="75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAAAAAABAAAAIEAAAAAAAAAAAAAAACAAAAAIA=</HashCode>
+      <FileName>Writer.Cores\NamingSystem.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.ENoteFlag" Collapsed="true">
+    <Position X="59.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAEAAAAAAAAAAQIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Note.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.ENovelCategory" Collapsed="true">
+    <Position X="61" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBAAAAABBAICABkAAAAAAQAACAAAACAAAAACAAABAAA=</HashCode>
+      <FileName>Writer.Cores\Novel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.ERoleCategory" Collapsed="true">
+    <Position X="68" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAABAAAAAAAgAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Role.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.ESoundCategory" Collapsed="true">
+    <Position X="69.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAACAEACAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Writer.Cores\Sound.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EPlayStatus" Collapsed="true">
+    <Position X="64.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAIAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Sound.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.EStoryCellCategory" Collapsed="true">
+    <Position X="71.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\StoryCell.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.Cores.ESubsectionNumberMode" Collapsed="true">
+    <Position X="73.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAABAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.Cores\Subsection.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cabinink.Writer.UI.EMessageLevel" Collapsed="true">
+    <Position X="73.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAQAAAAAAIBAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\VsSkinMessageBoxBase.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="Cabinink.Writer.UI.DownButton" Collapsed="true">
+    <Position X="59.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Writer.UI\VsSkinMessageBoxBase.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

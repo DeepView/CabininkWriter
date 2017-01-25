@@ -1,0 +1,60 @@
+﻿using System;
+using System.Data.SQLite;
+namespace Cabinink.Writer.Cores
+{
+   /// <summary>
+   /// 用户注册类
+   /// </summary>
+   public class UserRegister
+   {
+      /// <summary>
+      /// 需要被注册的用户凭据
+      /// </summary>
+      private UserCredential credential;
+      /// <summary>
+      /// 用于操作用户信息数据库的DatabaseOperation实例
+      /// </summary>
+      private DatabaseOperation databaseopt;
+      /// <summary>
+      /// 构造函数，创建一个指定用户凭据的实例
+      /// </summary>
+      /// <param name="_credential">需要被注册的用户。</param>
+      public UserRegister(UserCredential _credential)
+      {
+         databaseopt = new DatabaseOperation(@"Data Source=databases\users.db");
+         databaseopt.InitializeConnection();
+         credential = _credential;
+      }
+      /// <summary>
+      /// 获取或设置当前实例的用户凭据（set代码对于其他程序集不可见）
+      /// </summary>
+      public UserCredential Credential
+      {
+         get { return credential; }
+         internal set { credential = value; }
+      }
+      /// <summary>
+      /// 注册当前给定的用户
+      /// </summary>
+      /// <returns>如果该用户已存在或者注册线程发生异常，该操作将会失败，并返回false，否则将会返回true。</returns>
+      public bool Register()
+      {
+         bool isreged = true;
+         string sql = @"select * from userinfo where _user='" + Credential.UserName + @"'";
+         SQLiteDataReader sqlreader;
+         try
+         {
+            databaseopt.Connect();
+            sqlreader = databaseopt.InvokeSqlToReader(sql);
+            if (sqlreader.GetString(0) == Credential.UserName) isreged = false;
+            else isreged = true;
+         }
+         catch (Exception ex)
+         {
+            if (ex != null) isreged = false;
+         }
+         databaseopt.Disconnect();
+         return isreged;
+      }
+   }
+}

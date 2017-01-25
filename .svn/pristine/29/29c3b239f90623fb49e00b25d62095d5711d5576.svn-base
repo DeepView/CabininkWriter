@@ -1,0 +1,10 @@
+CREATE TABLE property (
+    _projname  STRING (2, 32)  NOT NULL,
+    _novelname STRING (1, 32)  NOT NULL,
+    _writer    STRING (1, 16)  NOT NULL,
+    _remarks   STRING (0, 512),
+    _category  INTEGER         NOT NULL,
+    _create_t  BIGINT          NOT NULL,
+    _breakup_t BIGINT,
+    _keywords  STRING (0, 128) 
+);

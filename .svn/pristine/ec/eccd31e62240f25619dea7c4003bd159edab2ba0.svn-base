@@ -1,0 +1,42 @@
+﻿using Cabinink.Writer.Middle;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using app = Cabinink.Program;
+namespace Cabinink.Writer.UI
+{
+   public partial class frmNovelProperty : Cabinink.Writer.UI.VsSkinFormBase
+   {
+      private frmMainInterface owner;
+      public frmNovelProperty()
+      {
+         InitializeComponent();
+      }
+      public void Display(frmMainInterface _owner)
+      {
+         owner = _owner;
+         Show();
+      }
+      private void frmNovelProperty_Load(object sender, EventArgs e)
+      {
+         LoadNovelInformation();
+         //MessageBox.Show("SelectedNodeIndex=" + owner.trvNovelTree.SelectedNode.Index);
+      }
+      public void LoadNovelInformation()
+      {
+         Project proj = owner.GetProjectAccessSelectedNode();
+         txtProjectName.Text = proj.Name;
+         txtNovelName.Text = proj.CurrentNovel.Information.NovelName;
+         txtWriter.Text = proj.CurrentNovel.Information.WriterName;
+         txtCategory.Text = app.GetEnumDescription(proj.CurrentNovel.Information.Category);
+         txtCreateDate.Text = proj.CurrentNovel.Information.CreationTime.ToLongDateString();
+         txtKeywords.Text = proj.CurrentNovel.Information.GetKeywordsCsvString();
+         txtInfo.Text = proj.CurrentNovel.Information.Remarks;
+         txtSavedPath.Text = proj.Database.SourceUri;
+      }
+   }
+}

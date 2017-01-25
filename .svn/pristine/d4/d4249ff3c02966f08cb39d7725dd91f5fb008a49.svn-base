@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using Microsoft.Win32;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmLogin : Cabinink.Writer.UI.VsSkinFormBase
+   {
+      public frmLogin()
+      {
+         InitializeComponent();
+      }
+      #region "GetCurrentWindowsUserAvatar"
+      public string GetCurrentWindowsUserAvatarUri()
+      {
+         RegistryKey key = Registry.CurrentUser;
+         RegistryKey mkey = key.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\AccountPicture");
+         string fname = mkey.GetValue("AccountPicture").ToString();
+         key.Close();
+         mkey.Close();
+         string ua_suburi = @"\AppData\Roaming\Microsoft\Windows\AccountPictures\" + fname + ".accountpicture-ms";
+         return GetOperatingSystemDriverId() + @"\Users\" + GetCurrentWindowsUserName() + @"\" + ua_suburi;
+      }
+      public string GetCurrentWindowsUserName()
+      {
+         return Environment.UserName;
+      }
+      public string GetOperatingSystemDriverId()//获取当前操作系统所在分区的编号，比如C:
+      {
+         return Environment.SystemDirectory.Substring(0, 2);
+      }
+      #endregion
+
+      private void materialRaisedButton1_Click(object sender, EventArgs e)
+      {
+
+      }
+
+      private void lnkFoundPassword_Click(object sender, EventArgs e)
+      {
+         //frmUpgradeCredential rstpasswd = new frmUpgradeCredential();
+         //rstpasswd.ShowDialog();
+         frmSendPasswordMail sendpswmail = new frmSendPasswordMail();
+         sendpswmail.ShowDialog(this);
+      }
+   }
+}

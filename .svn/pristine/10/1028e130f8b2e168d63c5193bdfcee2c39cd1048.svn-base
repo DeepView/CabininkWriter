@@ -1,0 +1,16 @@
+CREATE TABLE roles (
+    _name        STRING         NOT NULL
+                                DEFAULT ('N/A'),
+    _appellation STRING,
+    _sex         INTEGER (0, 2) NOT NULL
+                                DEFAULT (0),
+    _initage     INTEGER (0),
+    _category    INTEGER (0, 3) DEFAULT (2) 
+                                NOT NULL,
+    _camp        STRING,
+    _occupation  STRING,
+    _appearance  STRING,
+    _character   STRING,
+    _petphrase   STRING,
+    _other       STRING
+);

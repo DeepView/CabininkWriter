@@ -1,0 +1,328 @@
+﻿using System;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
+namespace Cabinink.Writer.Cores
+{
+   /// <summary>
+   /// 阿拉伯数字与中文数字单向转换类
+   /// </summary>
+   public class ChineseNumber
+   {
+      private static List<string> cnnums;
+      /// <summary>
+      /// 初始化转换器实例
+      /// </summary>
+      public static void InitializeBuilder()
+      {
+         string cnnocvs = FileOperation.ReadFile(@"app_resources\cnno", true, Encoding.GetEncoding("GB2312"));
+         cnnums = cnnocvs.Split(',').ToList();
+      }
+      /// <summary>
+      /// 将阿拉伯数字转换为中文数字
+      /// </summary>
+      /// <param name="_number">需要被转换的阿拉伯数字。</param>
+      /// <returns>该操作会获得指定的阿拉伯数字所对应的中文汉字，其可以转换的范围是[0,1000]。</returns>
+      public static string ConvertToChinese(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number <= 10) cnno = cnnums[_number];
+         else if (_number > 10 && _number < 100) ToCnnum11_99(_number);
+         else if (_number == 100) cnno = cnnums[19];
+         else if (_number > 100 && _number < 1000)
+         {
+            if (_number > 100 && _number < 110) cnno = cnnums[19] + cnnums[0] + cnnums[_number - 100];
+            if (_number > 110 && _number < 120) cnno = cnnums[19] + ToCnnum11_19_WithHigh(_number);
+            ToCnnumHX11_HX19(_number);
+            ToCnnum121_999(_number);
+         }
+         else if (_number == 1000) cnno = cnnums[28];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[11,99]范围的数字（大于100的数字）
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum11_19_WithHigh(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 10 && _number < 20) cnno = cnnums[cnnums.Count - 1] + cnnums[_number % 10];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换像111~119，211~219，......，921~919（包含范围首尾数据）的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnumHX11_HX19(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 110 && _number < 120) cnno = cnnums[19] + ToCnnum11_19_WithHigh(_number);
+         if (_number > 210 && _number < 220) cnno = cnnums[20] + ToCnnum11_19_WithHigh(_number);
+         if (_number > 310 && _number < 320) cnno = cnnums[21] + ToCnnum11_19_WithHigh(_number);
+         if (_number > 410 && _number < 420) cnno = cnnums[22] + ToCnnum11_19_WithHigh(_number);
+         if (_number > 510 && _number < 520) cnno = cnnums[23] + ToCnnum11_19_WithHigh(_number);
+         if (_number > 610 && _number < 620) cnno = cnnums[24] + ToCnnum11_19_WithHigh(_number);
+         if (_number > 710 && _number < 820) cnno = cnnums[25] + ToCnnum11_19_WithHigh(_number);
+         if (_number > 810 && _number < 820) cnno = cnnums[26] + ToCnnum11_19_WithHigh(_number);
+         if (_number > 910 && _number < 920) cnno = cnnums[27] + ToCnnum11_19_WithHigh(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[121,999]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum121_999(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 120 && _number < 200) ToCnnum121_199(_number);
+         if (_number > 220 && _number < 300) ToCnnum221_299(_number);
+         if (_number > 320 && _number < 400) ToCnnum321_399(_number);
+         if (_number > 420 && _number < 500) ToCnnum421_499(_number);
+         if (_number > 520 && _number < 600) ToCnnum521_599(_number);
+         if (_number > 620 && _number < 700) ToCnnum621_699(_number);
+         if (_number > 720 && _number < 800) ToCnnum721_799(_number);
+         if (_number > 820 && _number < 900) ToCnnum821_899(_number);
+         if (_number > 920 && _number < 1000) ToCnnum921_999(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[121,199]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum121_199(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 129 || _number < 121) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[19] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[221,299]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum221_299(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 299 || _number < 221) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[20] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[321,399]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum321_399(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 399 || _number < 321) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[21] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[421,499]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum421_499(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 499 || _number < 421) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[22] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[521,599]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum521_599(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 599 || _number < 521) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[23] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[621,699]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum621_699(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 699 || _number < 621) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[24] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[721,799]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum721_799(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 799 || _number < 721) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[25] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[821,899]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum821_899(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 899 || _number < 821) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[26] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[921,999]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum921_999(short _number)
+      {
+         string cnno = string.Empty;
+         if (_number > 999 || _number < 921) throw new ArgumentException("范围不正确！", "_number");
+         cnno = cnnums[27] + ToCnnum11_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[11,99]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum11_99(short _number)
+      {
+         if (_number > 99 || _number < 11) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         if (_number >= 11 && _number <= 19) cnno = ToCnnum11_19(_number);
+         if (_number >= 21 && _number <= 29) cnno = ToCnnum21_29(_number);
+         if (_number >= 31 && _number <= 39) cnno = ToCnnum31_39(_number);
+         if (_number >= 41 && _number <= 49) cnno = ToCnnum41_49(_number);
+         if (_number >= 51 && _number <= 59) cnno = ToCnnum51_59(_number);
+         if (_number >= 61 && _number <= 69) cnno = ToCnnum61_69(_number);
+         if (_number >= 71 && _number <= 79) cnno = ToCnnum71_79(_number);
+         if (_number >= 81 && _number <= 89) cnno = ToCnnum81_89(_number);
+         if (_number >= 91 && _number <= 99) cnno = ToCnnum91_99(_number);
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[11,19]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum11_19(short _number)
+      {
+         if (_number > 19 || _number < 11) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 1] + cnnums[_number - 10];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[21,29]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum21_29(short _number)
+      {
+         if (_number > 29 || _number < 21) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 10] + cnnums[_number - 20];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[31,39]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum31_39(short _number)
+      {
+         if (_number > 39 || _number < 31) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 19] + cnnums[_number - 30];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[41,49]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum41_49(short _number)
+      {
+         if (_number > 49 || _number < 41) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 28] + cnnums[_number - 40];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[51,59]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum51_59(short _number)
+      {
+         if (_number > 59 || _number < 51) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 37] + cnnums[_number - 50];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[61,69]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum61_69(short _number)
+      {
+         if (_number > 69 || _number < 61) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 46] + cnnums[_number - 60];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[71,79]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum71_79(short _number)
+      {
+         if (_number > 79 || _number < 71) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 55] + cnnums[_number - 70];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[81,89]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum81_89(short _number)
+      {
+         if (_number > 89 || _number < 81) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 64] + cnnums[_number - 80];
+         return cnno;
+      }
+      /// <summary>
+      /// 转换[91,99]范围的数字
+      /// </summary>
+      /// <param name="_number">需要被转换的数字。</param>
+      /// <returns>转换后的中文汉字。</returns>
+      private static string ToCnnum91_99(short _number)
+      {
+         if (_number > 99 || _number < 91) throw new ArgumentException("范围不正确！", "_number");
+         string cnno = string.Empty;
+         cnno = cnnums[_number - 73] + cnnums[_number - 90];
+         return cnno;
+      }
+   }
+}

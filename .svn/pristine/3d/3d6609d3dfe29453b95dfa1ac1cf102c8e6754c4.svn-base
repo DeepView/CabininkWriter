@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using Cabinink.Properties;
+using MetroFramework.Forms;
+using System.Windows.Forms;
+using Cabinink.Writer.Middle;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmAbout : MetroForm 
+   {
+      public frmAbout()
+      {
+         InitializeComponent();
+      }
+
+      private void frmAbout_Load(object sender, EventArgs e)
+      {
+         Icon = Resources.ciw;
+         lblAssemblyName.Text += AssemblyInformation.ApplicationName;
+         lblAssemblyVersion.Text += AssemblyInformation.ProductionVersion;
+         lblFileVersion.Text += AssemblyInformation.FileVersion;
+         lblCopyright.Text = AssemblyInformation.Copyright;
+         lblIdeName.Text += AssemblyInformation.IdeName;
+         lblClrVersion.Text += AssemblyInformation.RuntimeVersion;
+      }
+
+      private void btnClose_Click(object sender, EventArgs e)
+      {
+         Close();
+      }
+   }
+}

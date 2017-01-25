@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DB2BD8E5-0C6A-4907-8C5B-A33BED859A13}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cabinink</RootNamespace>
+    <AssemblyName>Cabinink Writer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Cabinink.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>libreoffice_writer_128px_1173965_easyicon.net.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="arabChange">
+      <HintPath>..\..\..\arabChange.dll</HintPath>
+    </Reference>
+    <Reference Include="BaiduApi">
+      <HintPath>..\..\C#百度云上传下载\BaiduApi\bin\Debug\BaiduApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Bass.Net">
+      <HintPath>..\..\..\Visual Basic.NET\MusicBox V2\MusicBox V2\bin\Debug\Bass.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="bdclound_tool">
+      <HintPath>..\..\C#百度云上传下载\PublichWinform\bin\Debug\bdclound_tool.exe</HintPath>
+    </Reference>
+    <Reference Include="CommandLinkButton">
+      <HintPath>..\..\..\Visual Basic.NET\CommandLinkButton\CommandLinkButton\bin\Debug\CommandLinkButton.dll</HintPath>
+    </Reference>
+    <Reference Include="CSkin">
+      <HintPath>..\..\TestApp\TestApp\bin\Debug\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="DMSkin">
+      <HintPath>..\..\..\Visual Basic.NET\Cabinink Power\Cabinink Power\bin\Debug\DMSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\DotNet.Utilities\DLL\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MaterialSkin-master\MaterialSkin\bin\Debug\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework">
+      <HintPath>..\..\..\MetroForWinForm\MetroFramework\bin\Debug\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design">
+      <HintPath>..\..\..\MetroForWinForm\MetroFramework.Design\bin\Debug\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts">
+      <HintPath>..\..\..\MetroForWinForm\MetroFramework.Demo\bin\Debug\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AnalysisServices, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.AnalysisServices.SPClient.Interfaces, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\C#百度云上传下载\BaiduApi\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SideBar">
+      <HintPath>..\..\..\SideBar.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Designer">
+      <HintPath>..\..\..\..\Program Files (x86)\System.Data.SQLite\2005\bin\SQLite.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\..\..\Program Files (x86)\System.Data.SQLite\2005\bin\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Writer.Cores\BaiduCloudBackup.cs" />
+    <Compile Include="Writer.Cores\ChineseNumber.cs" />
+    <Compile Include="Writer.Cores\CompressedOperation.cs" />
+    <Compile Include="Writer.Cores\EnergyInformation.cs" />
+    <Compile Include="Writer.Cores\ICsvFormater.cs" />
+    <Compile Include="Writer.Cores\InitializationFileOperation.cs" />
+    <Compile Include="Writer.Cores\INovelContextSecurity.cs" />
+    <Compile Include="Writer.Cores\INovelManagementSecurity.cs" />
+    <Compile Include="Writer.Cores\IntelligentizedSence.cs" />
+    <Compile Include="Writer.Cores\ISentences.cs" />
+    <Compile Include="Writer.Cores\MailSender.cs" />
+    <Compile Include="Writer.Cores\Note.cs" />
+    <Compile Include="Writer.Cores\NoteManagement.cs" />
+    <Compile Include="Writer.Cores\PhoneticTranscription.cs" />
+    <Compile Include="Writer.Cores\PlayQueue.cs" />
+    <Compile Include="Writer.Cores\PlayQueueManagement.cs" />
+    <Compile Include="Writer.Cores\SmtpConfigure.cs" />
+    <Compile Include="Writer.Cores\SmtpStructure.cs" />
+    <Compile Include="Writer.Cores\Sound.cs" />
+    <Compile Include="Writer.Cores\StoryCell.cs" />
+    <Compile Include="Writer.Cores\Compendium.cs" />
+    <Compile Include="Writer.Cores\UserCredential.cs" />
+    <Compile Include="Writer.Cores\UserRegister.cs" />
+    <Compile Include="Writer.Middle\AssemblyInformation.cs" />
+    <Compile Include="Writer.Cores\BigDate.cs" />
+    <Compile Include="Writer.Cores\Subsection.cs" />
+    <Compile Include="Writer.Cores\Chapter.cs" />
+    <Compile Include="Writer.Cores\ExitWindows.cs" />
+    <Compile Include="Writer.Cores\FileOperation.cs" />
+    <Compile Include="Writer.Cores\DatabaseOperation.cs" />
+    <Compile Include="Writer.Cores\GlobalShortcutKey.cs" />
+    <Compile Include="Writer.Cores\IBuilder.cs" />
+    <Compile Include="Writer.Cores\ICharacterWhatpulse.cs" />
+    <Compile Include="Writer.Cores\ILevelCreationTime.cs" />
+    <Compile Include="Writer.Cores\LanguagesInternationalization.cs" />
+    <Compile Include="Writer.Cores\NamingSystem.cs" />
+    <Compile Include="Writer.Cores\Novel.cs" />
+    <Compile Include="Writer.Cores\Role.cs" />
+    <Compile Include="Writer.Cores\RoleManagement.cs" />
+    <Compile Include="Writer.Middle\ApplicationHelp.cs" />
+    <Compile Include="Writer.Middle\Project.cs" />
+    <Compile Include="Writer.Middle\WindowsFontInstaller.cs" />
+    <Compile Include="Writer.UI\BaseTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\BaseTreeView.Designer.cs" />
+    <Compile Include="Writer.UI\BrowserPathDialog.cs" />
+    <Compile Include="Writer.UI\Common.cs" />
+    <Compile Include="Writer.UI\Dot.cs" />
+    <Compile Include="Writer.UI\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Writer.UI\frmBackgroundMusicConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmBackgroundMusicConsole.Designer.cs">
+      <DependentUpon>frmBackgroundMusicConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmCreateProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmCreateProject.Designer.cs">
+      <DependentUpon>frmCreateProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmCreateRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmCreateRole.Designer.cs">
+      <DependentUpon>frmCreateRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmEditorSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmEditorSetting.Designer.cs">
+      <DependentUpon>frmEditorSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmEula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmEula.Designer.cs">
+      <DependentUpon>frmEula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmIntelliSence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmIntelliSence.Designer.cs">
+      <DependentUpon>frmIntelliSence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmLoginBaiduCloud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmLoginBaiduCloud.Designer.cs">
+      <DependentUpon>frmLoginBaiduCloud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmLogon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmLogon.Designer.cs">
+      <DependentUpon>frmLogon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmMainInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmMainInterface.Designer.cs">
+      <DependentUpon>frmMainInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmNotes.Designer.cs">
+      <DependentUpon>frmNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmNotesOrResources.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmNotesOrResources.Designer.cs">
+      <DependentUpon>frmNotesOrResources.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmNovelProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmNovelProperty.Designer.cs">
+      <DependentUpon>frmNovelProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmPictureTrim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmPictureTrim.Designer.cs">
+      <DependentUpon>frmPictureTrim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmResources.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmResources.Designer.cs">
+      <DependentUpon>frmResources.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmSearchAndReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmSearchAndReplace.Designer.cs">
+      <DependentUpon>frmSearchAndReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmSendIdentifyingCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmSendIdentifyingCode.Designer.cs">
+      <DependentUpon>frmSendIdentifyingCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmSendPasswordMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmSendPasswordMail.Designer.cs">
+      <DependentUpon>frmSendPasswordMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmUpgradeCredential.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmUpgradeCredential.Designer.cs">
+      <DependentUpon>frmUpgradeCredential.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmVerification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmVerification.Designer.cs">
+      <DependentUpon>frmVerification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmWelcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmWelcome.Designer.cs">
+      <DependentUpon>frmWelcome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\frmWordCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\frmWordCount.Designer.cs">
+      <DependentUpon>frmWordCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\FunctionIconButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\LoadingCircle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\LoadingCircle.Designer.cs" />
+    <Compile Include="Writer.UI\MetroTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\MetroTreeView.Designer.cs">
+      <DependentUpon>MetroTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinExceptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinExceptionForm.Designer.cs">
+      <DependentUpon>VsSkinExceptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinFormBase.Designer.cs">
+      <DependentUpon>VsSkinFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinMessageBoxBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinMessageBoxBase.Designer.cs">
+      <DependentUpon>VsSkinMessageBoxBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinMessageBoxOk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinMessageBoxOk.Designer.cs">
+      <DependentUpon>VsSkinMessageBoxOk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinMessageBoxOkCancel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinMessageBoxOkCancel.Designer.cs">
+      <DependentUpon>VsSkinMessageBoxOkCancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinNotOccupationFocusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Writer.UI\VsSkinNotOccupationFocusForm.Designer.cs">
+      <DependentUpon>VsSkinNotOccupationFocusForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Writer.UI\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmBackgroundMusicConsole.resx">
+      <DependentUpon>frmBackgroundMusicConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmCreateProject.resx">
+      <DependentUpon>frmCreateProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmCreateRole.resx">
+      <DependentUpon>frmCreateRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmEditorSetting.resx">
+      <DependentUpon>frmEditorSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmEula.resx">
+      <DependentUpon>frmEula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmIntelliSence.resx">
+      <DependentUpon>frmIntelliSence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmLoginBaiduCloud.resx">
+      <DependentUpon>frmLoginBaiduCloud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmLogon.resx">
+      <DependentUpon>frmLogon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmMainInterface.resx">
+      <DependentUpon>frmMainInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmNotes.resx">
+      <DependentUpon>frmNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmNotesOrResources.resx">
+      <DependentUpon>frmNotesOrResources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmNovelProperty.resx">
+      <DependentUpon>frmNovelProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmPictureTrim.resx">
+      <DependentUpon>frmPictureTrim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmResources.resx">
+      <DependentUpon>frmResources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmSearchAndReplace.resx">
+      <DependentUpon>frmSearchAndReplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmSendIdentifyingCode.resx">
+      <DependentUpon>frmSendIdentifyingCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmSendPasswordMail.resx">
+      <DependentUpon>frmSendPasswordMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmUpgradeCredential.resx">
+      <DependentUpon>frmUpgradeCredential.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmVerification.resx">
+      <DependentUpon>frmVerification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmWelcome.resx">
+      <DependentUpon>frmWelcome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\frmWordCount.resx">
+      <DependentUpon>frmWordCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\LoadingCircle.resx" />
+    <EmbeddedResource Include="Writer.UI\VsSkinExceptionForm.resx">
+      <DependentUpon>VsSkinExceptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\VsSkinMessageBoxBase.resx">
+      <DependentUpon>VsSkinMessageBoxBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\VsSkinMessageBoxOk.resx">
+      <DependentUpon>VsSkinMessageBoxOk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\VsSkinMessageBoxOkCancel.resx">
+      <DependentUpon>VsSkinMessageBoxOkCancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Writer.UI\VsSkinNotOccupationFocusForm.resx">
+      <DependentUpon>VsSkinNotOccupationFocusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libreoffice_writer_128px_1173965_easyicon.net.ico" />
+    <None Include="Resources\i_err.ico" />
+    <None Include="Resources\i_info.ico" />
+    <None Include="Resources\i_ques.ico" />
+    <None Include="Resources\i_war.ico" />
+    <None Include="Resources\s_def.wav" />
+    <None Include="Resources\s_err.wav" />
+    <None Include="Resources\s_info.wav" />
+    <None Include="Resources\s_ques.wav" />
+    <None Include="Resources\s_war.wav" />
+    <None Include="Resources\search_replace.ico" />
+    <None Include="Resources\veri_bg.png" />
+    <None Include="Resources\def_accountpicture.jpg" />
+    <None Include="Resources\alpha200x.png" />
+    <None Include="Resources\change_avater.png" />
+    <None Include="Resources\m_next.png" />
+    <None Include="Resources\m_pause.png" />
+    <None Include="Resources\m_play.png" />
+    <None Include="Resources\m_previous.png" />
+    <None Include="Resources\m_stop.png" />
+    <None Include="Resources\m_volumn.png" />
+    <None Include="Resources\baidu_logo.png" />
+    <None Include="Resources\bdcloud_logo.png" />
+    <None Include="Resources\ciw_start_bgimg.png" />
+    <Content Include="Writer.UI\curEdit.cur" />
+    <None Include="Resources\b_help.png" />
+    <None Include="Resources\b_novel.png" />
+    <None Include="Resources\b_option.png" />
+    <None Include="Resources\b_toolkit.png" />
+    <None Include="Resources\b_search.png" />
+    <None Include="Resources\Dark_CloseDown.png" />
+    <None Include="Resources\Dark_CloseMouse.png" />
+    <None Include="Resources\Dark_CloseNorml.png" />
+    <None Include="Resources\Dark_MaxDown.png" />
+    <None Include="Resources\Dark_MaxMouse.png" />
+    <None Include="Resources\Dark_MaxNorml.png" />
+    <None Include="Resources\Dark_MinDown.png" />
+    <None Include="Resources\Dark_MinMouse.png" />
+    <None Include="Resources\Dark_MinNorml.png" />
+    <None Include="Resources\Dark_RestoreDown.png" />
+    <None Include="Resources\Dark_RestoreMouse.png" />
+    <None Include="Resources\Dark_RestoreNorml.png" />
+    <Content Include="Resources\tree_Hover.png" />
+    <Content Include="Resources\tree_NodeCollaps.png" />
+    <Content Include="Resources\tree_NodeExpend.png" />
+    <Content Include="Resources\tree_Selected.png" />
+    <Content Include="Resources\white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,395 @@
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+namespace Cabinink.Writer.Cores
+{
+   /// <summary>
+   /// 分卷编号结构体
+   /// </summary>
+   /// <typeparam name="TEmbroilNumber">分卷编号的编号数据类型。</typeparam>
+   public struct SEmbroilNumber<TEmbroilNumber>
+   {
+      /// <summary>
+      /// 分卷编号的表达方式枚举
+      /// </summary>
+      public EEmbroilNumberMode EmbroilNumberMode;
+      /// <summary>
+      /// 分卷编号
+      /// </summary>
+      public TEmbroilNumber EmbroilNumber;
+      /// <summary>
+      /// 构造函数，创建一个指定分卷章节表达方式和分卷编号的SEmbroilNumber结构体实例
+      /// </summary>
+      /// <param name="_embrnom">指定的分卷编号样式。</param>
+      /// <param name="_embrno">指定的分卷编号。</param>
+      public SEmbroilNumber(EEmbroilNumberMode _embrnom, TEmbroilNumber _embrno)
+      {
+         EmbroilNumberMode = _embrnom;
+         EmbroilNumber = _embrno;
+      }
+      /// <summary>
+      /// 获取该结构体实例的字符串表达形式
+      /// </summary>
+      /// <returns>该操作会返回一个分卷编号的字符串表达形式，举例：Embroil 12，第五卷，卷十六。</returns>
+      public override string ToString()
+      {
+         string tostr = string.Empty;
+         Action throws_int = new Action(() =>
+         {
+            SChapterNumber<int> scn = new SChapterNumber<int>();
+            if (scn.ChapterNumber.GetType() != 1024.GetType()) throw new TypeIsErrorException("参数错误，正确类型为int！");
+         });
+         Action throws_string = new Action(() =>
+         {
+            SChapterNumber<string> scn = new SChapterNumber<string>();
+            if (scn.ChapterNumber.GetType() != "1024".GetType()) throw new TypeIsErrorException("参数错误，正确类型为string！");
+         });
+         switch (EmbroilNumberMode)
+         {
+            case EEmbroilNumberMode.NumberAfterChineseEmbroil:
+               throws_string.Invoke();
+               tostr = "卷" + EmbroilNumber.ToString();
+               break;
+            case EEmbroilNumberMode.NumberBeforeChineseEmbroilFirstAndLast:
+               throws_string.Invoke();
+               tostr = "第" + EmbroilNumber.ToString() + "卷";
+               break;
+            case EEmbroilNumberMode.ArabicNumberAfterEnglishEmbroil:
+               throws_int.Invoke();
+               tostr = "Embroil " + EmbroilNumber.ToString();
+               break;
+            default:
+               throws_string.Invoke();
+               tostr = "第" + EmbroilNumber.ToString() + "卷";
+               break;
+         }
+         return tostr;
+      }
+   }
+   /// <summary>
+   /// 分卷表示类
+   /// </summary>
+   /// <typeparam name="TEmbroilNumber">分卷编号的编号数据类型。</typeparam>
+   /// <typeparam name="TChapterNumber">章节编号的编号数据类型。</typeparam>
+   [DebuggerDisplay("Count = {Count}")]
+   public class Embroil<TEmbroilNumber, TChapterNumber> : IBuilder, ICharacterWhatpulse, ILevelCreationTime
+   {
+      /// <summary>
+      /// 当前分卷的所有章节
+      /// </summary>
+      private List<Chapter<TChapterNumber>> chapters;
+      /// <summary>
+      /// 分卷编号
+      /// </summary>
+      private SEmbroilNumber<TEmbroilNumber> embrno;
+      /// <summary>
+      /// 分卷标题
+      /// </summary>
+      private string title;
+      /// <summary>
+      /// 当前分卷的创作时间
+      /// </summary>
+      private DateTime creation;
+      /// <summary>
+      /// 当前分卷的完结时间
+      /// </summary>
+      private DateTime breakup;
+      /// <summary>
+      /// 构造函数，创建一个非空编号的分卷实例
+      /// </summary>
+      /// <param name="_embrno">指定的分卷编号。</param>
+      public Embroil(SEmbroilNumber<TEmbroilNumber> _embrno)
+      {
+         if (_embrno.EmbroilNumber == null) throw new NullEmbroilNumberException("不允许空分卷编号！");
+         chapters = new List<Chapter<TChapterNumber>>();
+         embrno = _embrno;
+         title = string.Empty;
+      }
+      /// <summary>
+      /// 构造函数，创建一个非空编号和指定分卷标题的分卷实例
+      /// </summary>
+      /// <param name="_embrno">指定的分卷编号。</param>
+      /// <param name="_title">指定的分卷标题。</param>
+      public Embroil(SEmbroilNumber<TEmbroilNumber> _embrno, string _title)
+      {
+         if (_embrno.EmbroilNumber == null) throw new NullEmbroilNumberException("不允许空分卷编号！");
+         chapters = new List<Chapter<TChapterNumber>>();
+         embrno = _embrno;
+         title = _title;
+      }
+      /// <summary>
+      /// 构造函数，创建一个非空编号、分卷标题和包含该分卷包含的章节的分卷实例
+      /// </summary>
+      /// <param name="_embrno">指定的分卷编号。</param>
+      /// <param name="_title">指定的分卷标题。</param>
+      /// <param name="_chapters">当前分卷的章节集合。</param>
+      public Embroil(SEmbroilNumber<TEmbroilNumber> _embrno, string _title, List<Chapter<TChapterNumber>> _chapters)
+      {
+         if (_embrno.EmbroilNumber == null) throw new NullEmbroilNumberException("不允许空分卷编号！");
+         chapters = _chapters;
+         embrno = _embrno;
+         title = _title;
+      }
+      /// <summary>
+      /// 获取或设置当前实例的分卷编号
+      /// </summary>
+      public SEmbroilNumber<TEmbroilNumber> EmbroilNumber
+      {
+         get { return embrno; }
+         set
+         {
+            if (value.EmbroilNumber == null) throw new NullEmbroilNumberException("不允许空分卷编号！");
+            embrno = value;
+         }
+      }
+      /// <summary>
+      /// 获取或设置当前实例的分卷标题
+      /// </summary>
+      public string Title
+      {
+         get { return title; }
+         set { title = value; }
+      }
+      /// <summary>
+      /// 获取或设置当前实例的分卷包含的章节
+      /// </summary>
+      public List<Chapter<TChapterNumber>> Chapters
+      {
+         get { return chapters; }
+         set { chapters = value; }
+      }
+      /// <summary>
+      /// 获取当前分卷所包含的章节数量
+      /// </summary>
+      public int Count
+      {
+         get { return Chapters.Count; }
+      }
+      /// <summary>
+      /// 获取当前层级正文的所有字符的数量
+      /// </summary>
+      public uint CharacterCount
+      {
+         get
+         {
+            uint ccnt = 0;
+            for (short i = 0; i < Count; i++) ccnt += this[i].CharacterCount;
+            return ccnt;
+         }
+      }
+      /// <summary>
+      /// 获取当前层级正文的所有标点符号的数量
+      /// </summary>
+      public uint PunctuationCount
+      {
+         get
+         {
+            uint pcnt = 0;
+            for (short i = 0; i < Count; i++) pcnt += this[i].CharacterCount;
+            return pcnt;
+         }
+      }
+      /// <summary>
+      /// 获取当前层级正文的所有单词或者汉字的数量
+      /// </summary>
+      public uint WordCount
+      {
+         get
+         {
+            return CharacterCount - PunctuationCount;
+         }
+      }
+      /// <summary>
+      /// 获取或设置当前层级的创作时间
+      /// </summary>
+      public DateTime CreationTime
+      {
+         get { return creation; }
+         set { creation = value; }
+      }
+      /// <summary>
+      /// 获取或设置当前层级的完结时间
+      /// </summary>
+      public DateTime BreakupTime
+      {
+         get { return breakup; }
+         set { breakup = value; }
+      }
+      /// <summary>
+      /// 获取或者设置指定的子章节
+      /// </summary>
+      /// <param name="_index">指定的子章节的列表索引。</param>
+      /// <returns>该操作会通过一个索引返回一个子章节，如果这个索引超出了搜索范围，则会抛出异常。</returns>
+      public Chapter<TChapterNumber> this[int _index]
+      {
+         get
+         {
+            if (_index < 0 || _index > Count) throw new ArgumentOutOfRangeException("索引超出范围！");
+            return Chapters[_index];
+         }
+         set
+         {
+            if (_index < 0 || _index > Count) throw new ArgumentOutOfRangeException("索引超出范围！");
+            Chapters[_index] = value;
+         }
+      }
+      /// <summary>
+      /// 添加新的章节
+      /// </summary>
+      /// <param name="_item">需要被添加到分卷章节列表中的章节。</param>
+      /// <returns>该操作会返回追加新章节之后的章节总数量，比如说，执行该操作之前，章节列表有20个章节，那么执行了此方法之后，返回的章节数量是21。</returns>
+      public int AddChapter(Chapter<TChapterNumber> _item)
+      {
+         Chapters.Add(_item);
+         return Count;
+      }
+      /// <summary>
+      /// 添加新的章节到指定的索引后面
+      /// </summary>
+      /// <param name="_item">需要被添加到分卷章节列表中的章节。</param>
+      /// <param name="_index">用于添加到指定位置所对应的索引。</param>
+      /// <returns>该操作会返回追加新章节之后的章节总数量，比如说，执行该操作之前，章节列表有20个章节，那么执行了此方法之后，返回的章节数量是21。</returns>
+      public int AddChapter(Chapter<TChapterNumber> _item, int _index)
+      {
+         Chapters.Insert(_index, _item);
+         return Count;
+      }
+      /// <summary>
+      /// 添加新的章节到指定的索引后面
+      /// </summary>
+      /// <param name="_item">需要被添加到分卷章节列表中的章节。</param>
+      /// <param name="_chapterno">指示添加到哪一个章节后面。</param>
+      /// <returns>该操作会返回追加新章节之后的章节总数量，比如说，执行该操作之前，章节列表有20个章节，那么执行了此方法之后，返回的章节数量是21。</returns>
+      public int AddChapter(Chapter<TChapterNumber> _item, SChapterNumber<TChapterNumber> _chapterno)
+      {
+         AddChapter(_item, GetChapterIndex(_chapterno));
+         return Count;
+      }
+      /// <summary>
+      /// 移除指定的章节
+      /// </summary>
+      /// <param name="_chapterno">需要被移除的章节的章节编号。</param>
+      public void RemoveChapter(SChapterNumber<TChapterNumber> _chapterno)
+      {
+         Chapters.RemoveAt(GetChapterIndex(_chapterno));
+      }
+      /// <summary>
+      /// 获取指定章节编号在列表中的索引
+      /// </summary>
+      /// <param name="_chapterno">需要用于获取索引的章节编号。</param>
+      /// <returns>如果这个章节编号存在则会返回一个正确的索引，否则会抛出异常。</returns>
+      public int GetChapterIndex(SChapterNumber<TChapterNumber> _chapterno)
+      {
+         int r_index = -1;
+         bool eql_chapterno_no = false;
+         bool eql_chapterno_mode = false;
+         bool isstoped = false;
+         Parallel.For(0, Count, (index, interrupt) =>
+         {
+            eql_chapterno_no = _chapterno.ChapterNumber.ToString() == this[index].ChapterNumber.ChapterNumber.ToString();
+            eql_chapterno_mode = _chapterno.ChapterNumberMode == this[index].ChapterNumber.ChapterNumberMode;
+            if (eql_chapterno_no && eql_chapterno_mode)
+            {
+               r_index = index;
+               interrupt.Stop();
+            }
+            isstoped = interrupt.IsStopped;
+         });
+         if (isstoped == false) throw new NotFoundChapterException("找不到指定的章节！");
+         return r_index;
+      }
+      /// <summary>
+      /// 检查指定的章节编号是否存在于列表之中
+      /// </summary>
+      /// <param name="_chapterno">需要被用于检查的章节编号。</param>
+      /// <returns>如果这个章节编号存在则会返回true，否则会返回false。</returns>
+      public bool ChapterExists(SChapterNumber<TChapterNumber> _chapterno)
+      {
+         bool exists = true;
+         try
+         {
+            GetChapterIndex(_chapterno);
+         }
+         catch (NotFoundChapterException ex)
+         {
+            if (ex != null) exists = false;
+         }
+         return exists;
+      }
+      /// <summary>
+      /// 在当前的作品层级组建并生成用户能够直接使用的文本
+      /// </summary>
+      /// <param name="_iselinttl">是否在标题结尾追加空行。</param>
+      /// <param name="_iselinend">是否在正文结尾追加空行。</param>
+      /// <returns>该操作会返回一个可以供普通用户使用并阅读的文本，这些文本则是可以发表的作品内容的一部分或者全部内容。</returns>
+      public string Build(bool _iselinttl, bool _iselinend)
+      {
+         string eptline = "\n";
+         string build_st = _iselinttl ? EmbroilNumber.ToString() + Title + eptline : Title;
+         for (int i = 0; i < Count; i++) build_st += this[i].Build(_iselinttl, _iselinend);
+         if (_iselinend) build_st += eptline;
+         return build_st;
+      }
+      /// <summary>
+      /// 获取当前类的字符串表达形式
+      /// </summary>
+      /// <returns>该操作返回当前类的字符串表达形式，这个字符串是当前类的完整名称。</returns>
+      public override string ToString()
+      {
+         return "Cabinink.Writer.Cores.Embroil";
+      }
+   }
+   /// <summary>
+   /// 分卷编号表达模式枚举
+   /// </summary>
+   public enum EEmbroilNumberMode : int
+   {
+      /// <summary>
+      /// 中文编号处于中文“卷”的后面，举例：卷二十三
+      /// </summary>
+      NumberAfterChineseEmbroil = 0x0000,
+      /// <summary>
+      /// 中文编号处于中文“第”和“卷”的中间，格式为：第[EMBROIL_NUMBER]卷，举例：第十四卷
+      /// </summary>
+      NumberBeforeChineseEmbroilFirstAndLast = 0x0001,
+      /// <summary>
+      /// 阿拉伯数字处于英文Embroil后面，举例：Embroil 12
+      /// </summary>
+      ArabicNumberAfterEnglishEmbroil = 0x0002
+   }
+   /// <summary>
+   /// 当出现空分卷编号的时候需要抛出的异常
+   /// </summary>
+   [Serializable]
+   public class NullEmbroilNumberException : Exception
+   {
+      public NullEmbroilNumberException() { }
+      public NullEmbroilNumberException(string message) : base(message) { }
+      public NullEmbroilNumberException(string message, Exception inner) : base(message, inner) { }
+      protected NullEmbroilNumberException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+   }
+   /// <summary>
+   /// 当找不到指定分卷时抛出的异常
+   /// </summary>
+   [Serializable]
+   public class NotFoundEmbroilException : Exception
+   {
+      public NotFoundEmbroilException() { }
+      public NotFoundEmbroilException(string message) : base(message) { }
+      public NotFoundEmbroilException(string message, Exception inner) : base(message, inner) { }
+      protected NotFoundEmbroilException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+   }
+   /// <summary>
+   /// 找不到指定章节时抛出的异常
+   /// </summary>
+   [Serializable]
+   public class NotFoundChapterException : Exception
+   {
+      public NotFoundChapterException() { }
+      public NotFoundChapterException(string message) : base(message) { }
+      public NotFoundChapterException(string message, Exception inner) : base(message, inner) { }
+      protected NotFoundChapterException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+   }
+}

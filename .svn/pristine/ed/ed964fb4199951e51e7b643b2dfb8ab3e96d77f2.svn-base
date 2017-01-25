@@ -1,0 +1,208 @@
+﻿namespace Cabinink.Writer.UI
+{
+   partial class frmCreateProject
+   {
+      /// <summary>
+      /// Required designer variable.
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
+
+      /// <summary>
+      /// Clean up any resources being used.
+      /// </summary>
+      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose(bool disposing)
+      {
+         if (disposing && (components != null))
+         {
+            components.Dispose();
+         }
+         base.Dispose(disposing);
+      }
+
+      #region Windows Form Designer generated code
+
+      /// <summary>
+      /// Required method for Designer support - do not modify
+      /// the contents of this method with the code editor.
+      /// </summary>
+      private void InitializeComponent()
+      {
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateProject));
+         this.metroLabel1 = new DMSkin.Metro.Controls.MetroLabel();
+         this.txtProjectName = new DMSkin.Metro.Controls.MetroTextBox();
+         this.metroLabel2 = new DMSkin.Metro.Controls.MetroLabel();
+         this.txtWorkName = new DMSkin.Metro.Controls.MetroTextBox();
+         this.metroLabel3 = new DMSkin.Metro.Controls.MetroLabel();
+         this.txtProjectPath = new DMSkin.Metro.Controls.MetroTextBox();
+         this.btnBrowser = new DMSkin.Metro.Controls.MetroButton();
+         this.metroToggle1 = new DMSkin.Metro.Controls.MetroToggle();
+         this.metroLabel4 = new DMSkin.Metro.Controls.MetroLabel();
+         this.btnCreate = new DMSkin.Metro.Controls.MetroButton();
+         this.btnCancel = new DMSkin.Metro.Controls.MetroButton();
+         this.SuspendLayout();
+         // 
+         // metroLabel1
+         // 
+         this.metroLabel1.AutoSize = true;
+         this.metroLabel1.Location = new System.Drawing.Point(23, 75);
+         this.metroLabel1.Name = "metroLabel1";
+         this.metroLabel1.Size = new System.Drawing.Size(65, 20);
+         this.metroLabel1.TabIndex = 0;
+         this.metroLabel1.Text = "项目名称";
+         // 
+         // txtProjectName
+         // 
+         this.txtProjectName.DM_UseSelectable = true;
+         this.txtProjectName.Lines = new string[] {
+        "<请输入项目名称>"};
+         this.txtProjectName.Location = new System.Drawing.Point(94, 74);
+         this.txtProjectName.MaxLength = 32767;
+         this.txtProjectName.Name = "txtProjectName";
+         this.txtProjectName.PasswordChar = '\0';
+         this.txtProjectName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+         this.txtProjectName.SelectedText = "";
+         this.txtProjectName.Size = new System.Drawing.Size(515, 23);
+         this.txtProjectName.TabIndex = 1;
+         this.txtProjectName.Text = "<请输入项目名称>";
+         // 
+         // metroLabel2
+         // 
+         this.metroLabel2.AutoSize = true;
+         this.metroLabel2.Location = new System.Drawing.Point(23, 110);
+         this.metroLabel2.Name = "metroLabel2";
+         this.metroLabel2.Size = new System.Drawing.Size(65, 20);
+         this.metroLabel2.TabIndex = 0;
+         this.metroLabel2.Text = "作品名称";
+         // 
+         // txtWorkName
+         // 
+         this.txtWorkName.DM_UseSelectable = true;
+         this.txtWorkName.Lines = new string[] {
+        "<请输入作品名称>"};
+         this.txtWorkName.Location = new System.Drawing.Point(94, 109);
+         this.txtWorkName.MaxLength = 32767;
+         this.txtWorkName.Name = "txtWorkName";
+         this.txtWorkName.PasswordChar = '\0';
+         this.txtWorkName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+         this.txtWorkName.SelectedText = "";
+         this.txtWorkName.Size = new System.Drawing.Size(515, 23);
+         this.txtWorkName.TabIndex = 1;
+         this.txtWorkName.Text = "<请输入作品名称>";
+         // 
+         // metroLabel3
+         // 
+         this.metroLabel3.AutoSize = true;
+         this.metroLabel3.Location = new System.Drawing.Point(23, 145);
+         this.metroLabel3.Name = "metroLabel3";
+         this.metroLabel3.Size = new System.Drawing.Size(65, 20);
+         this.metroLabel3.TabIndex = 0;
+         this.metroLabel3.Text = "保存路径";
+         // 
+         // txtProjectPath
+         // 
+         this.txtProjectPath.DM_UseSelectable = true;
+         this.txtProjectPath.Lines = new string[0];
+         this.txtProjectPath.Location = new System.Drawing.Point(94, 144);
+         this.txtProjectPath.MaxLength = 32767;
+         this.txtProjectPath.Name = "txtProjectPath";
+         this.txtProjectPath.PasswordChar = '\0';
+         this.txtProjectPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
+         this.txtProjectPath.SelectedText = "";
+         this.txtProjectPath.Size = new System.Drawing.Size(431, 23);
+         this.txtProjectPath.TabIndex = 1;
+         // 
+         // btnBrowser
+         // 
+         this.btnBrowser.DM_UseSelectable = true;
+         this.btnBrowser.Location = new System.Drawing.Point(534, 144);
+         this.btnBrowser.Name = "btnBrowser";
+         this.btnBrowser.Size = new System.Drawing.Size(75, 23);
+         this.btnBrowser.TabIndex = 2;
+         this.btnBrowser.Text = "浏览(&B)...";
+         // 
+         // metroToggle1
+         // 
+         this.metroToggle1.AutoSize = true;
+         this.metroToggle1.Checked = true;
+         this.metroToggle1.CheckState = System.Windows.Forms.CheckState.Checked;
+         this.metroToggle1.DisplayStatus = false;
+         this.metroToggle1.DM_UseSelectable = true;
+         this.metroToggle1.Location = new System.Drawing.Point(23, 265);
+         this.metroToggle1.Name = "metroToggle1";
+         this.metroToggle1.Size = new System.Drawing.Size(50, 16);
+         this.metroToggle1.TabIndex = 3;
+         this.metroToggle1.Text = "On";
+         // 
+         // metroLabel4
+         // 
+         this.metroLabel4.AutoSize = true;
+         this.metroLabel4.Location = new System.Drawing.Point(78, 262);
+         this.metroLabel4.Name = "metroLabel4";
+         this.metroLabel4.Size = new System.Drawing.Size(93, 20);
+         this.metroLabel4.TabIndex = 0;
+         this.metroLabel4.Text = "启用项目管理";
+         // 
+         // btnCreate
+         // 
+         this.btnCreate.DM_UseSelectable = true;
+         this.btnCreate.Location = new System.Drawing.Point(450, 258);
+         this.btnCreate.Name = "btnCreate";
+         this.btnCreate.Size = new System.Drawing.Size(75, 23);
+         this.btnCreate.TabIndex = 4;
+         this.btnCreate.Text = "创建(&C)";
+         // 
+         // btnCancel
+         // 
+         this.btnCancel.DM_UseSelectable = true;
+         this.btnCancel.Location = new System.Drawing.Point(534, 258);
+         this.btnCancel.Name = "btnCancel";
+         this.btnCancel.Size = new System.Drawing.Size(75, 23);
+         this.btnCancel.TabIndex = 4;
+         this.btnCancel.Text = "取消(&E)";
+         // 
+         // frmCreateProject
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+         this.ClientSize = new System.Drawing.Size(636, 293);
+         this.Controls.Add(this.btnCancel);
+         this.Controls.Add(this.btnCreate);
+         this.Controls.Add(this.metroToggle1);
+         this.Controls.Add(this.btnBrowser);
+         this.Controls.Add(this.txtProjectPath);
+         this.Controls.Add(this.metroLabel3);
+         this.Controls.Add(this.txtWorkName);
+         this.Controls.Add(this.metroLabel2);
+         this.Controls.Add(this.txtProjectName);
+         this.Controls.Add(this.metroLabel4);
+         this.Controls.Add(this.metroLabel1);
+         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+         this.ImeMode = System.Windows.Forms.ImeMode.On;
+         this.MaximizeBox = false;
+         this.MinimizeBox = false;
+         this.Name = "frmCreateProject";
+         this.Resizable = false;
+         this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
+         this.Style = MetroFramework.MetroColorStyle.Green;
+         this.Text = "新建项目";
+         this.ResumeLayout(false);
+         this.PerformLayout();
+
+      }
+
+      #endregion
+
+      private DMSkin.Metro.Controls.MetroLabel metroLabel1;
+      private DMSkin.Metro.Controls.MetroTextBox txtProjectName;
+      private DMSkin.Metro.Controls.MetroLabel metroLabel2;
+      private DMSkin.Metro.Controls.MetroTextBox txtWorkName;
+      private DMSkin.Metro.Controls.MetroLabel metroLabel3;
+      private DMSkin.Metro.Controls.MetroTextBox txtProjectPath;
+      private DMSkin.Metro.Controls.MetroButton btnBrowser;
+      private DMSkin.Metro.Controls.MetroToggle metroToggle1;
+      private DMSkin.Metro.Controls.MetroLabel metroLabel4;
+      private DMSkin.Metro.Controls.MetroButton btnCreate;
+      private DMSkin.Metro.Controls.MetroButton btnCancel;
+   }
+}

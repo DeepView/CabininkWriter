@@ -1,0 +1,22 @@
+﻿using System;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
+namespace Cabinink
+{
+   static class Program
+   {
+      /// <summary>
+      /// 应用程序的主入口点。
+      /// </summary>
+      [STAThread]
+      static void Main()
+      {
+         Application.EnableVisualStyles();
+         Application.SetCompatibleTextRenderingDefault(false);
+         //Application.Run(new Writer.UI.frmMain());
+         Application.Run(new Writer.UI.frmMainInterface());
+         
+      }
+   }
+}

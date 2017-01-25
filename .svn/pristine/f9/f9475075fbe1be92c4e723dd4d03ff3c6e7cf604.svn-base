@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using MetroFramework.Forms;
+using Cabinink.Writer.Cores;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmMain : MetroForm
+   {
+      public frmMain()
+      {
+         InitializeComponent();
+      }
+
+      private void frmMain_Resize(object sender, EventArgs e)
+      {
+         //if (WindowState == FormWindowState.Maximized) MinimumSize = Screen.PrimaryScreen.WorkingArea.Size;
+         //else if (WindowState == FormWindowState.Normal) MinimumSize = new Size(697, 393);
+         //else MinimumSize = new Size(697, 393);
+         pnlMenuArea.Left = Width - pnlMenuArea.Width - 3;
+         stsStatusBar.Top = Height - stsStatusBar.Height;
+         trvNodes.Height = Height - trvNodes.Top - tspToolBar.Height + 28;
+         txtBodies.Height = trvNodes.Height;
+         txtBodies.Width = Width - txtBodies.Left - 5;
+         tspToolBar.Width = Width - 15;
+      }
+
+      private void lnkFile_Click(object sender, EventArgs e)
+      {
+         cmsFile.Show();
+         cmsFile.Left = lnkFile.Left + Left + pnlMenuArea.Left;
+         cmsFile.Top = lnkFile.Top + lnkFile.Height + pnlMenuArea.Top + Top;
+      }
+
+      private void frmMain_Load(object sender, EventArgs e)
+      {
+         //SplashForm sfr;
+         frmMain_Resize(sender, e);
+         txtBodies.ImeMode = ImeMode.OnHalf;
+         //NamingSystem ns = new NamingSystem();
+         //ns.InitializeBuilder();
+         //List<SCompleteName> names = ns.RandomBuildNames(5);
+         //string msgtext = String.Empty;
+         //for (int i = 0; i < 5; i++) msgtext = msgtext + names[i].ToString() + "\n";
+         //MessageBox.Show(msgtext, "RandomBuildNames(int)", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+
+      private void 新建NToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         frmCreateProject crtproj = new frmCreateProject();
+         crtproj.ShowDialog();
+      }
+
+      private void trvNodes_Click(object sender, EventArgs e)
+      {
+         PaintEventArgs pe=new PaintEventArgs (trvNodes.CreateGraphics() ,new Rectangle(trvNodes.Location ,trvNodes.Size ));
+         trvNodes.ON_PAINT(pe);
+         trvNodes.Refresh();
+      }
+
+      private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         Application.ExitThread();
+      }
+   }
+}

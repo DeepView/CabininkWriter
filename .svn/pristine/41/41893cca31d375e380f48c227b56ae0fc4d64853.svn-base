@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>主页</title>
+	</head>
+	<style type="text/css">
+		body{
+			margin: 0px;
+			padding: 0px;
+		}
+		p{
+			font-family: "微软雅黑";
+		}
+		a{
+			text-decoration: none;
+			color: rgb(64,64,64);
+			font-family: "微软雅黑";
+			font-size: 16px;
+			/*vertical-align: middle;*/
+		}
+		img{
+			width: 24px;
+			height: 24px;
+			opacity: 0.7;
+			vertical-align: middle;
+		}
+		.cell{
+			height: 60px;
+		}
+		.cell:hover{
+			background-color: rgb(200,200,200);
+			border-radius: 0px;
+		}
+		.logo{
+			color: rgb(255,255,255);
+			text-align: center;
+			font-size: 32px;
+		}
+		.top{
+			margin-top: -30px;
+			/*background-color: rgb(30,144,255);*/
+			background-image: url(img/TopBackground.jpg);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			/*background:url("img/TopBackground.jpg") repeat fixed!important*/
+		}
+		.search{
+			margin: 0 auto;
+			background-color: inherit;
+			border-radius: 5px;
+		}
+		.baidu_t{
+			width: 600px;
+			height: 32px;
+			color: rgb(32,32,32);
+			border: 0px;
+			font-size: 16px;
+			vertical-align: middle;
+			padding-left: 5px;
+			padding-right: 5px;
+			border-radius: 5px;
+		}
+		.baidu_s{
+			width: 80px;
+			height: 32px;
+			border: 0px;
+			background-color: rgb(255,255,255);
+			opacity: 0.6;
+			font-size: 16px;
+			vertical-align: middle;
+			background-size: 100% 100%;
+			border-radius: 5px;
+		}
+		.qidian,.yunqi,.chuangshi,.zhulang,.tiexue,.xiaoxiang,.zongheng,.wangyi,.wxxg{
+			vertical-align: middle;
+		}
+		.subtic{
+			font-size: 20px;
+			color: blueviolet;
+			padding-left: 60px;
+			height: 70px;
+		}
+		.emptyline{
+			height: 40px;
+		}
+		.etcinfo{
+			font-size: 12px;
+			color: rgb(255,255,255);
+		}
+		.logoleft{
+			color: rgb(255,255,255);
+			padding: 20px;
+			font-size: 20px;
+		}
+		.cpt{
+			color: blueviolet;
+			font-size: 14px;
+		}
+	</style>
+	<body>
+		<div class="top">
+			<p class="logoleft">Cabinink Writer</p>
+			<div class="logo">
+				<br /><br />
+				<p>在线搜索 / 作家后台管理</p>
+				<br />
+			</div>
+			<div class="search">
+				<center>
+					<form action="http://www.baidu.com/baidu" target="_blank">
+    					<table bgcolor="#FFFFFF">
+    						<tr><td>
+        						<input name="tn" type="hidden" value="SE_zzsearchcode_shhzc78w">
+        						<input type="text" name="word" size="30" baiduSug="1" class="baidu_t" autocomplete="off">
+        						<input type="submit" value="Search" class="baidu_s">
+    						</td></tr>
+    					</table>
+					</form>
+				</center>
+				<p class="etcinfo" align="center"><br />注：本页面的在线搜索引擎由百度公司提供。</p>
+				<br /><br />
+			</div>
+		</div>
+		<div class="nav">
+			<br />
+			<table border="0" cellspacing="" cellpadding="" width=1000 align="center">
+				<tr><th colspan="4"></th></tr>
+				<tr>
+					<td colspan="4" class="subtic">
+						<p>作家后台站点</p>
+					</td>
+				</tr>
+				<tr align="center">
+					<td class="cell">
+						<div class="qidian">
+							<a target="_blank" href="http://me.qidian.com/author/authorDoor.aspx"><img src="img/Management.png"/>&nbsp;&nbsp;起点作家后台</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="chuangshi">
+							<a target="_blank" href="https://passport.book.qq.com/?site=writer&sid=&http_referer=http%3A%2F%2Fwrite.qq.com%2F%3Fsite%3Dchuangshi"><img src="img/Management.png"/>&nbsp;&nbsp;创世作家后台</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="yunqi">
+							<a target="_blank" href="https://passport.book.qq.com/?site=writer&sid=prrn4enmv9s4l3qefaqenn3n74&http_referer=http%3A%2F%2Fwrite.qq.com%2F%3Fsite%3Dyunqi"><img src="img/Management.png"/>&nbsp;&nbsp;云起作家后台</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="zhulang">
+							<a target="_blank" href="http://www.zhulang.com/login/index.html"><img src="img/Management.png"/>&nbsp;&nbsp;逐浪作家后台</a>
+						</div>
+					</td>
+				</tr>
+				<tr align="center">
+					<td class="cell">
+						<div class="zongheng">
+							<a target="_blank" href="http://author.zongheng.com/login.html?time=1458223623950"><img src="img/Management.png"/>&nbsp;&nbsp;纵横作家后台</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="wangyi">
+							<a target="_blank" href="http://open.yuedu.163.com/"><img src="img/Management.png"/>&nbsp;&nbsp;网易作家后台</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="xiaoxiang">
+							<a target="_blank" href="http://author.xxsy.net/Login.aspx?r=http%3a%2f%2fauthor.xxsy.net%2fdefault.aspx"><img src="img/Management.png"/>&nbsp;&nbsp;潇湘作家后台</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="tiexue">
+							<a target="_blank" href="http://reg.junshishu.com/login.aspx?IsReturn=1&ReturnUrl=http%3a%2f%2fwww.junshishu.com%2fAuthor%2fAuthorV2%2fIndex.aspx"><img src="img/Management.png"/>&nbsp;&nbsp;铁血作家后台</a>
+						</div>
+					</td>
+				</tr>
+				<tr class="emptyline"><td></td></tr>
+				<tr>
+					<td colspan="4" class="subtic">
+						<p>文学相关网站</p>
+					</td>
+				</tr>
+				<tr align="center">
+					<td class="cell">
+						<div class="wxxg">
+							<a target="_blank" href="http://dict.baidu.com/"><img src="img/Globe.png"/>&nbsp;&nbsp;百度在线词典</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="wxxg">
+							<a target="_blank" href="http://www.bing.com/translator/"><img src="img/Globe.png"/>&nbsp;&nbsp;微软必应翻译</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="wxxg">
+							<a target="_blank" href="http://www.cidianwang.com/zd/"><img src="img/Globe.png"/>&nbsp;&nbsp;新华字典在线</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="wxxg">
+							<a target="_blank" href="http://www.cidianwang.com/guhanyu/"><img src="img/Globe.png"/>&nbsp;&nbsp;古汉语词典网</a>
+						</div>
+					</td>
+				</tr>
+				<tr class="emptyline"><td></td></tr>
+				<tr>
+					<td colspan="4" class="subtic">
+						<p>百科网络站点</p>
+					</td>
+				</tr>
+				<tr align="center">
+					<td class="cell">
+						<div class="wxxg">
+							<a target="_blank" href="http://baike.baidu.com/"><img src="img/Book.png"/>&nbsp;&nbsp;百度百科在线</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="wxxg">
+							<a target="_blank" href="https://zh.wikipedia.org/"><img src="img/Book.png"/>&nbsp;&nbsp;维基百科在线</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="wxxg">
+							<a target="_blank" href="http://baike.sogou.com/Home.v"><img src="img/Book.png"/>&nbsp;&nbsp;搜狗百科在线</a>
+						</div>
+					</td>
+					<td class="cell">
+						<div class="wxxg">
+							<a target="_blank" href="http://www.baike.com/"><img src="img/Book.png"/>&nbsp;&nbsp;互动百科在线</a>
+						</div>
+					</td>
+				</tr>
+				<tr class="emptyline"><td></td></tr>
+			</table>
+		</div>
+		<center>
+			<br />
+			<p class="cpt">Copyright&nbsp;&copy;&nbsp;2011-2016,Cabinink</p>
+			<br />
+		</center>
+	</body>
+</html>

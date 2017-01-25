@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ciw", "ciw.csproj", "{DB2BD8E5-0C6A-4907-8C5B-A33BED859A13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ciw_pagebrowser", "..\ciw_pagebrowser\ciw_pagebrowser.csproj", "{0B8D621C-FFD0-49FD-BF40-7CF2E06D42B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ciw_cnancvt", "ciw_cnancvt\ciw_cnancvt.csproj", "{50C48C26-7981-45B4-86C1-74C4A9C06372}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "..\..\MaterialSkin-master\MaterialSkin\MaterialSkin.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB2BD8E5-0C6A-4907-8C5B-A33BED859A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB2BD8E5-0C6A-4907-8C5B-A33BED859A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB2BD8E5-0C6A-4907-8C5B-A33BED859A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2BD8E5-0C6A-4907-8C5B-A33BED859A13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B8D621C-FFD0-49FD-BF40-7CF2E06D42B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B8D621C-FFD0-49FD-BF40-7CF2E06D42B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B8D621C-FFD0-49FD-BF40-7CF2E06D42B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B8D621C-FFD0-49FD-BF40-7CF2E06D42B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50C48C26-7981-45B4-86C1-74C4A9C06372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50C48C26-7981-45B4-86C1-74C4A9C06372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50C48C26-7981-45B4-86C1-74C4A9C06372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50C48C26-7981-45B4-86C1-74C4A9C06372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://deepviewstudio.visualstudio.com/defaultcollection
+		SccProjectUniqueName0 = ciw.csproj
+		SccProjectName0 = .
+		SccAuxPath0 = https://deepviewstudio.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal

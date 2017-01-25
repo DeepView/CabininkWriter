@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using Cabinink.Properties;
+
+namespace Cabinink.Writer.UI
+{
+   public partial class frmUpgradeCredential : Cabinink.Writer.UI.VsSkinFormBase
+   {
+      private Graphics graphics;
+      private Image image;
+
+      public frmUpgradeCredential()
+      {
+         InitializeComponent();
+         graphics = picAccountAvater.CreateGraphics();
+         image = picAccountAvater.Image;
+      }
+
+      private void picAccountAvater_MouseMove(object sender, MouseEventArgs e)
+      {
+         graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+         graphics.DrawImage(Resources.change_avater, new Rectangle(new Point(64, 64), new Size(72, 72)));
+      }
+
+      private void frmUpgradeCredential_MouseMove(object sender, MouseEventArgs e)
+      {
+         graphics.DrawImage(image, new Rectangle(new Point(0, 0), picAccountAvater.Size));
+      }
+
+      private void picAccountAvater_Click(object sender, EventArgs e)
+      {
+
+      }
+   }
+}
