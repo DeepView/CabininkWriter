@@ -10,7 +10,7 @@
     运行时：Microsoft .NET Framework 4.5
     程序集开发语言：C#
     操作系统：Windows 10
-    操作系统版本：Professional 10.0.10586.420
+    操作系统版本：Professional 10.0.14393.693
 # 程序集运行要求
     最低操作系统要求：Windows 7
     运行时版本：4.5
