@@ -42,7 +42,25 @@ namespace Cabinink.Writer.UI
       //   }
       //   base.WndProc(ref m);
       //}
-
+      /// <summary>
+      /// 获取工作区光标所在的坐标
+      /// </summary>
+      /// <returns>该操作将会返回一个Point结构实例，X表示光标所在行，Y表示光标所在列。</returns>
+      public Point GetCursorLocationInWorkspace(MouseEventArgs e)
+      {
+         int index = rtbBody.GetFirstCharIndexOfCurrentLine();
+         int line = rtbBody.GetLineFromCharIndex(index) + 1;
+         int column = rtbBody.SelectionStart - index + 1;
+         return new Point(line, column);
+      }
+      /// <summary>
+      /// 获取工作区光标所在的字符索引
+      /// </summary>
+      /// <returns>该操作将会返回光标在工作区字符串中的字符索引。</returns>
+      public int GetCursorIndexInWorkspace()
+      {
+         return rtbBody.GetFirstCharIndexFromLine(0);
+      }
       public void ShowTreeViewAccessProject(Project _proj)
       {
          trvNovelTree.Nodes.Add(_proj.CurrentNovel.ToString());

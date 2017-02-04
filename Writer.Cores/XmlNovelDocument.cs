@@ -288,7 +288,7 @@ namespace Cabinink.Writer.Cores
          XmlElement root = (XmlElement)Document.SelectSingleNode("novel");
          XmlNode will_removed;
          XmlNodeList nodes = root.ChildNodes;
-         Parallel.ForEach(CurrentProject.CurrentNovel.Subsections, (subsection, state) =>
+         Parallel.ForEach(CurrentProject.CurrentNovel.Subsections, (subsection, interrupt) =>
          {
             string serial_n = string.Empty;
             int sn_mode = (int)subsection.SubsectionNumber.SubsectionNumberMode;
@@ -298,11 +298,16 @@ namespace Cabinink.Writer.Cores
             {
                will_removed = root.GetAttributeNode("serial", serial_n);
                root.RemoveChild(_element);
-               state.Stop();
+               interrupt.Stop();
             }
          });
       }
-      public void UpdateSubsection(XmlElement _updated, Subsection _update_source)
+      /// <summary>
+      /// 更新指定的分卷节点
+      /// </summary>
+      /// <param name="_serial">需要被更新的分卷节点序列，这个序列主要用于检索匹配节点，从而来更新符合条件的节点，另外这个节点序列是阿拉伯数字的字符串形式。</param>
+      /// <param name="_update_source">用于更新分卷节点的源分卷实例。</param>
+      public void UpdateSubsection(string _serial, Subsection _update_source)
       {
 
       }
